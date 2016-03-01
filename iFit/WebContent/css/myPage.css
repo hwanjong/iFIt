@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+
+#list{
+	margin-top: 12%;
+	background-color: inherit;
+	vertical-align: middle;
+}
+#list > div{
+	line-height:3em;
+	vertical-align: middle;
+	margin-bottom: 1px;	
+	background-color: white;
+}
+
+#list > div > span{
+	display: inline-block;	
+}
+.arrowImg{
+	width:0.8em;
+	margin-right: 1.5em;
+}
+.title{
+	width:60%;
+	margin-left: 2em;
+	color:#626262;
+	font-size:14px;
+	font-weight:bold;
+}
+.subInfo{
+	float: right;	
+}
+
+
+.messageBox{
+	line-height: 1.5em;
+    width: 1.5em;
+    background-color: #f8989d;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+    margin-top: 0.75em;
+    margin-right: 0.7em;
+    text-shadow: none;
+}
+#loginBtn{
+	margin-top:4em;
+	font-size : 15px;
+	text-align: center;
+	background-color: white;
+	color:#f56c74;	    
+    line-height: 3em;
+    font-size: 20px;
+    font-weight: bold;
+}

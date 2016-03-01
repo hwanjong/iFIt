@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+#backheader {
+	color: #626262;
+	white-space: nowrap;
+	background-color: white;
+	text-shadow: none;
+}
+
+#backheader > span{
+	line-height:1.5em;
+	display: inline-block;
+	vertical-align: middle;
+	text-shadow: none;
+	font-weight: normal;
+}
+
+#backheader .glyphicon{
+	font-size:30px;
+	width: 10%;
+	padding-left:0.3em;
+	color:#959595;
+}
+
+#pageName{
+	width:50%;	
+	font-size: 13px;
+	text-align: left;
+}
+#backHeaderFn{
+	width:40%;
+	text-align: right;
+	padding-right:1.5em;
+}
+
+#backHeaderFn > img{
+	width:2em;	
+	margin-right: 0.5em;
+}
