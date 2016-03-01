@@ -27,9 +27,10 @@
 
 	<div data-role="page" id="loginPage" class="eachPage">
 		<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader">
-			<span class="glyphicon glyphicon-menu-left" id="backBtn"></span>
+			<span  id="backBtn" data-rel="back"><a data-rel="back" data-role="none" class="glyphicon glyphicon-menu-left"></a></span>
 			<span id="pageName">로그인</span>
-			<span id="backHeaderFn"></span>
+			<span id="backHeaderFn">
+			</span>		
 		</div>
 		<input type="text" id="idFormat" placeholder="이메일 아이디" autocomplete="off" data-role="none" class="inputFormatstyle">		
 		<input type="password" id="pwdFormat" placeholder="비밀번호" autocomplete="off" data-role="none" class="inputFormatstyle">	

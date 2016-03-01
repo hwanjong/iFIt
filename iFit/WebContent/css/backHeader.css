@@ -5,6 +5,7 @@
 	white-space: nowrap;
 	background-color: white;
 	text-shadow: none;
+	line-height: 2.5em;
 }
 
 #backheader > span{
@@ -13,6 +14,7 @@
 	vertical-align: middle;
 	text-shadow: none;
 	font-weight: normal;
+	text-align: left !important;
 }
 
 #backheader .glyphicon{
@@ -20,6 +22,10 @@
 	width: 10%;
 	padding-left:0.3em;
 	color:#959595;
+}
+#backBtn > a{
+	vertical-align: middle;
+	font-size: 25px !important;
 }
 
 #pageName{

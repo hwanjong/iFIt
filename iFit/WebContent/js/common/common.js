@@ -91,28 +91,9 @@ function stopSearchBar_Handler(e) {
 	}
 	e.stopPropagation();
 }
-var isCalledNewPage = "false";
-var isInit = "";
 
-$(document).on("unload",function(e){
-	eraseCookie("isInit");
-	eraseCookie("isCalledNewPage");
-	eraseCookie("scollPos");
-});
 
 $(function() {
-	if(isInit=="")
-		isInit=getCookie("isInit");
-	console.log(isInit);
-	if(isInit == "false"){		
-		if (navigator.onLine == false) {
-			alert("인터넷 연결이 되지 않음..");
-		} else {
-			$.mobile.changePage("#main_home");
-		}
-		isInit="true";
-		setCookie("isInit",isInit,1);
-	}
 	$("[data-role='header'], [data-role='footer']").toolbar();
 	$("#searchBar").click(searchInputBtn_Handler);
 
@@ -137,7 +118,6 @@ $(function() {
 		$("#adWrap").hide();
 	});
 	$(".eachPage").on("pageshow", function(event) {
-		initPage();
 		switch ($(".ui-page-active").attr("id")) {
 		case "main_home":
 			homeBtn_Handler();
@@ -171,44 +151,46 @@ $(function() {
 		$("#adWrap").hide();
 	}	
 });
-
-
-
-function initPage() {
-	isCalledNewPage = getCookie("isCalledNewPage");
-	eraseCookie("isCalledNewPage");
-	if (isCalledNewPage == "true") {
-		var varScroll = getCookie('scollPos');
-		window.scrollTo(0, varScroll);
-		setCookie('isCalledNewPage', "false", 1);
-		isCalledNewPage = "false";
-	}
+function saveScroll(){
+	
 }
 
-function saveScroll() {
-	setCookie('scollPos', document.body.scrollTop, 1);
-	setCookie('isCalledNewPage', true, 1);
 
-}
-function eraseCookie(name) {
-	setCookie(name, "", -1);
-}
-function setCookie(cname, cvalue, hour) {
-	var d = new Date();
-	d.setTime(d.getTime() + (hour  * 60 * 60 * 1000));
-	var expires = "expires=" + d.toUTCString();
-	document.cookie = cname + "=" + cvalue + "; " + expires;
-}
-
-function getCookie(cname) {
-	var name = cname + "=";
-	var ca = document.cookie.split(';');
-	for (var i = 0; i < ca.length; i++) {
-		var c = ca[i];
-		while (c.charAt(0) == ' ')
-			c = c.substring(1);
-		if (c.indexOf(name) == 0)
-			return c.substring(name.length, c.length);
-	}
-	return "";
-}
+//function initPage() {
+//	isCalledNewPage = getCookie("isCalledNewPage");
+//	eraseCookie("isCalledNewPage");
+//	if (isCalledNewPage == "true") {
+//		var varScroll = getCookie('scollPos');
+//		window.scrollTo(0, varScroll);
+//		setCookie('isCalledNewPage', "false", 1);
+//		isCalledNewPage = "false";
+//	}
+//}
+//
+//function saveScroll() {
+//	setCookie('scollPos', document.body.scrollTop, 1);
+//	setCookie('isCalledNewPage', true, 1);
+//
+//}
+//function eraseCookie(name) {
+//	setCookie(name, "", -1);
+//}
+//function setCookie(cname, cvalue, hour) {
+//	var d = new Date();
+//	d.setTime(d.getTime() + (hour  * 60 * 60 * 1000));
+//	var expires = "expires=" + d.toUTCString();
+//	document.cookie = cname + "=" + cvalue + "; " + expires;
+//}
+//
+//function getCookie(cname) {
+//	var name = cname + "=";
+//	var ca = document.cookie.split(';');
+//	for (var i = 0; i < ca.length; i++) {
+//		var c = ca[i];
+//		while (c.charAt(0) == ' ')
+//			c = c.substring(1);
+//		if (c.indexOf(name) == 0)
+//			return c.substring(name.length, c.length);
+//	}
+//	return "";
+//}
