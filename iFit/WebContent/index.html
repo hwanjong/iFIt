@@ -24,6 +24,7 @@
 <link href="css/myPage.css" rel="stylesheet">
 <link href="css/product_list.css" rel="stylesheet">
 <link href="css/cart.css" rel="stylesheet">
+<link href="css/codi.css" rel="stylesheet">
 
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/common/common.js"></script>
@@ -34,6 +35,7 @@
 <script type="text/javascript" src="js/mypage.js"></script>
 <script type="text/javascript" src="js/product_list.js"></script>
 <script type="text/javascript" src="js/cart.js"></script>
+<script type="text/javascript" src="js/codiPage.js"></script>
 
 </head>
 <body>
@@ -559,7 +561,7 @@
 	<div data-role="page" id="zzimPage" class="eachPage">
 			<a onclick="window.scrollTo(0,0);"><img style="width: 40px; position: fixed; left: 85%; top: 80%; z-index: 1;" src = "img/top.png"></a>
 
-		<div class="cart_item">
+		<div class="cart_item" id="f234a2b">
 			<div class="cart_imgDiv">
 			 	<img class="cart_photo" src="img/product1.PNG">
 				<div class="fitLogo">I-FIT!</div>
@@ -575,7 +577,7 @@
 			</div>
 		</div>
 		
-				<div class="cart_item">
+		<div class="cart_item" id="f234a44">
 			<div class="cart_imgDiv">
 			 	<img class="cart_photo" src="img/product1.PNG">
 				<div class="fitLogo">I-FIT!</div>
@@ -640,7 +642,7 @@
 	</div>
 
 	<div data-role="page" id="cartPage" class="eachPage">
-		<div class="cart_item">
+		<div class="cart_item" id="f234a44">
 			<div class="cart_imgDiv">
 				<img class="cart_photo" src="img/product1.PNG">
 				<div class="fitLogo">I-FIT!</div>
@@ -648,16 +650,15 @@
 			<div class="cart_infoDiv">
 				<p style="font-size: 13px; color: #434343; font-weight: bold;">
 					체크무늬 솜사탕 코트트</p>
-				<p style="font-size: 11px; color: #a0a0a0;">36,000원</p>
-				<img class="cart_cancleBtn" src="img/cancel.png">
+				<p style="font-size: 11px; color: #a0a0a0;">36,000원</p><span class="realPrice" >36000</span>
+				<img class="cart_cancleBtn" src="img/cancel.png" onclick='removeCart("f234a44")'>
 				<div class="cart_btnDiv">
 					<img src="img/buyBtn2.png" style="width: 100%;">
 				</div>
-
 			</div>
 		</div>
 
-		<div class="cart_item">
+		<div class="cart_item" id="f234a45">
 			<div class="cart_imgDiv">
 				<img class="cart_photo" src="img/product1.PNG">
 				<div class="fitLogo">I-FIT!</div>
@@ -665,8 +666,8 @@
 			<div class="cart_infoDiv">
 				<p style="font-size: 13px; color: #434343; font-weight: bold;">
 					체크무늬 솜사탕 코트트</p>
-				<p style="font-size: 11px; color: #a0a0a0;">36,000원</p>
-				<img class="cart_cancleBtn" src="img/cancel.png">
+				<p style="font-size: 11px; color: #a0a0a0;">36,000원<span class="realPrice" >36000</span></p>
+				<img class="cart_cancleBtn" src="img/cancel.png" onclick='removeCart("f234a45")'>
 				<div class="cart_btnDiv">
 					<img src="img/buyBtn2.png" style="width: 100%;">
 				</div>
@@ -674,15 +675,32 @@
 		</div>
 
 		<div id="cart_cartDiv" >
-			<p>상품금액 </p> <span style="float: right;">344,000원</span><br/>
-			<p>배송료</p> <span style="float: right;">15,000원</span>
+			<p>상품금액 </p> <span style="float: right;"><span id="sumPrice">0</span> 원</span><br/>
+			<p>배송료</p> <span style="float: right;"><span id="deliveryPrice">15000</span> 원</span>
 			<p class="line" style="display: block;"></p>
-			<p class="bold f14">결제하실 금액</p> <span class="bold f14" style="float: right; color:#f56c74; ">359,000원</span>
+			<p class="bold f14">결제하실 금액</p> <span class="bold f14" style="float: right; color:#f56c74; "><span id="totalPrice"">0</span> 원</span>
 		</div>
-		
-
+		<Button id ="cart_buyBtn">구매하기</Button>
 
 	</div>
+	
+	<div data-role="page" id="codiPage" class="eachPage">
+		<div id="preView" style="position: fixed; z-index: 1;">
+			<div id="leftDoor" class="door" style="float: left;">
+				<p class="doorHand" style="right: 0px;"></p>
+			</div>
+			<div id="rightDoor" class="door" style="float: right;">
+				<p class="doorHand"></p>
+			</div>
+		</div>
+
+		<div id="tabDiv">
+			<div>찜한상품</div>
+			<div>장바구니</div>
+		</div>
+		<p style="width: 100%; line-height: 400px; text-align: center;"> 준비중입니다..</p>
+	</div>
+	
 	
 	<div data-role="footer" id="footer" data-position="fixed"
 		data-tap-toggle="false">

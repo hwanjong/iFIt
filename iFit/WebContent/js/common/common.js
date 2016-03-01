@@ -58,7 +58,7 @@ function myPageBtn_Handler(e) {
 }
 function closetBtn_Handler(e) {
 	init_footer();
-	alert("옷장 준비중..");
+	$.mobile.changePage("#codiPage");
 }
 function likeItemBtn_Handler(e) {
 	init_footer();
