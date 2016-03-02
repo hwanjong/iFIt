@@ -38,6 +38,7 @@ function homeBtn_Handler(e) {
 }
 function categoryBtn_Handler(e) {
 	init_footer();
+	localStorage.setItem("isCategory", "true");
 	$("#categoryBtn").attr("src", " img/footer/categoryClick.png");
 	$.mobile.changePage("#categoryPage");
 }
@@ -80,6 +81,7 @@ function searchBarBtn_Handler(e) {
 	init_footer();
 	stopSearchBar_Handler(e);
 	console.log("검색 질의어 : " + queryValue);
+	localStorage.setItem("isCategory", "false");
 	$.mobile.changePage("#productList");
 }
 function stopSearchBar_Handler(e) {
@@ -117,80 +119,66 @@ $(function() {
 	$(".eachPage").on("pagebeforehide", function(event) {
 		$("#adWrap").hide();
 	});
-	$(".eachPage").on("pageshow", function(event) {
-		switch ($(".ui-page-active").attr("id")) {
-		case "main_home":
-			homeBtn_Handler();
-			break;
-		case "categoryPage":
-			categoryBtn_Handler();
-			break;
-		case "productList":
-			init_footer();
-			$("#categoryBtn").attr("src", " img/footer/categoryClick.png");
-			break;
-		case "threeDPage":
-			threeDBtn_Handler();
-			break;
-		case "hotDealPage":
-			hotDealBtn_Handler();
-			break;
-		case "myPage":
-			myPageBtn_Handler();
-			break;
-		default:
-			init_footer();
-			break;
-		}
-	});
+	
 	$(".haveADContent").on("pagebeforeshow", function(event) {
 		$("#adWrap").fadeIn();
 	});
 
 	if (!($(".ui-page-active").hasClass("haveADContent"))) {
 		$("#adWrap").hide();
-	}	
+	}
+	$(document).on("pageshow",function(e){
+		var pageName = $($(window.location.href.split("/")).last()[0].split(".html")).last()[0].replace("&","");
+		console.log(pageName);
+		switch(pageName){
+			case "":
+			init_footer();
+			$(homeBtn).attr("src", " img/footer/homeClick.png");
+			break;
+			case "#categoryPage":
+				init_footer();
+				$("#categoryBtn").attr("src", " img/footer/categoryClick.png");
+				break;
+			case "#threeDPage":
+				init_footer();
+				$("#threeDBtn").attr("src", " img/footer/threeDClick.png");
+				break;
+			case "#hotDealPage":
+				init_footer();
+				$("#hotDealBtn").attr("src", " img/footer/hotDealClick.png");
+				break;
+			case "#myPage":
+				init_footer();
+				$("#myPageBtn").attr("src", " img/footer/myPageClick.png");
+				break;
+			case "#cartPage":
+				break;
+			case "#zzimPage":
+				break;
+			case "#productList":
+				var prePageName = localStorage.getItem("isCategory");
+				if(prePageName == "true"){
+					init_footer();
+					$("#categoryBtn").attr("src", " img/footer/categoryClick.png");
+				}
+				
+				break;
+			case "#codiPage":
+				break;
+			default :
+				init_footer();
+				break;
+		}
+	});
 });
 function saveScroll(){
-	
+	console.log("saveScroll");
+	console.log($($(window.location.href.split("/")).last()[0].split(".html")).last()[0].replace("&",""));
+	if($($(window.location.href.split("/")).last()[0].split(".html")).last()[0].replace("&","") =="#categoryPage")
+		localStorage.setItem("prepageName", "category");
 }
 
-
-//function initPage() {
-//	isCalledNewPage = getCookie("isCalledNewPage");
-//	eraseCookie("isCalledNewPage");
-//	if (isCalledNewPage == "true") {
-//		var varScroll = getCookie('scollPos');
-//		window.scrollTo(0, varScroll);
-//		setCookie('isCalledNewPage', "false", 1);
-//		isCalledNewPage = "false";
-//	}
-//}
-//
-//function saveScroll() {
-//	setCookie('scollPos', document.body.scrollTop, 1);
-//	setCookie('isCalledNewPage', true, 1);
-//
-//}
-//function eraseCookie(name) {
-//	setCookie(name, "", -1);
-//}
-//function setCookie(cname, cvalue, hour) {
-//	var d = new Date();
-//	d.setTime(d.getTime() + (hour  * 60 * 60 * 1000));
-//	var expires = "expires=" + d.toUTCString();
-//	document.cookie = cname + "=" + cvalue + "; " + expires;
-//}
-//
-//function getCookie(cname) {
-//	var name = cname + "=";
-//	var ca = document.cookie.split(';');
-//	for (var i = 0; i < ca.length; i++) {
-//		var c = ca[i];
-//		while (c.charAt(0) == ' ')
-//			c = c.substring(1);
-//		if (c.indexOf(name) == 0)
-//			return c.substring(name.length, c.length);
-//	}
-//	return "";
-//}
+$.urlParam = function(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	return results[1] || 0;
+}

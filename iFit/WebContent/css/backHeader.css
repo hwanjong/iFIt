@@ -14,9 +14,12 @@
 	vertical-align: middle;
 	text-shadow: none;
 	font-weight: normal;
-	text-align: left !important;
+	
 }
 
+#backheader > #backBtn {
+	text-align: left !important;
+}
 #backheader .glyphicon{
 	font-size:30px;
 	width: 10%;
@@ -35,7 +38,7 @@
 }
 #backHeaderFn{
 	width:40%;
-	text-align: right;
+	text-align: right !important;
 	padding-right:1.5em;
 }
 
