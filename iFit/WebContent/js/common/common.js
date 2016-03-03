@@ -38,7 +38,7 @@ function homeBtn_Handler(e) {
 }
 function categoryBtn_Handler(e) {
 	init_footer();
-	localStorage.setItem("isCategory", "true");
+//	localStorage.setItem("isCategory", "true");
 	$("#categoryBtn").attr("src", " img/footer/categoryClick.png");
 	$.mobile.changePage("#categoryPage");
 }
@@ -81,7 +81,7 @@ function searchBarBtn_Handler(e) {
 	init_footer();
 	stopSearchBar_Handler(e);
 	console.log("검색 질의어 : " + queryValue);
-	localStorage.setItem("isCategory", "false");
+//	localStorage.setItem("isCategory", "false");
 	$.mobile.changePage("#productList");
 }
 function stopSearchBar_Handler(e) {
@@ -156,11 +156,14 @@ $(function() {
 			case "#zzimPage":
 				break;
 			case "#productList":
-				var prePageName = localStorage.getItem("isCategory");
-				if(prePageName == "true"){
-					init_footer();
-					$("#categoryBtn").attr("src", " img/footer/categoryClick.png");
-				}
+				init_footer();
+				$("#categoryBtn").attr("src", " img/footer/categoryClick.png");
+				
+//				var prePageName = localStorage.getItem("isCategory");
+//				if(prePageName == "true"){
+//					init_footer();
+//					$("#categoryBtn").attr("src", " img/footer/categoryClick.png");
+//				}
 				
 				break;
 			case "#codiPage":
@@ -172,10 +175,10 @@ $(function() {
 	});
 });
 function saveScroll(){
-	console.log("saveScroll");
-	console.log($($(window.location.href.split("/")).last()[0].split(".html")).last()[0].replace("&",""));
-	if($($(window.location.href.split("/")).last()[0].split(".html")).last()[0].replace("&","") =="#categoryPage")
-		localStorage.setItem("prepageName", "category");
+//	console.log("saveScroll");
+//	console.log($($(window.location.href.split("/")).last()[0].split(".html")).last()[0].replace("&",""));
+//	if($($(window.location.href.split("/")).last()[0].split(".html")).last()[0].replace("&","") =="#categoryPage")
+//		localStorage.setItem("prepageName", "category");
 }
 
 $.urlParam = function(name){

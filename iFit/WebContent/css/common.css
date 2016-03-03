@@ -32,6 +32,11 @@ body {
     width: 100%;
     height: 10em !important;
 }
+
+.carousel-indicators{
+	margin-bottom:3px;
+	bottom:0px;
+}
 .carousel-indicators .active{
 	border-color: lightgray !important;
 	background-color: lightgray !important;
@@ -40,6 +45,7 @@ body {
 	border-color:#6f6f6f !important;
 	background-color: #6f6f6f !important;
 }
+
 
 .eachPage{	
 	background-color: #eee;
