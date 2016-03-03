@@ -47,6 +47,7 @@ function threeDBtn_Handler(e) {
 	$("#threeDBtn").attr("src", " img/footer/threeDClick.png");
 	$.mobile.changePage("#threeDPage");
 }
+
 function hotDealBtn_Handler(e) {
 	init_footer();
 	$("#hotDealBtn").attr("src", " img/footer/hotDealClick.png");
@@ -184,4 +185,11 @@ function saveScroll(){
 $.urlParam = function(name){
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
 	return results[1] || 0;
+};
+
+function showLoading(){
+	$("#loadingDiv").show();
+	setTimeout(function(){
+		$("#loadingDiv").hide();
+	},1500);
 }

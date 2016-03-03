@@ -322,6 +322,7 @@ input::-webkit-inner-spin-button {
 	width:100%;
 	position: fixed;
 	bottom:0;
+	border-bottom:0px;
 	white-space: nowrap;
 	text-align: center;
 	line-height: 4em;
@@ -335,6 +336,7 @@ input::-webkit-inner-spin-button {
 	font-size:15px;
 	font-weight: bold;
 	margin-right: -4px;
+	border-bottom:0px;
 }
 .purchaseSpan > img{
 	width:1.5em;	

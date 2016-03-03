@@ -3,5 +3,6 @@ $(document).on("click",".hotDeal_item",function(e){
 	// id에 고유 상품 번호를 넣어서... 
 	
 	saveScroll();
+	showLoading();
 	window.open("moreInfoPage.html?prId="+prID, '_self');
 });

@@ -5,11 +5,11 @@
 	white-space: nowrap;
 	background-color: white;
 	text-shadow: none;
-	line-height: 2.5em;
+	line-height: 3.0em;
 }
 
 #backheader > span{
-	line-height:1.5em;
+	line-height:3.0em;
 	display: inline-block;
 	vertical-align: middle;
 	text-shadow: none;
@@ -19,6 +19,7 @@
 
 #backheader > #backBtn {
 	text-align: left !important;
+	width: 10%;
 }
 #backheader .glyphicon{
 	font-size:30px;
