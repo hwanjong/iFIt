@@ -178,7 +178,7 @@
 			
 			if(this.$leftItm != null && this.$rightItm != null){
 				this.$leftItm.removeClass(this.$elID+"leftImg");
-				this.$leftItm.removeClass(this.$elID+"rightImg");
+				this.$rightItm.removeClass(this.$elID+"rightImg");
 			}
 			
 			
