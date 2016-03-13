@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+#categoryItem {
+	text-align: center;
+	margin-top: 6%;
+	vertical-align: middle;
+}
+
+#categoryItem span {
+	display:inline-block;
+	width: 23.5%;
+	max-width:90px;		
+	background-color: white;
+	padding: 3% 0 0;	
+	margin-bottom: 1.5%;
+}
+#categoryItem span img{
+	width:60%;
+}
+#categoryItem span p{
+	margin : 10px 0 10px;
+	color:gray;
+	font-weight: bold;
+	font-size : 10px;
+	
+}
+
+#categoryAD {
+	width: 100%;
+	margin: 0px;
+	height:13%;
+	overflow: hidden;
+	margin-top:2em;
+}
+

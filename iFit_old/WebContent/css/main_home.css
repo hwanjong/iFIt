@@ -2,65 +2,60 @@
 
 #mainpage_middleBar{
 	width: 100%;
-	height: 4.8em;
-	font-size: 8px;	
-	padding: 0px;
+	height: 6em;
+	color: #626262;
+	font-size: 11px;	
+	padding: 0.7em 0em;
 	white-space: nowrap;
-	
+	background-color: white;
 	vertical-align: middle;
 }
 #mainpage_middleBar p{
-	float: left;
-	margin : 0px;
-	width: 33%;
-	height: 100%;
-	padding: 0.5em 2.5em;
+	width: 24%;
 	display: inline-block;
 	text-align: center;
-	background-color: rgb(235,235,235);
-	text-align: center;
-}
-#mainpage_middleBar #centerP{
-	margin: 0% 0.5% 0% 0.5%;
 }
 #mainpage_middleBar img{
 	margin: auto;
-	width: 25px;
-	height: 60%;
-	
+	width: 40%;
+	height: 3em;
 	display: block;
 }
 
 .mainpage_mainBox{
+	margin-top: 1em;
 	background-color: white;
 	width: 100%;
-	font-size: 10px;
+	height: 20em;
+	color: #626262;
+	font-size: 12px;
 }
 
 .mainpage_boxTitle{
-	font-size : 14px;
+	font-weight: bold;
 	margin:0px;
-	padding: 10px 0px 10px 8px;
-	height: 2.5em;
+	padding: 0.8em 0.8em 0em 0.8em;
+	height: 3em;
 }
 .mainpage_boxContents{
-	padding: 0px 16px;;
+	padding: 0em 0.5em;;
+	height: 16.5em;
 	overflow: auto;
 	white-space: nowrap;
 	overflow-y: hidden;
 }
 .mainpage_boxContents>div{
 	display: inline-block;
-	margin-left: -4px;
 }
 
 .mainpage_productDiv{
-	width: 104px;
+	width: 33%;
+	height: 16.5em;
 }
 .mainpage_imgDiv{
 	position:relative;
 	width: 100%;
-	height: 132px;
+	height: 12.5em;
 	overflow: hidden;
 }
 .mainpage_imgDiv img{
@@ -69,22 +64,8 @@
 
 .mainpage_infoDiv{
 	text-align: center;
-	padding-top: 10px;
+	padding: 0.2em;
 }
 .mainpage_infoDiv p{
 	margin: 0px;
-}
-
-
-.EventBanner{
-	width: 100%;
-	padding: 5px 16px;
-}
-.EventBanner p{
-	padding: 5px 0px;
-	margin: 0px 0px 0px -8px;
-}
-.EventBanner img{
-	margin-left:-4px;
-	height: 132px;
 }

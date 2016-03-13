@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script
+	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<!--  Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/common.css" rel="stylesheet">
+<link href="css/jssora.css" rel="stylesheet">
+<link href="css/orderTracking.css" rel="stylesheet">
+<link href="css/backHeader.css" rel="stylesheet">
+
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/common/common.js"></script>
+<script type="text/javascript" src="js/orderTracking.js"></script>
+<script src="js/common/backHeader.js"></script>
+</head>
+<body>
+	<div data-role="page" id="orderTracking" class="eachPage">
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader">
+			<span  id="backBtn" data-rel="back"><a data-rel="back" data-role="none" class="glyphicon glyphicon-menu-left"></a></span>
+			<span id="pageName">주문 조회</span>
+			<span id="backHeaderFn">
+			</span>		
+		</div>
+		<div class="productWrap">
+			<div class="productContentWrap">
+				<img src="img/product1.PNG" class="productImg">
+				<div class="productContent">
+					<div class="items">
+						<span class="leftItem title">체크무늬 솜사탕 코트</span> <span
+							class="rightItem"><button data-role="none"
+								class="cancleOrder">주문취소</button></span>
+					</div>
+					<div>
+						<span class="leftItem itemOption"> 색상 네이비, 사이즈S, 수량1 <br />
+							합계 36,000원
+						</span> <span class="rightItem orderOK bold">주문완료</span>
+					</div>
+				</div>
+			</div>
+			<div class="registWrap">
+				<span class="grade registWrapCommon">내평점</span> <span
+					class="regist registWrapCommon">등록하기</span>
+			</div>
+		</div>
+		<div class="productWrap">
+			<div class="productContentWrap">
+				<img src="img/product1.PNG" class="productImg">
+				<div class="productContent">
+					<div class="items">
+						<span class="leftItem title">체크무늬 솜사탕 코트</span> <span
+							class="rightItem"><button data-role="none"
+								class="cancleOrder">주문취소</button></span>
+					</div>
+					<div>
+						<span class="leftItem itemOption"> 색상 네이비, 사이즈S, 수량1 <br />
+							<b>합계 36,000원</b>
+						</span> <span class="rightItem transfering bold">배송중</span>
+					</div>
+				</div>
+			</div>
+			<div class="registWrap">
+				<span class="grade registWrapCommon">내평점</span> <span
+					class="regist registWrapCommon">등록하기</span>
+			</div>
+		</div>
+		<div class="productWrap">
+			<div class="productContentWrap">
+				<img src="img/product1.PNG" class="productImg">
+				<div class="productContent">
+					<div class="items">
+						<span class="leftItem title">체크무늬 솜사탕 코트</span> <span
+							class="rightItem"></span>
+					</div>
+					<div>
+						<span class="leftItem itemOption"> 색상 네이비, 사이즈S, 수량1 <br />
+							합계 36,000원
+						</span> <span class="rightItem transferOK bold">배송완료</span>
+					</div>
+				</div>
+			</div>
+			<div class="registWrap">
+				<span class="grade registWrapCommon">내평점</span> <span
+					class="registWrapCommon"> <img src="img/mypage/fullStar.png">
+					<img src="img/mypage/fullStar.png"> <img
+					src="img/mypage/fullStar.png"> <img
+					src="img/mypage/fullStar.png"> <img
+					src="img/mypage/emptyStar.png">
+				</span>
+			</div>
+		</div>
+
+		<div data-role="popup" id="registPopup" data-overlay-theme="d">
+			<div data-role="content">
+				<div id="popupHead">
+					내 평점
+					<a href="#" data-rel="back" data-role="button" data-theme="c" data-icon="delete" data-iconpos="notext" class="ui-btn-right" data-mini="true">Close</a>
+				</div>
+				<div id="starWrap">
+					<img src="img/mypage/fullStar.png" class="starItem" id="star_1">
+					<img src="img/mypage/fullStar.png" class="starItem" id="star_2">
+					<img src="img/mypage/fullStar.png" class="starItem" id="star_3"> 
+					<img src="img/mypage/fullStar.png" class="starItem" id="star_4">
+					<img src="img/mypage/emptyStar.png" class="starItem" id="star_5">
+				</div>
+				<hr id="hrLine"/>
+				<div id="writeReply">
+					<input data-role="none" type="text" placeholder="한줄 평가를 남겨주세요(20자 이내)">
+					등록
+				</div>				
+			</div>
+		</div>
+	</div>
+</body>
+</html>

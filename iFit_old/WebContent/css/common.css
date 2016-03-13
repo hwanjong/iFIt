@@ -58,13 +58,13 @@ a:HOVER{
 	background-color: #6f6f6f !important;
 }
 
+
 .eachPage{	
-	background-color: white;
+	background-color: #eee;
 	text-shadow: none !important;
-	color: black;
 }
 .haveADContent{
-	padding-top:0em !important;
+	padding-top:1em !important;
 }
 #menuBar {	
 	width: 100%;
