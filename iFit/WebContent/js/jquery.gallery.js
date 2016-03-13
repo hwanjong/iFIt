@@ -8,14 +8,21 @@
  * Date: Mon Jan 30 2012
  * 
  * 
- * + modify KimDongWan
- *     	1. clicked image event.
- *     		- if you touch image(next img or prev img) than execute _navigate().
- * 		2. swipe image event
- * 			- if you swipe image(left swipe or right swipe) than execute_navigate().
- * 			- if you want use swipe event than import "jquery mobile 1.4.5" file in your html file. (because of 'swipe event' defined jquery mobile.)    
- *  Date : Thur March 3 2016
+ * + modify KimDongWan(kimgo3282@gmail.com)    
+ *        1. Click image event.
+ *           - if you touch image(next img or prev img) , _navigate() will begin.
+ *        2. swipe image event
+ *          - if you swipe image(left swipe or right swipe) , _navigate() will begin.
+ *          - if you want to use swipe event , you must import "jquery mobile 1.4.5" file in your html file. (because 'swipe event' is defined in jquery mobile.)
+ *       3. css style
+ *          - All sizes of contents used 'px' in origin sample source code. so sample code works only web browser(pc version).
+ *             so,  modified css 'px'  to '%'. if you want to use your device , you modify  width of ".dg-container".
+ *          - You could use image of 16:9 rate in origin example source code. 
+ *            but, if you use this modified example sample code, you can use for a various ratio of images.(default is a 4:3 image, if you take vertical images,  the width of image is changed with the height fixed.) 
+ *            
+ *  Date : Thu, March 3, 2016.
  */
+
 (function( $, undefined ) {
 	
 	/*
@@ -171,7 +178,7 @@
 			
 			if(this.$leftItm != null && this.$rightItm != null){
 				this.$leftItm.removeClass(this.$elID+"leftImg");
-				this.$leftItm.removeClass(this.$elID+"rightImg");
+				this.$rightItm.removeClass(this.$elID+"rightImg");
 			}
 			
 			

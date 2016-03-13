@@ -63,7 +63,7 @@
 	width: 58px;
 	position: absolute;
 	z-index: 1000;
-	bottom: 40px;
+	bottom: 0px;
 	left: 50%;
 	margin-left: -29px;
 }
@@ -74,7 +74,7 @@
 	width: 24px;
 	height: 25px;
 	opacity: 0.8;
-	background: transparent url(../images/arrows.png) no-repeat top left;
+	background: transparent url(images/arrows.png) no-repeat top left;
 }
 .dg-container nav span:hover{
 	opacity: 1;
