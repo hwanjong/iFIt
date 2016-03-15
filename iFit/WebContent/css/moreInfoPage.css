@@ -1,6 +1,5 @@
 @CHARSET "UTF-8";
 
-
 .item > img{
 	overflow: hidden;
     width: 100%;
@@ -44,8 +43,8 @@ input::-webkit-inner-spin-button {
 
 
 #moreInfoPage{
-	background-color: #ededed;
 	text-shadow: none;
+	padding: 0 16px;
 }
 
 
@@ -58,7 +57,6 @@ input::-webkit-inner-spin-button {
 #purchaseContent{
 	width:100%;
 	height:100%;
-	margin-bottom:4em;
 }
 
 #purchaseContent > div{
@@ -117,16 +115,23 @@ input::-webkit-inner-spin-button {
 #shareWrap{
 	width:100%;
 }
-#shareWrap > span{
-	display: inline-block;
+
+#shareWrap span{
+	color:#b5b5b5;
+	margin-top: 12px;
+}
+#shareWrap span > img{
+	margin-right:0.5em;
 }
 #othersLikeNo{
-	width:70%;
-	padding-left: 1.5em;
-	color:#b5b5b5;	
+	float:left;
 }
-#othersLikeNo > img{
-	margin-right:0.5em;
+#purchaseNameAndPrice{
+	float:right;
+}
+#purchaseNameAndPrice p{
+	margin:0;
+	text-align:right;
 }
 #shareInfo{
 	width:15%;
@@ -138,8 +143,6 @@ input::-webkit-inner-spin-button {
 .summuryIcon{
 	width:1.5em;
 }
-
-
 
 #relatedItemsWrap > h4{
 	font-size: 13px;
@@ -176,25 +179,27 @@ input::-webkit-inner-spin-button {
     color: #959595;
     text-align: center;
 }
-#moreInfoReples{
-	background-color: #ededed !important;
-}
 .eachMoreInfoRepleWrap{
-	padding-left: 1em;
-    padding-top: 0.8em;
-    padding-bottom:0.3em;
+	padding: 0 12px;
     background-color: white;
-    margin-bottom: 0.6em;
+    border-top: 1px solid #9B9B9B;
+    border-bottom: 1px solid #9B9B9B;
+    margin-bottom: -1px;
+}
+.replyWriter{
+	float: left;
+    margin-right: 10px;
+    font-weight: bold;
 }
 .moreInfoNewReple{
 	float:right;
 	width:1.2em;
-	margin-top:0.5em;
-	margin-right:0.5em;
+	margin-top:12px;
+	margin-left: 15px;
 }
 .moreInfoBasicRepleTitle{
     line-height: 2em;
-    margin-bottom: 1em;
+    margin-bottom: 5px;
 }
 .moreInfoBasicRepleTitle > span{
 	display: inline-block;
@@ -205,15 +210,24 @@ input::-webkit-inner-spin-button {
 	font-weight:bold;
 	font-size:15px;
 }
+#moreInfoReples{
+	color:#9B9B9B;
+}
+#moreInfoReples >img{
+	margin-top:24px;
+	margin-bottom:24px;
+}
 .moreInfoRepleStar > img{
 	width:1.2em;
 	vertical-align: text-top;
 }
 .moreInfoRepleContent{
-	    color: #626262;
+	color: #626262;
     font-size: 13px;
-    font-weight: bold;
     margin: 0;
+}
+.moreInfoRepleContent > p{
+	margin-bottom: 5px;
 }
 
 .moreInfoRepleDate{
@@ -230,9 +244,6 @@ input::-webkit-inner-spin-button {
 	padding-right:1em;
 	margin-bottom: 2em;
 }
-
-
-
 #optionSlideControl{
 	background: -webkit-linear-gradient(#999, #efefef); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(#999, #efefef); /* For Opera 11.1 to 12.0 */
@@ -351,4 +362,20 @@ input::-webkit-inner-spin-button {
 #myPurchase{
 	background-color:#f7999e;
 	color:white;
+}
+
+.bottomAnchor{
+	margin-top:60px;
+	margin-bottom:60px;
+}
+
+/* 공통으로 쓸만한 것 */
+.clear{clear:both;}
+body{
+	background-color:white !important;
+}
+.centerImage{
+	display:block; 
+	margin-left:auto;
+	margin-right:auto;
 }
