@@ -264,7 +264,8 @@ input::-webkit-inner-spin-button {
 }
 
 .purchaseSelect{
-	padding:20px 16px;
+	padding:20px 16px 0 16px;
+	border-bottom: 1px solid #000000;
 }
 
 .purchaseSelect p{
@@ -292,6 +293,10 @@ input::-webkit-inner-spin-button {
     float: left;
 }
 
+.purchaseSelect .purchaseSelectContent .select_count_btn{
+	height:12px;
+}
+
 ul#selectSize{
 	display:inline-block;
 	margin:0;
@@ -311,6 +316,123 @@ ul#selectSize{
 #selectSize li.btnOn{
 	background-image:url('../img/moreInfoPage/select_size_on.png');
 }
+
+.purchaseAllPrice{
+	height:53px;
+	line-height:53px;
+	text-align:right;
+}
+.purchaseAllPrice p {
+	margin:0;
+}
+.purchaseBtn{
+	width:343px;
+	margin-bottom:42px;
+}
+.purchaseBtn>div{
+	width:170px;
+	height:52px;
+	background-color:#ebebeb;
+	text-align:center;
+    line-height: 52px;
+}
+
+/*
+추천영역, 메인에서 가져온것
+*/
+@CHARSET "UTF-8";
+
+#mainpage_middleBar{
+	margin-top: 1px;
+	width: 100%;
+	height: 60px;
+	font-size: 11px;	
+	padding: 0px;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+#mainpage_middleBar p{
+	float:left;
+	border-right: 1px white solid;
+	color:white;
+	margin : 0px;
+	width: 25%;
+	height: 100%;
+	display: inline-block;
+	line-height:60px;
+	background-color: #909090;
+	text-align: center;
+}
+#mainpage_middleBar #centerP{
+	margin: 0% 0.5% 0% 0.5%;
+}
+#mainpage_middleBar img{
+	margin: auto;
+	width: 25px;
+	height: 60%;
+	
+	display: block;
+}
+
+.mainpage_mainBox{
+	background-color: white;
+	width: 100%;
+	font-size: 10px;
+}
+
+.mainpage_boxTitle{
+	margin:18px 0 12px 0;
+	height: 12px;
+    line-height: 12px;
+}
+.mainpage_boxContents{
+	overflow: auto;
+	white-space: nowrap;
+	overflow-y: hidden;
+}
+.mainpage_boxContents>div{
+	display: inline-block;
+	margin-left: -3px;
+}
+
+.mainpage_productDiv{
+	width: 104px;
+}
+.mainpage_imgDiv{
+	position:relative;
+	width: 100%;
+	height: 132px;
+	overflow: hidden;
+}
+.mainpage_imgDiv img{
+	width: 100%;
+}
+
+.mainpage_infoDiv{
+	text-align: center;
+	padding-top: 10px;
+}
+.mainpage_infoDiv p{
+	margin: 0px;
+}
+
+
+.EventBanner{
+	width: 100%;
+	padding: 5px 16px;
+}
+.EventBanner p{
+	padding: 5px 0px;
+	margin: 0px 0px 0px -8px;
+}
+.EventBanner img{
+	margin-left:-3px;
+	height: 132px;
+}
+
+/*****************************************************/
+
+
 
 #optionSlideControl{
 	background: -webkit-linear-gradient(#999, #efefef); /* For Safari 5.1 to 6.0 */
@@ -433,13 +555,13 @@ ul#selectSize{
 }
 
 .bottomAnchor{
-	margin-top:60px;
-	margin-bottom:60px;
+	height:15px;
+	margin-top:42px;
+	margin-bottom:42px;
 }
 
 /* 공통으로 쓸만한 것 */
 body{
-	font-family:'NotoSansCJKkr-Regular' !important;
 	background-color:white !important;
 }
 ul{list-style:none;}
@@ -463,4 +585,18 @@ ul{list-style:none;}
 
 .fr{
 	float:right;
+}
+
+.mr10{
+	margin-right:10px;
+}
+.ml10{
+	margin-left:10px;
+}
+
+.dib{
+	display:inline-block;
+}
+.center{
+	text-align:center;
 }

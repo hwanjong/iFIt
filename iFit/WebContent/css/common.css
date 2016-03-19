@@ -6,7 +6,10 @@ body {
 	width: 100%;
 	height: 100%;
 	background-color: white !important;
-	font-family: 'NanumGothic', '나눔고딕','NanumGothicWeb', '맑은 고딕', 'Malgun Gothic', Dotum;
+	/* 16.03.20 수정
+		font-family: 'NanumGothic', '나눔고딕','NanumGothicWeb', '맑은 고딕', 'Malgun Gothic', Dotum;
+	*/
+	font-family:'NotoSansCJKkr-Regular' !important;
 }
 a:HOVER{
 	text-decoration: none;
@@ -83,7 +86,7 @@ a:HOVER{
 	margin-bottom:12px;
 	padding: 3px 16px;
 }
-#menuBar img,span {
+#menuBar img, #menuBar span {
 	padding: 2px;
 	height: 24px;
 	vertical-align: top;
