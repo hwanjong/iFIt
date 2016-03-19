@@ -18,24 +18,32 @@
 <link href="css/moreInfoPage.css" rel="stylesheet">
 <link href="css/backHeader.css" rel="stylesheet">
 
+
 <script src="js/bootstrap.min.js"></script>
 <script src="js/moreInfoPage.js"></script>
 <script src="js/common/backHeader.js"></script>
-
+<script src="js/deviceRender.js"></script>
 </head>
 <body>
-	<div data-role="page" id="moreInfoPage" class="eachPage">
+	<div data-role="page" id="moreInfoPage" class="eachPage render" data-render="padding-left,padding-right">
 		<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader">
 			<span  id="backBtn" data-rel="back"><a data-rel="back" data-role="none" class="glyphicon glyphicon-menu-left"></a></span>
 			<span id="pageName">상세페이지</span>
 			<span id="backHeaderFn">
 				<img src="img/moreInfoPage/closet.png" onclick="moreInfoClosetClickHandler(event)">
 				<img src="img/moreInfoPage/3dView.png" onclick="moreInfo3DClickHandler(event)">
-			</span>		
+			</span>
+		</div>
+		<div id="purchaseTitle" class="font-size-16 render" data-render="height,margin-top,margin-bottom,line-height,background-size,font-size">
+			<span class="testTitle">페이크 레더 점퍼</span>
 		</div>
 		<div id="purchaseContent">
 			<div id="sumurryInfo" class="moreInfoEachDivWrap">
-				<div>
+				<div class="photoArea">
+					<div class="iconArea render" data-render="padding-top,padding-left,padding-right">
+						<img src="img/moreInfoPage/hanger.png" class="render" data-render="width">
+						<img src="img/moreInfoPage/3d_fit.png" class="fr render" data-render="width">
+					</div>
 					<div id="myCarousel1" class="carousel slide"
 						data-ride="carousel">
 						<!-- Indicators -->
@@ -48,95 +56,160 @@
 						</div>
 					</div>
 				</div>
-				<div id="shareWrap">
-					<span id="othersLikeNo"><img src="img/moreInfoPage/heart.png" class="summuryIcon">231</span>
-					<span id="purchaseNameAndPrice">
+				<div id="shareWrap" class="render" data-render="height,margin-top,margin-bottom,line-height">
+					<span id="othersLikeNo" class="render" data-render="height,line-height,font-size">
+						<img src="img/moreInfoPage/heart_good.png" class="fl render" data-render="height">
+						<p class="fl">231</p>
+					</span>
+					<span class="font-size-10 render" id="purchaseName" data-render="height,line-height,font-size">
 						<p>페이크 레더 점퍼</p>
-						<p>\36,000</p> 
-					</span>					
+					</span>
+					<div class="clear"></div>
+					<span class="font-size-10 render" id="purchasePrice" data-render="height,line-height,font-size">
+						<p>￦36,000</p> 
+					</span>						
 				</div>
 				<div class="clear"></div>
 			</div>
 			
 			<div id="sampleMoreImgs">
-				<p>아이핏 신상 아이템</p>
-				<img src="img/moreInfoPage/sample_more.png">
-				<p>제품 상세 설명</p>
-				<img src="img/moreInfoPage/sample_more2.png">
+				<img src="img/moreInfoPage/sample_more.jpg">
 			</div>
 		
-			<div id="moreInfoReples">
-				<img class="centerImage" src="img/moreInfoPage/reply.png" />
-				<div class="eachMoreInfoRepleWrap">
-					<img src="img/moreInfoPage/delete.png" class="moreInfoNewReple">
-					<img src="img/moreInfoPage/delete.png" class="moreInfoNewReple">
-					<div class="moreInfoBasicRepleTitle">
-						<span class="moreInfoRepleStar">
-							<img src="img/mypage/fullStar.png">
-							<img src="img/mypage/fullStar.png"> 
-							<img src="img/mypage/fullStar.png"> 
-							<img src="img/mypage/fullStar.png"> 
-							<img src="img/mypage/emptyStar.png">
-						</span>
+			<div id="moreInfoReply">
+				<div id="imageArea" class ="centerImage render" data-render="height">
+					<img src="img/moreInfoPage/reply.png" class="render" data-render="height" />
+				</div>
+				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height">					
+					<div class="moreInfoReplyHeart render" data-render="top">
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height">
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
+						<img src="img/moreInfoPage/heart_off.png" class="fl render" data-render="height">
 					</div>
-					<div>
-						<span class="moreInfoRepleContent"><p class="replyWriter">Customer</p><p>2016. 03. 15</p></span>
-						<div class="clear"></div>
-						<p>봉제상태가 매우 좋습니다. 잘입을게요~</p>
+					<div class="moreInfoReplyWriter render" data-render="top,height,line-height">
+						<p class="font-medium font-size-13 render fl" data-render="font-size">customer</p>
+						<p class="font-size-11 render fl" data-render="font-size">2016. 03. 15</p>
+					</div>
+					<div class="moreInfoReplyContent render" data-render="top,height,line-height">
+						<p class="font-size-11 render" data-render="font-size">봉제상태가 매우 좋습니다. 잘입을게요~</p>
+					</div>
+					<div class="moreInfoReplyBtn render" data-render="margin-top">
+						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height">
+						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height">
+						<!-- 
+						<img src="img/moreInfoPage/reply_delete.png" class="fl render" data-render="height">
+						 -->
 					</div>
 				</div>
-				<div class="eachMoreInfoRepleWrap">
-					<img src="img/moreInfoPage/delete.png" class="moreInfoNewReple">
-					<img src="img/moreInfoPage/delete.png" class="moreInfoNewReple">
-					<div class="moreInfoBasicRepleTitle">
-						<span class="moreInfoRepleStar">
-							<img src="img/mypage/fullStar.png">
-							<img src="img/mypage/fullStar.png"> 
-							<img src="img/mypage/fullStar.png"> 
-							<img src="img/mypage/fullStar.png"> 
-							<img src="img/mypage/emptyStar.png">
-						</span>
+				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height">					
+					<div class="moreInfoReplyHeart render" data-render="top">
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height">
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
+						<img src="img/moreInfoPage/heart_off.png" class="fl render" data-render="height">
 					</div>
-					<div>
-						<span class="moreInfoRepleContent"><p class="replyWriter">Customer</p><p>2016. 03. 15</p></span>
-						<div class="clear"></div>
-						<p>봉제상태가 매우 좋습니다. 잘입을게요~</p>
+					<div class="moreInfoReplyWriter render" data-render="top,height,line-height">
+						<p class="font-medium font-size-13 render fl" data-render="font-size">customer</p>
+						<p class="font-size-11 render fl" data-render="font-size">2016. 03. 15</p>
 					</div>
-				</div>
-				<div class="eachMoreInfoRepleWrap">
-					<img src="img/moreInfoPage/delete.png" class="moreInfoNewReple">
-					<img src="img/moreInfoPage/delete.png" class="moreInfoNewReple">
-					<div class="moreInfoBasicRepleTitle">
-						<span class="moreInfoRepleStar">
-							<img src="img/mypage/fullStar.png">
-							<img src="img/mypage/fullStar.png"> 
-							<img src="img/mypage/fullStar.png"> 
-							<img src="img/mypage/fullStar.png"> 
-							<img src="img/mypage/emptyStar.png">
-						</span>
+					<div class="moreInfoReplyContent render" data-render="top,height,line-height">
+						<p class="font-size-11 render" data-render="font-size">봉제상태가 매우 좋습니다. 잘입을게요~</p>
 					</div>
-					<div>
-						<span class="moreInfoRepleContent"><p class="replyWriter">Customer</p><p>2016. 03. 15</p></span>
-						<div class="clear"></div>
-						<p>봉제상태가 매우 좋습니다. 잘입을게요~</p>
+					<div class="moreInfoReplyBtn render" data-render="margin-top">
+						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height">
+						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height">
+						<!-- 
+						<img src="img/moreInfoPage/reply_delete.png" class="fl render" data-render="height">
+						 -->
 					</div>
 				</div>
-				<div class="eachMoreInfoRepleWrap">
-					<img src="img/moreInfoPage/delete.png" class="moreInfoNewReple">
-					<img src="img/moreInfoPage/delete.png" class="moreInfoNewReple">
-					<div class="moreInfoBasicRepleTitle">
-						<span class="moreInfoRepleStar">
-							<img src="img/mypage/fullStar.png">
-							<img src="img/mypage/fullStar.png"> 
-							<img src="img/mypage/fullStar.png"> 
-							<img src="img/mypage/fullStar.png"> 
-							<img src="img/mypage/emptyStar.png">
-						</span>
+				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height">					
+					<div class="moreInfoReplyHeart render" data-render="top">
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height">
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
+						<img src="img/moreInfoPage/heart_off.png" class="fl render" data-render="height">
 					</div>
-					<div>
-						<span class="moreInfoRepleContent"><p class="replyWriter">Customer</p><p>2016. 03. 15</p></span>
-						<div class="clear"></div>
-						<p>봉제상태가 매우 좋습니다. 잘입을게요~</p>
+					<div class="moreInfoReplyWriter render" data-render="top,height,line-height">
+						<p class="font-medium font-size-13 render fl" data-render="font-size">customer</p>
+						<p class="font-size-11 render fl" data-render="font-size">2016. 03. 15</p>
+					</div>
+					<div class="moreInfoReplyContent render" data-render="top,height,line-height">
+						<p class="font-size-11 render" data-render="font-size">봉제상태가 매우 좋습니다. 잘입을게요~</p>
+					</div>
+					<div class="moreInfoReplyBtn render" data-render="margin-top">
+						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height">
+						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height">
+						<!-- 
+						<img src="img/moreInfoPage/reply_delete.png" class="fl render" data-render="height">
+						 -->
+					</div>
+				</div>
+				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height">					
+					<div class="moreInfoReplyHeart render" data-render="top">
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height">
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
+						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
+						<img src="img/moreInfoPage/heart_off.png" class="fl render" data-render="height">
+					</div>
+					<div class="moreInfoReplyWriter render" data-render="top,height,line-height">
+						<p class="font-medium font-size-13 render fl" data-render="font-size">customer</p>
+						<p class="font-size-11 render fl" data-render="font-size">2016. 03. 15</p>
+					</div>
+					<div class="moreInfoReplyContent render" data-render="top,height,line-height">
+						<p class="font-size-11 render" data-render="font-size">봉제상태가 매우 좋습니다. 잘입을게요~</p>
+					</div>
+					<div class="moreInfoReplyBtn render" data-render="margin-top">
+						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height">
+						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height">
+						<!-- 
+						<img src="img/moreInfoPage/reply_delete.png" class="fl render" data-render="height">
+						 -->
+					</div>
+				</div>
+			</div>
+			<div class="purchaseSelect render" data-render="padding-left,padding-right,padding-top,padding-bottom">
+				<div class="clear render" data-render="margin-bottom,height">
+					<div class="purchaseSelectTitle render" data-render="width,height,line-height">
+						<p class="font-medium font-size-13 render" data-render="font-size">품명</p>
+					</div>
+					<div class="purchaseSelectContent render" data-render="width,height,line-height">
+						<p class="font-size-13 render" data-render="font-size">페이크 레더 점퍼</p>
+					</div>
+				</div>
+				<div class="clear render" data-render="margin-bottom,height">
+					<div class="purchaseSelectTitle render" data-render="width,height,line-height">
+						<p class="font-medium font-size-13 render" data-render="font-size">사이즈</p>
+					</div>
+					<div class="purchaseSelectContent render" data-render="width,height,line-height">
+						<ul id="selectSize" class="font-size-13 render" data-render="font-size">
+							<li class="render" data-render="diagonal-height,margin-right">XS</li>
+							<li class="render" data-render="diagonal-height,margin-right">S</li>
+							<li class="render" data-render="diagonal-height,margin-right">M</li>
+							<li class="render" data-render="diagonal-height,margin-right">XL</li>
+							<li class="render" data-render="diagonal-height,margin-right">L</li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear render" data-render="margin-bottom,height">
+					<div class="purchaseSelectTitle render" data-render="width,height,line-height">
+						<p class="font-medium font-size-13 render" data-render="font-size">색상</p>
+					</div>
+					<div class="purchaseSelectContent render" data-render="width,height,line-height">
+						<p class="font-size-13 render" data-render="font-size">페이크 레더 점퍼</p>
+					</div>
+				</div>
+				<div class="clear render" data-render="margin-bottom,height">
+					<div class="purchaseSelectTitle render" data-render="width,height,line-height">
+						<p class="font-medium font-size-13 render" data-render="font-size">수량</p>
+					</div>
+					<div class="purchaseSelectContent render" data-render="width,height,line-height">
+						<p class="font-size-13 render" data-render="font-size">페이크 레더 점퍼</p>
 					</div>
 				</div>
 			</div>

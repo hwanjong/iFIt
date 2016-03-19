@@ -155,3 +155,18 @@ function selectOption(event){
 function moreRepleRequestHandler(e){
 	alert("댓글 더보기 요청");
 }
+
+
+
+
+
+//16.03.20추가 작업
+
+$(function(){
+	$("#selectSize li").click(function(){
+		$("#selectSize li").each(function(){
+			$(this).removeClass("btnOn");
+		});
+		$(this).addClass("btnOn");
+	});
+})

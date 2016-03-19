@@ -28,17 +28,8 @@ input::-webkit-inner-spin-button {
 	text-align: center;
 }
 
-#sampleMoreImgs > p{
-	text-align: left;
-    padding-left: 1em;
-    padding-top: 1em;
-    font-size: 12px;
-    font-weight: bold;
-    margin: 0px;
-}
-
 #sampleMoreImgs > img{
-	width:20em;
+	max-width:100%;
 } 
 
 
@@ -47,12 +38,17 @@ input::-webkit-inner-spin-button {
 	padding: 0 16px;
 }
 
-
-.moreInfoEachDivWrap{
-	margin-bottom:2em;
-	padding-bottom: 1em;
+#purchaseTitle{
+	height: 30px;
+    margin: 12px 0;
+    text-align:center;
+    line-height: 30px;
+    color:#9b9b9b;
+    background-image:url('../img/moreInfoPage/back.png');
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-size: 16px;
 }
-
 
 #purchaseContent{
 	width:100%;
@@ -73,6 +69,24 @@ input::-webkit-inner-spin-button {
 #sumurryInfo{
 	white-space: nowrap;
 }
+
+#sumurryInfo .photoArea{
+	position:relative;
+}
+
+#sumurryInfo .iconArea{
+	position: absolute;
+    z-index: 1;
+    width: 100%;
+    padding-top: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.iconArea img{
+	width: 35px;
+}
+
 #sumurryInfo > span{
 	display: inline-block;
 	height: 4em;
@@ -113,25 +127,29 @@ input::-webkit-inner-spin-button {
 
 
 #shareWrap{
-	width:100%;
+	height:24px;
+	margin-top:12px;
+	margin-bottom:12px;
 }
 
 #shareWrap span{
+	height: 12px;
+	line-height:12px;
+	display:inline-block;
 	color:#b5b5b5;
-	margin-top: 12px;
-}
-#shareWrap span > img{
-	margin-right:0.5em;
 }
 #othersLikeNo{
+	height:12px;
 	float:left;
 }
-#purchaseNameAndPrice{
-	float:right;
+#othersLikeNo img{
+	height:12px;
 }
-#purchaseNameAndPrice p{
-	margin:0;
-	text-align:right;
+#othersLikeNo p {
+	margin-left:4px;
+}
+#purchaseName, #purchasePrice{
+	float:right;
 }
 #shareInfo{
 	width:15%;
@@ -179,71 +197,121 @@ input::-webkit-inner-spin-button {
     color: #959595;
     text-align: center;
 }
-.eachMoreInfoRepleWrap{
-	padding: 0 12px;
+.eachMoreInfoReplyWrap{
+	padding: 0 16px;
     background-color: white;
     border-top: 1px solid #9B9B9B;
     border-bottom: 1px solid #9B9B9B;
     margin-bottom: -1px;
+    height:73px;
+    position: relative;
 }
-.replyWriter{
-	float: left;
-    margin-right: 10px;
-    font-weight: bold;
+.eachMoreInfoReplyWrap > div{
+	position:absolute;
 }
-.moreInfoNewReple{
+.moreInfoNewReply{
 	float:right;
 	width:1.2em;
 	margin-top:12px;
 	margin-left: 15px;
 }
-.moreInfoBasicRepleTitle{
-    line-height: 2em;
-    margin-bottom: 5px;
-}
-.moreInfoBasicRepleTitle > span{
-	display: inline-block;
-}
 
-.moreInfoRepleID{
+.moreInfoReplyID{
 	color:#f97b90;
 	font-weight:bold;
 	font-size:15px;
 }
-#moreInfoReples{
+#moreInfoReply{
 	color:#9B9B9B;
 }
-#moreInfoReples >img{
-	margin-top:24px;
-	margin-bottom:24px;
+#moreInfoReply >#imageArea{
+	height: 92px;
 }
-.moreInfoRepleStar > img{
-	width:1.2em;
-	vertical-align: text-top;
+#moreInfoReply >#imageArea > img{
+	height: 35px; /*디자인 가이드: width:35*/
 }
-.moreInfoRepleContent{
-	color: #626262;
-    font-size: 13px;
-    margin: 0;
+.moreInfoReplyHeart{
+    top: 8px;
 }
-.moreInfoRepleContent > p{
-	margin-bottom: 5px;
+.moreInfoReplyHeart > img{
+	height:8px; /*디자인 가이드: width:10*/
+	margin-right: 6px;
+}
+.moreInfoReplyWriter{
+	top:28px;
+	height:13px;
+	line-height:13px;
+}
+.moreInfoReplyWriter>p{
+	margin:0 6px 0 0;
+}
+.moreInfoReplyContent{
+	top:50px;
+	height:11px;
+	line-height:11px;
+}
+.moreInfoReplyContent>p{
+	margin:0;
+}
+.moreInfoReplyBtn{
+	position: relative !important;
+	float: right;
+	margin-top:12px;
+}
+.moreInfoReplyBtn > img{
+	height:12px; /*디자인 가이드: width:10*/
+	margin-left: 24px;
 }
 
-.moreInfoRepleDate{
-	color: #b5b5b5;
-    font-size: 11px;
-    font-weight: bold;
+.purchaseSelect{
+	padding:20px 16px;
 }
 
-#moreInfoRepleMoreRequest{
-	font-size:12px;
-	font-weight:bold;
-	color:#717171;
-	text-align: right;
-	padding-right:1em;
-	margin-bottom: 2em;
+.purchaseSelect p{
+	margin:0;
 }
+
+.purchaseSelect > div{
+	height:20px;
+	margin-bottom:15px;
+}
+
+.purchaseSelect .purchaseSelectTitle{
+	width: 76px;
+	height:20px;
+	line-height:20px;
+    display: inline-block;
+    float: left;
+}
+
+.purchaseSelect .purchaseSelectContent{
+	width: 235px;
+	height:20px;
+	line-height:20px;
+    display: inline-block;
+    float: left;
+}
+
+ul#selectSize{
+	display:inline-block;
+	margin:0;
+	padding:0;
+	text-align: center;
+}
+#selectSize li{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	margin-right:10px;
+	background-image:url('../img/moreInfoPage/select_size_off.png');
+	background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#selectSize li.btnOn{
+	background-image:url('../img/moreInfoPage/select_size_on.png');
+}
+
 #optionSlideControl{
 	background: -webkit-linear-gradient(#999, #efefef); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(#999, #efefef); /* For Opera 11.1 to 12.0 */
@@ -370,12 +438,29 @@ input::-webkit-inner-spin-button {
 }
 
 /* 공통으로 쓸만한 것 */
-.clear{clear:both;}
 body{
+	font-family:'NotoSansCJKkr-Regular' !important;
 	background-color:white !important;
 }
+ul{list-style:none;}
+.clear{clear:both;}
 .centerImage{
-	display:block; 
-	margin-left:auto;
-	margin-right:auto;
+	position: relative;
+}
+
+.centerImage > img{
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.fl{
+	float:left;
+}
+
+.fr{
+	float:right;
 }
