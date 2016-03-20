@@ -36,6 +36,7 @@
 <script type="text/javascript" src="js/product_list.js"></script>
 <script type="text/javascript" src="js/cart.js"></script>
 <script type="text/javascript" src="js/codiPage.js"></script>
+<script type="text/javascript" src="js/deviceRender.js"></script>
 
 </head>
 <body>
@@ -427,43 +428,51 @@
 				</div>
 			</div>
 	</div>	
-	<div data-role="page" id="myPage"		class="eachPage">
-			<div id="list">
-				<div id="requestOrder">
-					<span class="title">주문 조회</span>
-					<span  class="subInfo">
-						<img src="img/mypage/arrow.png" class= " arrowImg">
-					</span>
-					<span id="orderMessage" class="subInfo messageBox">
-						2					
-					</span>				
-				</div>
-				<div id="requestManyQnA">
-					<span class="title">자주하는 질문</span>
-					<span  class="subInfo">
-						<img src="img/mypage/arrow.png" class= " arrowImg">
-					</span>
-				</div>
-				<div id="requestOneByOne">
-					<span class="title">1:1 문의</span>
-					<span  class="subInfo">
-						<img src="img/mypage/arrow.png" class= " arrowImg">
-					</span>
-					<span id="onebyoneMessage" class="subInfo messageBox">
-						2
-					</span>				
-				</div>
-				<div id="requestUsingApp">
-					<span class="title">이용 안내</span>
-					<span  class="subInfo">
-						<img src="img/mypage/arrow.png" class= " arrowImg">
-					</span>
-				</div>
+	<div data-role="page" id="myPage" class="eachPage render" data-render="padding-left,padding-right">
+		<div id="myPageTitle" class="font-bold font-size-16 render" data-render="height,margin-bottom,line-height,background-size,font-size">
+			<span>로그인</span>
+		</div>
+		<form>
+			<div class="input_box">
+				<input type="text" placeholder="ID" />
 			</div>
-		
-			<div id="loginBtn">
-				로그인
-			</div>		
+		</form>
+		<div id="list">
+			<div id="requestOrder">
+				<span class="title">주문 조회</span>
+				<span  class="subInfo">
+					<img src="img/mypage/arrow.png" class= " arrowImg">
+				</span>
+				<span id="orderMessage" class="subInfo messageBox">
+					2					
+				</span>				
+			</div>
+			<div id="requestManyQnA">
+				<span class="title">자주하는 질문</span>
+				<span  class="subInfo">
+					<img src="img/mypage/arrow.png" class= " arrowImg">
+				</span>
+			</div>
+			<div id="requestOneByOne">
+				<span class="title">1:1 문의</span>
+				<span  class="subInfo">
+					<img src="img/mypage/arrow.png" class= " arrowImg">
+				</span>
+				<span id="onebyoneMessage" class="subInfo messageBox">
+					2
+				</span>				
+			</div>
+			<div id="requestUsingApp">
+				<span class="title">이용 안내</span>
+				<span  class="subInfo">
+					<img src="img/mypage/arrow.png" class= " arrowImg">
+				</span>
+			</div>
+		</div>
+	
+		<div id="loginBtn">
+			로그인
+		</div>		
 	</div>
 
 	<div data-role="page" id="productList" class="eachPage">

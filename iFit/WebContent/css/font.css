@@ -8,7 +8,7 @@
   src: url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Regular.eot?#iefix) format('embedded-opentype'),
        url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Regular.woff2) format('x-woff2'),
        url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Regular.woff) format('woff'),
-       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Regular.ttf) format('truetype');
+       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Regular.ttf) format('truetype'),
        url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Regular.svg#webfont) format('svg');
 }
 
@@ -20,7 +20,8 @@
   src: url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Light.eot?#iefix) format('embedded-opentype'),
        url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Light.woff2) format('x-woff2'),
        url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Light.woff) format('woff'),
-       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Light.ttf) format('truetype');
+       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Light.ttf) format('truetype'),
+       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Light.svg#webfont) format('svg');
 }
  
 @font-face {
@@ -31,7 +32,20 @@
   src: url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Medium.eot?#iefix) format('embedded-opentype'),
        url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Medium.woff2) format('x-woff2'),
        url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Medium.woff) format('woff'),
-       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Medium.ttf) format('truetype');
+       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Medium.ttf) format('truetype'),
+       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Medium.svg#webfont) format('svg');
+}
+
+@font-face {
+  font-family: 'NotoSansCJKkr-Bold';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Bold.eot);
+  src: url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Bold.eot?#iefix) format('embedded-opentype'),
+       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Bold.woff2) format('x-woff2'),
+       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Bold.woff) format('woff'),
+       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Bold.ttf) format('truetype'),
+       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Bold.svg#webfont) format('svg');
 }
 
 .font-regular{
@@ -42,6 +56,9 @@
 }
 .font-medium{
 	font-family:'NotoSansCJKkr-Medium' !important;
+}
+.font-bold{
+	font-family:'NotoSansCJKkr-Bold' !important;
 }
 
 .font-size-10{

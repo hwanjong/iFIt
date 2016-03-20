@@ -1,5 +1,21 @@
 @CHARSET "UTF-8";
 
+#myPage{
+	padding: 0 16px;
+}
+
+#myPageTitle{
+	height: 28px;
+    margin-bottom:49px;
+    text-align:center;
+    line-height: 28px;
+    color:#9b9b9b;
+    background-image:url('../img/mypage/back.png');
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-size: 16px;
+}
+
 #list{
 	margin-top: 12%;
 	background-color: inherit;
