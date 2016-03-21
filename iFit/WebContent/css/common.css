@@ -45,6 +45,9 @@ a:HOVER{
 .ml10{
 	margin-left:10px;
 }
+.mr10-important{
+	margin-right:10px !important;
+}
 .mr20{
 	margin-right:20px;
 }
@@ -53,6 +56,9 @@ a:HOVER{
 }
 .mb3{
 	margin-bottom: 3px;
+}
+.mb10{
+	margin-bottom: 10px;
 }
 .mb14{
 	margin-bottom:14px;

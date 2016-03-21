@@ -71,6 +71,15 @@ $(document).ready(function(){
 					$(this).css("width", (($(this).css("width").replace(/[^-\d\.]/g, ''))*height_ratio)+"px");
 					$(this).css("height", (($(this).css("height").replace(/[^-\d\.]/g, ''))*height_ratio)+"px");
 					break;
+				case "width-basic-line-height":
+					$(this).css("line-height", (($(this).css("line-height").replace(/[^-\d\.]/g, ''))*width_ratio)+"px");
+					break;
+				case "width-basic-margin-top":
+					$(this).css("margin-top", (($(this).css("margin-top").replace(/[^-\d\.]/g, ''))*width_ratio)+"px");
+					break;
+				case "width-basic-margin-bottom":
+					$(this).css("margin-bottom", (($(this).css("margin-bottom").replace(/[^-\d\.]/g, ''))*width_ratio)+"px");
+					break;
 			}
 		}
 	});

@@ -13,6 +13,9 @@
 	border-color:#6f6f6f !important;
 	background-color: #6f6f6f !important;
 }
+.carousel img{
+	height:auto !important;
+}
 
 input[type='number'] {
     -moz-appearance:textfield;

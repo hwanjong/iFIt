@@ -39,3 +39,26 @@ $(document).ready(function() {
 	reCal();
 	$(".cart_cancleBtn").on
 });
+
+
+//16.03.22추가 작업
+
+$(function(){
+	$("#selectSize li").click(function(){
+		if($(this).parents(".cart_item").hasClass("itemOn") === true) {
+			$("#selectSize li").each(function(){
+				$(this).removeClass("btnOn");
+			});
+			$(this).addClass("btnOn");
+		}
+	});
+	$(".itemOptionCheckBtn").click(function(){
+		if($(this).parents(".cart_item").hasClass("itemOn") === true) {
+			$(this).parents(".cart_item").removeClass("itemOn");
+			$(this).parents(".cart_item").addClass("itemOff");
+		}else if($(this).parents(".cart_item").hasClass("itemOff") === true === true) {
+			$(this).parents(".cart_item").removeClass("itemOff");
+			$(this).parents(".cart_item").addClass("itemOn");
+		}
+	});
+})
