@@ -129,6 +129,7 @@ $(function() {
 	$(document).on("pageshow",function(e){
 		var pageName = $($(window.location.href.split("/")).last()[0].split(".html")).last()[0].replace("&","");
 		console.log(pageName);
+		
 		switch(pageName){
 			case "":
 			init_footer();
