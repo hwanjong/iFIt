@@ -1,5 +1,16 @@
 @CHARSET "UTF-8";
 
+#login_box .ui-input-text{
+	border: 0;
+	-webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    margin: 0;
+    height: 100%;
+}
+
 #myPage{
 	padding: 0 16px;
 }
@@ -16,37 +27,62 @@
     background-size: 16px;
 }
 
+#login_box{
+    padding: 0 58px;
+}
+#login_box input{
+	background-color: #ebebeb;
+	height:34px;
+}
+#login_box p{
+	margin-bottom:46px;
+	height:15px;
+}
+#login_box #input_id{
+	margin-bottom:14px;
+}
+#login_box #input_pw{
+	margin-bottom:17px;
+}
+#login_box #icon_box{
+	margin-bottom:24px;
+	height:34px;
+}
+#login_box #icon_box img{
+	height:100%;
+}
+#loginBtn{
+	margin-bottom:22px;
+	height:68px;
+	background-color:#ebebeb;
+	text-align:center;
+	line-height: 68px;
+}
 #list{
-	margin-top: 12%;
 	background-color: inherit;
-	vertical-align: middle;
 }
 #list > div{
-	line-height:3em;
-	vertical-align: middle;
-	margin-bottom: 1px;	
+	padding:0 25px;
+	height:51px;
 	background-color: white;
+	border-bottom: 1px solid #ebebeb;
+}
+#list > div > div{
+	width: 50%;
+	height:100%;
+	line-height:51px;
+    display: inline-block;
+    float: left;
+}
+#list .listIcon{
+	height:12px;
 }
 
-#list > div > span{
-	display: inline-block;	
-}
+
 .arrowImg{
 	width:0.8em;
 	margin-right: 1.5em;
 }
-.title{
-	width:60%;
-	margin-left: 2em;
-	color:#626262;
-	font-size:14px;
-	font-weight:bold;
-}
-.subInfo{
-	float: right;	
-}
-
-
 .messageBox{
 	line-height: 1.5em;
     width: 1.5em;
@@ -57,14 +93,4 @@
     margin-top: 0.75em;
     margin-right: 0.7em;
     text-shadow: none;
-}
-#loginBtn{
-	margin-top:4em;
-	font-size : 15px;
-	text-align: center;
-	background-color: white;
-	color:#f56c74;	    
-    line-height: 3em;
-    font-size: 20px;
-    font-weight: bold;
 }

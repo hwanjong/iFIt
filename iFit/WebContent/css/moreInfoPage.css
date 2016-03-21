@@ -565,7 +565,7 @@ body{
 	background-color:white !important;
 }
 ul{list-style:none;}
-.clear{clear:both;}
+
 .centerImage{
 	position: relative;
 }
@@ -577,26 +577,4 @@ ul{list-style:none;}
     right: 0;
     bottom: 0;
     margin: auto;
-}
-
-.fl{
-	float:left;
-}
-
-.fr{
-	float:right;
-}
-
-.mr10{
-	margin-right:10px;
-}
-.ml10{
-	margin-left:10px;
-}
-
-.dib{
-	display:inline-block;
-}
-.center{
-	text-align:center;
 }

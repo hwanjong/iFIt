@@ -433,12 +433,40 @@
 			<span>로그인</span>
 		</div>
 		<form>
-			<div class="input_box">
-				<input type="text" placeholder="ID" />
+			<div id="login_box" class="render" data-render="padding-left,padding-right">
+				<input type="text" id="input_id" class="font-size-11 mb14 render" data-render="height,font-size,margin-bottom" placeholder="ID"/>
+				<input type="text" id="input_pw" class="font-size-11 mb17 render" data-render="height,font-size,margin-bottom" placeholder="PASSWORD"/>
+				<p class="font-size-11 center render" data-render="height,font-size,margin-bottom">아이디찾기 | 비밀번호 찾기 | 회원가입</p>
+				<div id="icon_box" class="center render" data-render="height,margin-bottom">
+					<img class="mr20" src="img/mypage/wechat_icon.png">
+					<img class="mr20" src="img/mypage/weibo_icon.png">
+					<img src="img/mypage/facebook_icon.png">
+				</div>
+				<div id="loginBtn" class="center font-size-13 render" data-render="height,margin-bottom,font-size,line-height">
+					로그인
+				</div>
 			</div>
 		</form>
+		
+		
 		<div id="list">
-			<div id="requestOrder">
+			<div id="requestOrder" class="clear render" data-render="height,padding-left,padding-right">
+				<div class="render" data-render="line-height">
+					<p class="font-medium font-size-13 render" data-render="font-size">수량</p>
+				</div>
+				<div class="render" data-render="line-height">
+					<img src="img/mypage/weibo_icon.png" class="listIcon render mr10" data-render="height,margin-right">
+					<p class="font-medium font-size-13 render dib" data-render="font-size">2</p>
+					<img src="img/mypage/weibo_icon.png" class="listIcon render ml10" data-render="height,margin-left">
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<!-- 
+		<div id="list">
+			<div id="requestOrder" class="render" data-render="height,line-height">
 				<span class="title">주문 조회</span>
 				<span  class="subInfo">
 					<img src="img/mypage/arrow.png" class= " arrowImg">
@@ -447,13 +475,13 @@
 					2					
 				</span>				
 			</div>
-			<div id="requestManyQnA">
+			<div id="requestManyQnA" class="render" data-render="height,line-height">
 				<span class="title">자주하는 질문</span>
 				<span  class="subInfo">
 					<img src="img/mypage/arrow.png" class= " arrowImg">
 				</span>
 			</div>
-			<div id="requestOneByOne">
+			<div id="requestOneByOne" class="render" data-render="height,line-height">
 				<span class="title">1:1 문의</span>
 				<span  class="subInfo">
 					<img src="img/mypage/arrow.png" class= " arrowImg">
@@ -462,17 +490,14 @@
 					2
 				</span>				
 			</div>
-			<div id="requestUsingApp">
+			<div id="requestUsingApp" class="render" data-render="height,line-height">
 				<span class="title">이용 안내</span>
 				<span  class="subInfo">
 					<img src="img/mypage/arrow.png" class= " arrowImg">
 				</span>
 			</div>
-		</div>
-	
-		<div id="loginBtn">
-			로그인
-		</div>		
+		</div>	
+		 -->
 	</div>
 
 	<div data-role="page" id="productList" class="eachPage">
