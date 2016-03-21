@@ -6,6 +6,12 @@
 	background-color: white;
 	text-shadow: none;
 	line-height: 3.0em;
+	text-align: center;
+	margin-bottom:12px;
+}
+
+#backheader+div{
+	margin-top:12px;
 }
 
 #backheader > span{
@@ -13,13 +19,20 @@
 	display: inline-block;
 	vertical-align: middle;
 	text-shadow: none;
-	font-weight: normal;
+	text-align:center;
 	
 }
 
 #backheader > #backBtn {
-	text-align: left !important;
-	width: 10%;
+	width: 22px;
+    height: 48px;
+    position: absolute;
+    left: 20px;
+    text-align: left !important;
+	background-image:url('../img/moreInfoPage/back.png');
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-size: 16px;
 }
 #backheader .glyphicon{
 	font-size:30px;
@@ -27,15 +40,9 @@
 	padding-left:0.3em;
 	color:#959595;
 }
-#backBtn > a{
-	vertical-align: middle;
-	font-size: 25px !important;
-}
 
 #pageName{
 	width:50%;	
-	font-size: 13px;
-	text-align: left;
 }
 #backHeaderFn{
 	width:40%;

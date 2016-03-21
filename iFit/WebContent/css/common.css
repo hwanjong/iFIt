@@ -229,7 +229,7 @@ a:HOVER {
 }
 
 #footer {
-	height: 44px;
+	height:44px;
 	text-align: center;
 	border-width: 0px;
 	background-color: white;
@@ -240,8 +240,12 @@ a:HOVER {
 	width: 20%;
 }
 
+.eachFoot{
+	float:left;
+	width: 20%;
+}
 #footer img {
-	height:44px;
+	height: 44px;
 	padding: 16%;
 }
 

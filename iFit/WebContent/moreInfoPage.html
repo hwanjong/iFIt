@@ -18,6 +18,7 @@
 <link href="css/moreInfoPage.css" rel="stylesheet">
 <link href="css/backHeader.css" rel="stylesheet">
 
+
 <script src="js/bootstrap.min.js"></script>
 <script src="js/moreInfoPage.js"></script>
 <script src="js/common/backHeader.js"></script>
@@ -26,17 +27,10 @@
 <body>
 	<div data-role="page" id="moreInfoPage" class="eachPage render" data-render="padding-left,padding-right">
 		<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader">
-			<span  id="backBtn" data-rel="back"><a data-rel="back" data-role="none" class="glyphicon glyphicon-menu-left"></a></span>
-			<span id="pageName">상세페이지</span>
-			<span id="backHeaderFn">
-				<img src="img/moreInfoPage/closet.png" onclick="moreInfoClosetClickHandler(event)">
-				<img src="img/moreInfoPage/3dView.png" onclick="moreInfo3DClickHandler(event)">
-			</span>
+			<span id="backBtn" data-rel="back"></span>
+			<span id="pageName" class="font-size-16">페이크 레더 점퍼</span>
 		</div>
-		<div id="purchaseTitle" class="font-size-16 render" data-render="width-basic-height,width-basic-margin-top,width-basic-margin-bottom,width-basic-line-height,background-size,font-size">
-			<span>페이크 레더 점퍼</span>
-		</div>
-		<div id="purchaseContent">
+		<div id="purchaseContent" class="render" data-render="width-basic-margin-top">
 			<div id="sumurryInfo" class="moreInfoEachDivWrap">
 				<div class="photoArea">
 					<div class="iconArea render" data-render="padding-top,padding-left,padding-right">
@@ -56,9 +50,9 @@
 					</div>
 				</div>
 				<div id="shareWrap" class="render" data-render="height,margin-top,margin-bottom,line-height">
-					<span id="othersLikeNo" class="render" data-render="height,line-height,font-size">
+					<span id="othersLikeNo" class="render" data-render="width-basic-height,line-height,width-basic-font-size">
 						<img src="img/moreInfoPage/heart_good.png" class="fl render" data-render="height">
-						<p class="fl">231</p>
+						<p class="fl render" data-render="margin-left">231</p>
 					</span>
 					<span class="font-size-10 render" id="purchaseName" data-render="height,line-height,font-size">
 						<p>페이크 레더 점퍼</p>
@@ -91,7 +85,7 @@
 						<p class="font-medium font-size-13 render fl" data-render="font-size">customer</p>
 						<p class="font-size-11 render fl" data-render="font-size">2016. 03. 15</p>
 					</div>
-					<div class="moreInfoReplyContent render" data-render="top,height,line-height">
+					<div class="moreInfoReplyContent render" data-render="top,height,line-height,margin-right">
 						<p class="font-size-11 render" data-render="font-size">봉제상태가 매우 좋습니다. 잘입을게요~</p>
 					</div>
 					<div class="moreInfoReplyBtn render" data-render="margin-top">
@@ -114,7 +108,7 @@
 						<p class="font-medium font-size-13 render fl" data-render="font-size">customer</p>
 						<p class="font-size-11 render fl" data-render="font-size">2016. 03. 15</p>
 					</div>
-					<div class="moreInfoReplyContent render" data-render="top,height,line-height">
+					<div class="moreInfoReplyContent render" data-render="top,height,line-height,margin-right">
 						<p class="font-size-11 render" data-render="font-size">봉제상태가 매우 좋습니다. 잘입을게요~</p>
 					</div>
 					<div class="moreInfoReplyBtn render" data-render="margin-top">
@@ -134,7 +128,7 @@
 						<img src="img/moreInfoPage/heart_off.png" class="fl render" data-render="height">
 					</div>
 					<div class="moreInfoReplyWriter render" data-render="top,height,line-height">
-						<p class="font-medium font-size-13 render fl" data-render="font-size">customer</p>
+						<p class="font-medium font-size-13 render fl" data-render="font-size,margin-right">customer</p>
 						<p class="font-size-11 render fl" data-render="font-size">2016. 03. 15</p>
 					</div>
 					<div class="moreInfoReplyContent render" data-render="top,height,line-height">
@@ -157,7 +151,7 @@
 						<img src="img/moreInfoPage/heart_off.png" class="fl render" data-render="height">
 					</div>
 					<div class="moreInfoReplyWriter render" data-render="top,height,line-height">
-						<p class="font-medium font-size-13 render fl" data-render="font-size">customer</p>
+						<p class="font-medium font-size-13 render fl " data-render="font-size,margin-right">customer</p>
 						<p class="font-size-11 render fl" data-render="font-size">2016. 03. 15</p>
 					</div>
 					<div class="moreInfoReplyContent render" data-render="top,height,line-height">
@@ -187,11 +181,11 @@
 					</div>
 					<div class="purchaseSelectContent render" data-render="width,height,line-height">
 						<ul id="selectSize" class="font-size-13 render" data-render="font-size">
-							<li class="render" data-render="diagonal-height,margin-right">XS</li>
-							<li class="render" data-render="diagonal-height,margin-right">S</li>
-							<li class="render" data-render="diagonal-height,margin-right">M</li>
-							<li class="render" data-render="diagonal-height,margin-right">XL</li>
-							<li class="render" data-render="diagonal-height,margin-right">L</li>
+							<li class="render" data-render="width,height,margin-right">XS</li>
+							<li class="render" data-render="width,height,margin-right">S</li>
+							<li class="render" data-render="width,height,margin-right">M</li>
+							<li class="render" data-render="width,height,margin-right">XL</li>
+							<li class="render" data-render="width,height,margin-right">L</li>
 						</ul>
 					</div>
 				</div>
@@ -218,8 +212,8 @@
 				<p>￦36,500</p>
 			</div>
 			<div class="purchaseBtn font-medium font-size-13 render" data-render="width,margin-bottom,font-size">
-				<div class="dib render" data-render="diagonal-width,width-basic-line-height">장바구니로</div>
-				<div class="dib fr render" data-render="diagonal-width,width-basic-line-height">구매하기</div>
+				<div class="dib render" data-render="width,height,width-basic-line-height">장바구니로</div>
+				<div class="dib fr render" data-render="width,height,width-basic-line-height">구매하기</div>
 			</div>
 			
 			
