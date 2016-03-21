@@ -23,6 +23,7 @@
     color:#9b9b9b;
     background-image:url('../img/mypage/back.png');
     background-repeat: no-repeat;
+    background-position-x: 10px;
     background-position-y: center;
     background-size: 16px;
 }
