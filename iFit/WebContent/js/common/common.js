@@ -56,7 +56,7 @@ function myPageBtn_Handler(e) {
 }
 
 function headBar_handler(select){
-	showAd();
+	hideAd();
 	init_footer();
 	stopSearchBar();
 	if(select=="closet"){
@@ -66,7 +66,6 @@ function headBar_handler(select){
 		
 	}else if(select=="cart"){
 		$.mobile.changePage("#cartPage");
-		hideAd();
 	}
 }
 
@@ -82,6 +81,7 @@ function searchInputBtn_Handler(e) {
 	$("#footBalckDiv").show();
 }
 function searchBarBtn_Handler(e) {
+	hideAd();
 	var queryValue = $("#searchBar").attr("value");
 	init_footer();
 	stopSearchBar();
@@ -109,7 +109,6 @@ $(function() {
 		$("#searchBar").attr("value", $(this).text());
 		e.stopPropagation();
 	});
-	$("#blackEffect").click(stopSearchBar_Handler);
 	$(".carousel-inner>.item").on("swipeleft", function(e) {
 		$("#myCarousel").carousel("next");
 	});
