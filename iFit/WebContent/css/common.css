@@ -229,15 +229,20 @@ a:HOVER {
 }
 
 #footer {
-	line-height: 4.0em;
+	height: 44px;
 	text-align: center;
 	border-width: 0px;
 	background-color: white;
 }
 
+.eachFoot {
+	float: left;
+	width: 20%;
+}
+
 #footer img {
-	padding: 4.5%;
-	width: 17%;
+	height:44px;
+	padding: 16%;
 }
 
 #hashRecommandWrapDiv {
