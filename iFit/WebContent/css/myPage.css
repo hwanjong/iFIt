@@ -67,6 +67,9 @@
 	background-color: white;
 	border-bottom: 1px solid #ebebeb;
 }
+#list p{
+	margin:0;
+}
 #list > div > div{
 	width: 50%;
 	height:100%;
@@ -74,23 +77,19 @@
     display: inline-block;
     float: left;
 }
-#list .listIcon{
-	height:12px;
-}
 
-
-.arrowImg{
-	width:0.8em;
-	margin-right: 1.5em;
-}
-.messageBox{
-	line-height: 1.5em;
-    width: 1.5em;
-    background-color: #f8989d;
+#list .messageBox{
+	width: 18px;
+    height: 18px;
+    line-height: 18px;
+    display: inline-block;
+    background-color: #9b9b9b;
+    vertical-align: middle;
     border-radius: 50%;
-    text-align: center;
-    color: white;
-    margin-top: 0.75em;
-    margin-right: 0.7em;
-    text-shadow: none;
+   	-webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    color:white;
+}
+#list .listIcon{
+	height:18px;
 }
