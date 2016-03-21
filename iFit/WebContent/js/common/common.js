@@ -23,43 +23,58 @@
 	$("#searchBar").attr("value", "");
 }
 function homeBtn_Handler(e) {
+	showAd();
 	init_footer();
 	$("#homeBtn").attr("src", " img/footer/homeClick.png");
 	$.mobile.changePage("#main_home");
 }
 function categoryBtn_Handler(e) {
+	showAd();
 	init_footer();
 //	localStorage.setItem("isCategory", "true");
 	$("#categoryBtn").attr("src", " img/footer/categoryClick.png");
 	$.mobile.changePage("#categoryPage");
 }
 function threeDBtn_Handler(e) {
+	showAd();
 	init_footer();
 	$("#threeDBtn").attr("src", " img/footer/threeDClick.png");
 	$.mobile.changePage("#threeDPage");
 }
 
 function hotDealBtn_Handler(e) {
+	showAd();
 	init_footer();
 	$("#hotDealBtn").attr("src", " img/footer/hotDealClick.png");
 	$.mobile.changePage("#hotDealPage");
 }
 function myPageBtn_Handler(e) {
+	hideAd();
 	init_footer();
 	$("#myPageBtn").attr("src", " img/footer/myPageClick.png");
 	$.mobile.changePage("#myPage");
 }
 
 function headBar_handler(select){
+	showAd();
 	init_footer();
 	stopSearchBar();
 	if(select=="closet"){
 		$.mobile.changePage("#codiPage");
 	}else if(select=="zzim"){
 		$.mobile.changePage("#zzimPage");
+		
 	}else if(select=="cart"){
 		$.mobile.changePage("#cartPage");
+		hideAd();
 	}
+}
+
+function hideAd(){
+	$("#adWrap").hide();
+}
+function showAd(){
+	$("#adWrap").show();
 }
 
 function searchInputBtn_Handler(e) {
