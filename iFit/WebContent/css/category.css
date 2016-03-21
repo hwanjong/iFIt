@@ -1,28 +1,35 @@
 @CHARSET "UTF-8";
 
 #categoryItem {
-	text-align: center;
-	margin-top: 6%;
 	vertical-align: middle;
+	text-align: center;
 }
 
-#categoryItem span {
+.cateLine{
+	width:100%;
+	white-space: nowrap;
+}
+#categoryItem div div {
+	position: relative;
+	background-color:#9B9B9B;
 	display:inline-block;
-	width: 23.5%;
-	max-width:90px;		
-	background-color: white;
-	padding: 3% 0 0;	
-	margin-bottom: 1.5%;
+	width: 93px;
+	height: 93px;
+	margin-bottom: 1px;
+	margin-right: 1px;
+	float: left;
 }
-#categoryItem span img{
-	width:60%;
-}
-#categoryItem span p{
-	margin : 10px 0 10px;
-	color:gray;
-	font-weight: bold;
-	font-size : 10px;
+#categoryItem div img{
+	height: 68px;
+	margin-top: 10px;
+	padding: 20%;
+	margin-bottom: -10px;
 	
+}
+#categoryItem div p{
+	height: 25px;
+	color: white;
+	margin-bottom: 0px;
 }
 
 #categoryAD {
