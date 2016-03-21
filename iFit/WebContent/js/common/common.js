@@ -22,15 +22,6 @@
 	});
 	$("#searchBar").attr("value", "");
 }
-function createBlackEffect() {
-	$("#blackEffect").show();
-	$("#footerBlackEffectDiv").show();
-}
-function removeBlackEffect() {
-	$("#blackEffect").hide();
-	$("#footerBlackEffectDiv").hide();
-}
-
 function homeBtn_Handler(e) {
 	init_footer();
 	$("#homeBtn").attr("src", " img/footer/homeClick.png");
@@ -58,41 +49,34 @@ function myPageBtn_Handler(e) {
 	$("#myPageBtn").attr("src", " img/footer/myPageClick.png");
 	$.mobile.changePage("#myPage");
 }
-function closetBtn_Handler(e) {
+
+function headBar_handler(select){
 	init_footer();
-	$.mobile.changePage("#codiPage");
+	stopSearchBar();
+	if(select=="closet"){
+		$.mobile.changePage("#codiPage");
+	}else if(select=="zzim"){
+		$.mobile.changePage("#zzimPage");
+	}else if(select=="cart"){
+		$.mobile.changePage("#cartPage");
+	}
 }
-function likeItemBtn_Handler(e) {
-	init_footer();
-	$.mobile.changePage("#zzimPage");
-}
-function shoppingCartBtn_Handler(e) {
-	init_footer();
-	$.mobile.changePage("#cartPage");
-}
+
 function searchInputBtn_Handler(e) {
-	$("#hashRecommandWrapDiv").css("display", "block");
-	$("#searchBarDefaultView").css("display", "none");
-	$("#searchBarClickView").css("display", "inline");
-	createBlackEffect();
-	e.stopPropagation();
+	$("#tagDiv").show();
+	$("#footBalckDiv").show();
 }
 function searchBarBtn_Handler(e) {
 	var queryValue = $("#searchBar").attr("value");
 	init_footer();
-	stopSearchBar_Handler(e);
+	stopSearchBar();
 	console.log("검색 질의어 : " + queryValue);
 //	localStorage.setItem("isCategory", "false");
 	$.mobile.changePage("#productList");
 }
-function stopSearchBar_Handler(e) {
-	removeBlackEffect();
-	if ($("#hashRecommandWrapDiv").css("display") == "block") {
-		$("#hashRecommandWrapDiv").css("display", "none");
-		$("#searchBarDefaultView").css("display", "inline");
-		$("#searchBarClickView").css("display", "none");
-	}
-	e.stopPropagation();
+function stopSearchBar() {
+	$("#tagDiv").hide();
+	$("#footBalckDiv").hide();
 }
 
 
