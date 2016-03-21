@@ -40,7 +40,7 @@
 
 </head>
 <body>
-	<div data-role="header" id="menuBar" data-position="fixed" data-tap-toggle="false">
+	<div data-role="header" id="menuBar" class="render" data-position="fixed" data-tap-toggle="false">
 	<div id="loadingDiv">
 		<img src="img/ajax-loader.gif">
 	</div>
@@ -59,25 +59,11 @@
 		
 
 	</div>
-	<div data-role="header" id="tagDiv" >
-		<div id="tagList">
-			<div class="font-bold font-size-18">
-			
-				<div class="tag" onclick="searchBarBtn_Handler();">#프릴원피스 </div>
-				<div class="tag" onclick="searchBarBtn_Handler();">#체크무늬 </div>
-				<div class="tag" onclick="searchBarBtn_Handler();">#트레이닝 </div>
-			</div>
-			<div class="font-light font-size-18">
-				<div class="tag" onclick="searchBarBtn_Handler();">#스커트</div>
-				<div class="tag" onclick="searchBarBtn_Handler();">#가디건</div>
-				<div class="tag" onclick="searchBarBtn_Handler();">#가디건</div>
-				<div class="tag" onclick="searchBarBtn_Handler();">#신상</div>
-				<div class="tag" onclick="searchBarBtn_Handler();">#원피스</div>
-				<div class="tag" onclick="searchBarBtn_Handler();">#세일상품</div>
-				<div class="tag" onclick="searchBarBtn_Handler();">#행사상품</div>
-			</div>
+	<div data-role="header" id="tagDiv" style="display: none; position:fixed; top:30px; border: 0px; width: 100%; height: 100%; z-index: 20; " >
+		<div id="tagList" class="render" data-render="padding-left,padding-right,padding-top,padding-bottom" style="background-color: white; padding: 16px 40px;">
+			dfdf
 		</div>
-		<div id = "blackDiv" style="background-color: black; height:100%; opacity:0.8;" onclick="stopSearchBar()">
+		<div id = "blackDiv" style="background-color: black; height:100%; opacity:0.7;" onclick="stopSearchBar()">
 		</div>
 	
 	</div>
@@ -219,7 +205,7 @@
 			<p>Event</p>
 			<img width="100%;" src="img/bottom_banner2.png">
 		</div>
-		<div class="topBtn" onclick="window.scrollTo(0,0);"><img width="15px;" src="img/anchor.png"></div>
+		<div style="width: 100%; text-align: center; padding: 42px 0px;" onclick="window.scrollTo(0,0);"><img width="15px;" src="img/anchor.png"></div>
 		
 		
 	</div>
@@ -253,411 +239,7 @@
 					<p>뷰티</p>
 				</span>
 			</div>
-			
-					<div class="mainpage_mainBox">
-			<p class="mainpage_boxTitle">Hot</p>
-			<div class="mainpage_boxContents">
-			
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-					<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-			</div>
-			</div>
-			
-			
-			<div class="mainpage_mainBox">
-			<p class="mainpage_boxTitle">Top</p>
-			<div class="mainpage_boxContents">
-			
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-					<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-		
-		<div class="mainpage_mainBox">
-			<p class="mainpage_boxTitle">Pants</p>
-			<div class="mainpage_boxContents">
-			
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-					<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-		<div class="mainpage_mainBox">
-			<p class="mainpage_boxTitle">Skirt</p>
-			<div class="mainpage_boxContents">
-			
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-					<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-		<div class="mainpage_mainBox">
-			<p class="mainpage_boxTitle">One piece</p>
-			<div class="mainpage_boxContents">
-			
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-					<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-		
-		<div class="mainpage_mainBox">
-			<p class="mainpage_boxTitle">Outer</p>
-			<div class="mainpage_boxContents">
-			
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-					<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-		
-		<div class="mainpage_mainBox">
-			<p class="mainpage_boxTitle">Dress</p>
-			<div class="mainpage_boxContents">
-			
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-					<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-		
-		<div class="mainpage_mainBox">
-			<p class="mainpage_boxTitle">Accessories</p>
-			<div class="mainpage_boxContents">
-			
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-					<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-		<div class="mainpage_mainBox">
-			<p class="mainpage_boxTitle">Shoes</p>
-			<div class="mainpage_boxContents">
-			
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-					<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<div class="fitLogo"></div>
-						<img src="img/mainHome/item_1.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-				<div class="mainpage_productDiv">
-					<div class="mainpage_imgDiv">
-						<img src="img/mainHome/item_2.png">
-					</div>
-					<div class="mainpage_infoDiv">
-						<p>베이직 가디건</p>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-		<div class="topBtn" onclick="window.scrollTo(0,0);"><img width="15px;" src="img/anchor.png"></div>
-		
+			<img src="img/category/categoryAD.jpg" id="categoryAD">
 	</div>
 	<div data-role="page" id="threeDPage" 	class="eachPage haveADContent">
 	<a onclick="window.scrollTo(0,0);"><img style="width: 40px; position: fixed; left: 85%; top: 80%; z-index: 1;" src = "img/top.png"></a>
@@ -687,7 +269,7 @@
 		
 			<div class="threeD_productDiv">
 				<div class="threeD_imgDiv">
-					<div class="fitLogo"></div>
+					<div class="fitLogo">I-FIT!</div>
 					<img src="img/product1.PNG">
 				</div>
 				<div class="threeD_infoDiv">
@@ -697,7 +279,7 @@
 			
 			<div class="threeD_productDiv">
 				<div class="threeD_imgDiv">
-				<div class="fitLogo"></div>
+				<div class="fitLogo">I-FIT!</div>
 					<img src="img/product2.PNG">
 				</div>
 				<div class="threeD_infoDiv">
@@ -707,7 +289,7 @@
 			
 			<div class="threeD_productDiv">
 				<div class="threeD_imgDiv">
-					<div class="fitLogo"></div>
+					<div class="fitLogo">I-FIT!</div>
 					<img src="img/product3.jpg" style="height: 100%;">
 				</div>
 				<div class="threeD_infoDiv">
@@ -744,7 +326,7 @@
 	
 	<div class="threeD_product">
 		<div class="threeD_threeDimgDiv">
-			<div class="fitLogo"></div>
+			<div class="fitLogo">I-FIT!</div>
 			<img src="img/product2.PNG">
 		</div>
 		<div class="threeD_productInfo">
@@ -757,7 +339,7 @@
 	
 	<div class="threeD_product">
 		<div class="threeD_threeDimgDiv">
-			<div class="fitLogo"></div>
+			<div class="fitLogo">I-FIT!</div>
 			<img style="height: 100%;" src="img/product3.jpg">
 		</div>
 		<div class="threeD_productInfo">
@@ -782,7 +364,7 @@
 	
 	<div class="threeD_product">
 		<div class="threeD_threeDimgDiv">
-			<div class="fitLogo"></div>
+			<div class="fitLogo">I-FIT!</div>
 			<img style="height: 100%;" src="img/product3.jpg">
 		</div>
 		<div class="threeD_productInfo">
@@ -815,7 +397,7 @@
 			<div class="hotDeal_item">
 				<div class="hotDeal_ImgDiv">
 					<img class="hotDeal_photo" src="img/product1.PNG">
-					<div class="fitLogo"></div>
+					<div class="fitLogo">I-FIT!</div>
 				</div>
 				<div class="hotDeal_infoDiv" style="text-align: right;">
 					<p class="hotDeal_productTitle">
@@ -829,7 +411,7 @@
 			<div class="hotDeal_item">
 				<div class="hotDeal_ImgDiv">
 					<img class="hotDeal_photo" src="img/product2.PNG"> 
-					<div class="fitLogo"></div>
+					<div class="fitLogo">I-FIT!</div>
 				</div>
 				<div class="hotDeal_infoDiv" style="text-align: right;">
 					<p class="hotDeal_productTitle">
@@ -842,7 +424,7 @@
 			<div class="hotDeal_item">
 				<div class="hotDeal_ImgDiv">
 					<img class="hotDeal_photo" src="img/product3.jpg"> 
-					<div class="fitLogo"></div>
+					<div class="fitLogo">I-FIT!</div>
 				</div>
 				<div class="hotDeal_infoDiv" style="text-align: right;">
 					<p class="hotDeal_productTitle">
@@ -909,80 +491,81 @@
 		</div>
 	</div>
 	<div data-role="page" id="productList" class="eachPage">
+		<a onclick="window.scrollTo(0,0);"><img style="width: 40px; position: fixed; left: 85%; top: 80%; z-index: 1;" src = "img/top.png"></a>
 		<div class="product">
 			<div class="imgDiv">
-				<div class="fitLogo"></div>
-				<img src="img/mainHome/item_2.png">
+				<img src="img/product1.PNG">
 			</div>
-			<div class="productInfo font-size-10">
-				<div class="moreInfo">
-					<img src="img/header/likeItem.png" class="left">
-					<p class="left">231</p>
-					<p class="right">페이크 레더 점퍼</p>
-				</div>
-				<p class="price clear right">&#8361 36,000<p>
+			<div class="productInfo">
+				<p class="productName">체크무늬 솜사탕 코트</p>
+				<p class="summary">36,000원<p>
+				<p class="line"></p>
+				<p class="summary"><img src="img/heart.PNG" width="9px;"> 231</p>
 			</div>
 		</div>
 		
 		<div class="product">
 			<div class="imgDiv">
-				<div class="fitLogo"></div>
-				<img src="img/mainHome/item_2.png">
+				<div class="fitLogo">I-FIT!</div>
+				<img src="img/product2.PNG">
 			</div>
-			<div class="productInfo font-size-10">
-				<div class="moreInfo">
-					<img src="img/header/likeItem.png" class="left">
-					<p class="left">231</p>
-					<p class="right">페이크 레더 점퍼</p>
-				</div>
-				<p class="price clear right">&#8361 36,000<p>
+			<div class="productInfo">
+				<p class="productName">체크무늬 솜사탕 코트</p>
+				<p class="summary">36,000원<p>
+				<p class="line"></p>
+				<p class="summary"><img src="img/heart.PNG" width="9px;"> 231</p>
 			</div>
 		</div>
 		
-				<div class="product">
+		<div class="product">
 			<div class="imgDiv">
-				<img src="img/mainHome/item_2.png">
+				<div class="fitLogo">I-FIT!</div>
+				<img style="height: 100%;" src="img/product3.jpg">
 			</div>
-			<div class="productInfo font-size-10">
-				<div class="moreInfo">
-					<img src="img/header/likeItem.png" class="left">
-					<p class="left">231</p>
-					<p class="right">페이크 레더 점퍼</p>
-				</div>
-				<p class="price clear right">&#8361 36,000<p>
+			<div class="productInfo">
+				<p class="productName">체크무늬 솜사탕 코트</p>
+				<p class="summary">36,000원<p>
+				<p class="line"></p>
+				<p class="summary"><img src="img/heart.PNG" width="9px;"> 231</p>
 			</div>
 		</div>
 		
-				<div class="product">
+		<div class="product">
 			<div class="imgDiv">
-				<div class="fitLogo"></div>
-				<img src="img/mainHome/item_2.png">
+				<img src="img/product4.jpg">
 			</div>
-			<div class="productInfo font-size-10">
-				<div class="moreInfo">
-					<img src="img/header/likeItem.png" class="left">
-					<p class="left">231</p>
-					<p class="right">페이크 레더 점퍼</p>
-				</div>
-				<p class="price clear right">&#8361 36,000<p>
+			<div class="productInfo">
+				<p class="productName">체크무늬 솜사탕 코트</p>
+				<p class="summary">36,000원<p>
+				<p class="line"></p>
+				<p class="summary"><img src="img/heart.PNG" width="9px;"> 231</p>
 			</div>
 		</div>
 		
-				<div class="product">
+		<div class="product">
 			<div class="imgDiv">
-				<img src="img/mainHome/item_2.png">
+				<div class="fitLogo">I-FIT!</div>
+				<img style="height: 100%;" src="img/product3.jpg">
 			</div>
-			<div class="productInfo font-size-10">
-				<div class="moreInfo">
-					<img src="img/header/likeItem.png" class="left">
-					<p class="left">231</p>
-					<p class="right">페이크 레더 점퍼</p>
-				</div>
-				<p class="price clear right">&#8361 36,000<p>
+			<div class="productInfo">
+				<p class="productName">체크무늬 솜사탕 코트</p>
+				<p class="summary">36,000원<p>
+				<p class="line"></p>
+				<p class="summary"><img src="img/heart.PNG" width="9px;"> 231</p>
 			</div>
 		</div>
-		<div class="topBtn" onclick="window.scrollTo(0,0);"><img width="15px;" src="img/anchor.png"></div>
-	
+		
+		<div class="product">
+			<div class="imgDiv">
+				<img src="img/product1.PNG">
+			</div>
+			<div class="productInfo">
+				<p class="productName">체크무늬 솜사탕 코트</p>
+				<p class="summary">36,000원<p>
+				<p class="line"></p>
+				<p class="summary"><img src="img/heart.PNG" width="9px;"> 231</p>
+			</div>
+		</div>
 	</div>
 	<div data-role="page" id="zzimPage" class="eachPage">
 			<a onclick="window.scrollTo(0,0);"><img style="width: 40px; position: fixed; left: 85%; top: 80%; z-index: 1;" src = "img/top.png"></a>
@@ -990,7 +573,7 @@
 		<div class="cart_item" id="f234a2b">
 			<div class="cart_imgDiv">
 			 	<img class="cart_photo" src="img/product1.PNG">
-				<div class="fitLogo"></div>
+				<div class="fitLogo">I-FIT!</div>
 			</div>
 			<div class="cart_infoDiv">
 				<p style="font-size: 13px; color: #434343; font-weight: bold;"> 체크무늬 솜사탕 코트트</p>
@@ -1006,7 +589,7 @@
 		<div class="cart_item" id="f234a44">
 			<div class="cart_imgDiv">
 			 	<img class="cart_photo" src="img/product1.PNG">
-				<div class="fitLogo"></div>
+				<div class="fitLogo">I-FIT!</div>
 			</div>
 			<div class="cart_infoDiv">
 				<p style="font-size: 13px; color: #434343; font-weight: bold;"> 체크무늬 솜사탕 코트트</p>
@@ -1022,7 +605,7 @@
 				<div class="cart_item">
 			<div class="cart_imgDiv">
 			 	<img class="cart_photo" src="img/product1.PNG">
-				<div class="fitLogo"></div>
+				<div class="fitLogo">I-FIT!</div>
 			</div>
 			<div class="cart_infoDiv">
 				<p style="font-size: 13px; color: #434343; font-weight: bold;"> 체크무늬 솜사탕 코트트</p>
@@ -1037,7 +620,7 @@
 				<div class="cart_item">
 			<div class="cart_imgDiv">
 			 	<img class="cart_photo" src="img/product1.PNG">
-				<div class="fitLogo"></div>
+				<div class="fitLogo">I-FIT!</div>
 			</div>
 			<div class="cart_infoDiv">
 				<p style="font-size: 13px; color: #434343; font-weight: bold;"> 체크무늬 솜사탕 코트트</p>
@@ -1053,7 +636,7 @@
 				<div class="cart_item">
 			<div class="cart_imgDiv">
 			 	<img class="cart_photo" src="img/product1.PNG">
-				<div class="fitLogo"></div>
+				<div class="fitLogo">I-FIT!</div>
 			</div>
 			<div class="cart_infoDiv">
 				<p style="font-size: 13px; color: #434343; font-weight: bold;"> 체크무늬 솜사탕 코트트</p>
@@ -1193,7 +776,7 @@
 		<div class="cart_item" id="f234a44">
 			<div class="cart_imgDiv">
 				<img class="cart_photo" src="img/product1.PNG">
-				<div class="fitLogo"></div>
+				<div class="fitLogo">I-FIT!</div>
 			</div>
 			<div class="cart_infoDiv">
 				<p style="font-size: 13px; color: #434343; font-weight: bold;">
@@ -1209,7 +792,7 @@
 		<div class="cart_item" id="f234a45">
 			<div class="cart_imgDiv">
 				<img class="cart_photo" src="img/product1.PNG">
-				<div class="fitLogo"></div>
+				<div class="fitLogo">I-FIT!</div>
 			</div>
 			<div class="cart_infoDiv">
 				<p style="font-size: 13px; color: #434343; font-weight: bold;">
@@ -1252,7 +835,7 @@
 	
 	<div data-role="footer" id="footer" data-position="fixed"
 		data-tap-toggle="false">
-		<div id="footBalckDiv" style="position:fixed;width:100%;height:100%; background-color: black; opacity:0.8;border:none; display: none;" onclick="stopSearchBar()"></div>
+		<div id="footBalckDiv" style="position:fixed;width:100%;height:100%; background-color: black; opacity:0.7;border:none; display: none;" onclick="stopSearchBar()"></div>
 		<img id="homeBtn" class="footerIcon" src=" img/footer/homeClick.png"
 			onclick="homeBtn_Handler()"> <img id="categoryBtn"
 			class="footerIcon" src=" img/footer/category.png"
