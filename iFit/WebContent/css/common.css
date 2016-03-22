@@ -111,6 +111,10 @@ a:HOVER {
 	text-align: right;
 }
 
+.middle {
+	vertical-align: middle;
+}
+
 .topBtn {
 	style =width: 100%;
 	text-align: center;

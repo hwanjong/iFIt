@@ -62,8 +62,15 @@
 	display:inline-block;
 }
 
+#zzimPage .cartText{
+	color:#9b9b9b;
+}
+
 .cart_item .itemOptionArea .select_count_btn{
 	height:12px;
+}
+.cart_item .itemOptionArea .item_cart_btn{
+	height:16px;
 }
 
 ul#selectSize{
@@ -101,7 +108,7 @@ ul#selectSize{
 	background-image:url('../img/itemcheck_off.png');
 }
 .cart_item.itemOn .itemDeleteBtn{
-	background-image:url('../img/delete.png');
+	background-image:url('../img/select_count_down.png');
 }
 .itemPrice{
 	margin-right:10px;
