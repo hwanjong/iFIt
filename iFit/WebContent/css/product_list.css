@@ -9,7 +9,6 @@
 .product {
 	position:relative;
 	width: 47.9%;
-	height: 245px;
 	background-color: white;
 	display: inline-block;
 	text-shadow: none !important;
@@ -19,7 +18,6 @@
 .imgDiv{
 	position: relative;
 	width: 100%;
-	height: 209px;
 	overflow: hidden;
 }
 
