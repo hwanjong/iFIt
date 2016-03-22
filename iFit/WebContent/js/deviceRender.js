@@ -9,6 +9,7 @@ $(document).ready(function(){
 	var height_ratio = device_height / design_height;
 	
 	$(".render").each(function(){
+		console.log($(this));
 		var renderData = $(this).attr("data-render").split(",");
 		for(var i=0; i<renderData.length; i++){
 			switch(renderData[i]){

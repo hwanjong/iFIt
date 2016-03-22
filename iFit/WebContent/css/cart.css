@@ -1,11 +1,11 @@
 @CHARSET "UTF-8";
 
-#cartPage{
+#cartPage, #zzimPage{
 	text-shadow: none;
 	padding: 0 16px;
 }
 
-#cartTitle{
+#cartTitle, #zzimTitle{
 	height: 30px;
     margin: 12px 0;
     text-align:center;
@@ -18,12 +18,13 @@
 }
 
 .cart_item{
+	width:343px;
 	height:134px;
 	margin-bottom: 1px;
 }
 
 .cart_item p{
-	margin:0;
+	margin-bottom:0;
 }
 
 .cart_item > div{
@@ -50,8 +51,15 @@
     float: left;
 }
 
-.cart_item .itemOptionArea>div{
+#cartPage .cart_item .itemOptionArea>div{
+	width:226px;
 	height: 20px;
+	display:inline-block;
+}
+#zzimPage .cart_item .itemOptionArea>div{
+	width:226px;
+	height: 30px;
+	display:inline-block;
 }
 
 .cart_item .itemOptionArea .select_count_btn{
@@ -59,6 +67,7 @@
 }
 
 ul#selectSize{
+	list-style:none;
 	display:inline-block;
 	margin:0;
 	padding:0;
@@ -78,7 +87,7 @@ ul#selectSize{
 	background-image:url('../img/moreInfoPage/select_size_on.png');
 }
 
-.itemOptionCheckBtn{
+.itemOptionCheckBtn, .itemDeleteBtn{
 	width:12px;
 	height:12px;
 	background-repeat: no-repeat;
@@ -91,6 +100,13 @@ ul#selectSize{
 .cart_item.itemOff .itemOptionCheckBtn{
 	background-image:url('../img/itemcheck_off.png');
 }
+.cart_item.itemOn .itemDeleteBtn{
+	background-image:url('../img/delete.png');
+}
+.itemPrice{
+	margin-right:10px;
+}
+
 .cart_item.itemOn .itemPrice{
 	color:black;
 }
