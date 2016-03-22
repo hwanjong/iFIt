@@ -36,8 +36,19 @@ function removeCart(productId){
 	reCal();
 }
 $(document).ready(function() {
-	reCal();
-	$(".cart_cancleBtn").on
+//	reCal();
+	
+	$(".numUp").click(function(){
+		var amount = $(this).parents().children(".cartAmount");
+		var count = $(amount).text();
+		$(amount).text(parseInt(count)+1);
+	})
+	
+	$(".numDown").click(function(){
+		var amount = $(this).parents().children(".cartAmount");
+		var count = $(amount).text();
+		if(count!=0)	$(amount).text(parseInt(count)-1);
+	})
 });
 
 
