@@ -26,11 +26,11 @@
 </head>
 <body>
 	<div data-role="page" id="moreInfoPage" class="eachPage render" data-render="padding-left,padding-right">
-		<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader">
-			<span id="backBtn" data-rel="back"></span>
-			<span id="pageName" class="font-size-16">페이크 레더 점퍼</span>
+		<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader" class="render" data-render="border-bottom-width,height" data-render-ratio="height">
+			<span id="backBtn" data-rel="back" class="render" data-render="width,height,left,background-size" data-render-ratio="height"></span>
+			<span id="pageName" class="font-size-16 render" data-render="line-height,font-size" data-render-ratio="height">페이크 레더 점퍼</span>
 		</div>
-		<div id="purchaseContent" class="render" data-render="width-basic-margin-top">
+		<div id="purchaseContent" class="render" data-render="margin-top,margin-bottom">
 			<div id="sumurryInfo" class="moreInfoEachDivWrap">
 				<div class="photoArea">
 					<div class="iconArea render" data-render="padding-top,padding-left,padding-right">
@@ -50,7 +50,7 @@
 					</div>
 				</div>
 				<div id="shareWrap" class="render" data-render="height,margin-top,margin-bottom,line-height">
-					<span id="othersLikeNo" class="render" data-render="width-basic-height,line-height,width-basic-font-size">
+					<span id="othersLikeNo" class="render" data-render="height,line-height,font-size">
 						<img src="img/moreInfoPage/heart_good.png" class="fl render" data-render="height">
 						<p class="fl render" data-render="margin-left">231</p>
 					</span>
@@ -69,11 +69,11 @@
 				<img src="img/moreInfoPage/sample_more.jpg">
 			</div>
 		
-			<div id="moreInfoReply">
+			<div id="moreInfoReply" class="render" data-render="margin-bottom">
 				<div id="imageArea" class ="centerImage render" data-render="height">
 					<img src="img/moreInfoPage/reply.png" class="render" data-render="height" />
 				</div>
-				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height">					
+				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height,margin-bottom,border-top-width,border-bottom-width">					
 					<div class="moreInfoReplyHeart render" data-render="top">
 						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height">
 						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
@@ -96,7 +96,7 @@
 						 -->
 					</div>
 				</div>
-				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height">					
+				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height,margin-bottom,border-top-width,border-bottom-width">				
 					<div class="moreInfoReplyHeart render" data-render="top">
 						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height">
 						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
@@ -119,7 +119,7 @@
 						 -->
 					</div>
 				</div>
-				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height">					
+				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height,margin-bottom,border-top-width,border-bottom-width">					
 					<div class="moreInfoReplyHeart render" data-render="top">
 						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height">
 						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
@@ -142,7 +142,7 @@
 						 -->
 					</div>
 				</div>
-				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height">					
+				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height,margin-bottom,border-top-width,border-bottom-width">					
 					<div class="moreInfoReplyHeart render" data-render="top">
 						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height">
 						<img src="img/moreInfoPage/heart_on.png" class="fl render" data-render="height"> 
@@ -166,6 +166,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- 
 			<div class="purchaseSelect render" data-render="padding-left,padding-right,padding-top,padding-bottom">
 				<div class="clear render" data-render="margin-bottom,height">
 					<div class="purchaseSelectTitle render" data-render="width,height,line-height">
@@ -208,14 +209,15 @@
 					</div>
 				</div>
 			</div>
+			 
 			<div class="purchaseAllPrice font-medium font-size-16 render" data-render="height,line-height,font-size">
 				<p>￦36,500</p>
 			</div>
 			<div class="purchaseBtn font-medium font-size-13 render" data-render="width,margin-bottom,font-size">
-				<div class="dib render" data-render="width,height,width-basic-line-height">장바구니로</div>
-				<div class="dib fr render" data-render="width,height,width-basic-line-height">구매하기</div>
+				<div class="dib render" data-render="width,height,line-height">장바구니로</div>
+				<div class="dib fr render" data-render="width,height,line-height">구매하기</div>
 			</div>
-			
+			-->
 			
 			<div class="mainpage_mainBox">
 				<p class="mainpage_boxTitle font-light font-size-16 render" data-render="font-size,height,margin-top,margin-bottom,line-height">MD 추천상품</p>
@@ -262,13 +264,74 @@
 				</div>
 			</div>
 			
-<!-- 			
-			<div class="purchaseFooter">
-				<table>
-					<th>
-				</table>
-			</div>
-		 -->
+			
+			<!-- 푸터작업다시 -->
+			
+			<div id="purchaseFooter" class="render" data-render="">			
+	 			<div id="optionSlideControl" style="display:none;" onclick="removeSelectOption(event)">
+	 				<span id="optionIcon" class="glyphicon glyphicon-chevron-up"></span>
+	 			</div>
+	 			<div id="optionSelectorWrap" style="display: none;" onclick="optionSelectorWrapClickHandler(event)">
+	 				<div class="optionSelector">
+	 					<p class="optionTitle">색상</p>
+	 					<select data-role="none">
+	 						<option value="" disabled selected>--옵션 선택--</option>
+	 						<option>옵션1</option>
+	 						<option>옵션2</option>
+	 						<option>옵션3</option>
+	 						<option>옵션4</option>
+	 						<option>옵션5</option>
+	 					</select>
+	 				</div>			
+	 				<div class="optionSelector">
+	 					<p class="optionTitle">사이즈</p>
+	 					<select data-role="none">
+	 						<option value="" disabled selected>--옵션 선택--</option>
+	 						<option>옵션1</option>
+	 						<option>옵션2</option>
+	 						<option>옵션3</option>
+	 						<option>옵션4</option>
+	 						<option>옵션5</option>
+	 					</select>
+	 				</div>			
+	 				<div class="optionSelector" style="margin-bottom: 1em;">
+	 					<p class="optionTitle">갯수</p>
+	 					<div id="itemQuantity">
+	 						<span id="minusNo" class="count_handler" onclick="minusCount()">-</span>
+	 						<span id="itemCountSpan" style="margin-left:-5px">
+	 							<input data-role="none" type="number" value="1" id="countInput">
+	 						</span>
+	 						<span id="plusNo" class="count_handler" style="margin-left:-5px" onclick="plusCount()">+</span>
+	 					</div>
+	 				</div>			
+	 			</div>	
+	 			<!-- 		
+	 			<div class="dib fr render" data-render="width,height,width-basic-line-height">구매하기</div>
+ 				-->
+	 			<div id="myShoppingCart" class="purchaseFooterBtn render"  data-render="height,line-height" data-render-ratio="height" onclick="selectOption(event)">구매하기</div>
+	 			<div id="myShoppingCart2" class="purchaseFooterBtn render hide"  data-render="height,line-height" data-render-ratio="height" onclick="selectOption(event)">
+	 				<div class="dib render" data-render="width,height,line-height">장바구니로</div>
+					<div class="dib fr render" data-render="width,height,line-height">구매하기</div>
+	 			</div>
+	 			
+	 			<!-- 
+	 			<div class="purchaseBtn font-medium font-size-13 render" data-render="width,margin-bottom,font-size">
+					<div class="dib render" data-render="width,height,line-height">장바구니로</div>
+					<div class="dib fr render" data-render="width,height,line-height">구매하기</div>
+				</div>
+	 			 -->
+	 			<!-- 
+	 			<span id="myPurchase"class="purchaseSpan render" data-render="height" onclick="selectOption(event)"><img src="img/moreInfoPage/myPurchase.png">바로구매</span>
+	 			 -->
+	 		</div>
+			
+			<!-- ---------------------- -->
+			
+			
+			
+			
+			
+		 
 			<div class="t-center">
 				<img class="bottomAnchor render" src="img/moreInfoPage/anchor.png" data-render="height,margin-top,margin-bottom" />
 			</div>

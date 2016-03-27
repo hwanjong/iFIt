@@ -75,13 +75,11 @@ function removeSelectOption(e){
 			var target = event.target.id;
 			
 			if(handlerType == 0){
-				$("#myShoppingCart").css("width","50%");
-				$("#myPurchase").css("width","50%");
-				$("#myShoppingCart").html('<img src="img/moreInfoPage/shoppingCart.png">'+"장바구니");
-			}else{
-				$("#myShoppingCart").css("width","50%");
-				$("#myPurchase").css("width","50%");
-				$("#myPurchase").html('<img src="img/moreInfoPage/myPurchase.png">'+"바로 구매");
+				//$("#myShoppingCart").css("width","50%");
+				//$("#myPurchase").css("width","50%");
+				//$("#myShoppingCart").html('<img src="img/moreInfoPage/shoppingCart.png">'+"장바구니");
+				$("#myShoppingCart2").addClass("hide");
+				$("#myShoppingCart").removeClass("hide");
 			}
 			
 			
@@ -110,7 +108,7 @@ function removeSelectOption(e){
 }
 function selectOption(event){
 	if(isWhileEventHandle) return;
-	if(event.target.tagName !="SPAN") return;
+	if(event.target.tagName !="DIV") return;
 	event.stopPropagation();
 	console.log("enter select SelectOption");
 	try{
@@ -122,17 +120,10 @@ function selectOption(event){
 			
 			if(target == "myShoppingCart"){
 				handlerType = 0;
-				$("#myShoppingCart").css("width","100%");
 				$("#myPurchase").css("width","0%");
-				$("#myShoppingCart").html('<img src="img/moreInfoPage/shoppingCart.png">'+"장바구니 담기");
+				$("#myShoppingCart").addClass("hide");
+				$("#myShoppingCart2").removeClass("hide");
 				$("#myShoppingCart").bind("click",registItem);
-			}
-			else{
-				handlerType = 1;
-				$("#myShoppingCart").css("width","0%");
-				$("#myPurchase").css("width","100%");
-				$("#myPurchase").html('<img src="img/moreInfoPage/myPurchase.png">'+"바로 구매 하기");
-				$("#myPurchase").bind("click",registItem);
 			}
 			
 			$("#optionIcon").addClass("glyphicon-chevron-up");

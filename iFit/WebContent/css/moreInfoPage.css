@@ -56,6 +56,7 @@ input::-webkit-inner-spin-button {
 #purchaseContent{
 	width:100%;
 	height:100%;
+	margin-bottom:53px;
 }
 
 #purchaseContent > div{
@@ -225,6 +226,7 @@ input::-webkit-inner-spin-button {
 	font-size:15px;
 }
 #moreInfoReply{
+	margin-bottom: 35px;
 	color:#9B9B9B;
 }
 #moreInfoReply >#imageArea{
@@ -328,17 +330,6 @@ ul#selectSize{
 }
 .purchaseAllPrice p {
 	margin:0;
-}
-.purchaseBtn{
-	width:343px;
-	margin-bottom:42px;
-}
-.purchaseBtn>div{
-	width:170px;
-	height:52px;
-	background-color:#ebebeb;
-	text-align:center;
-    line-height: 52px;
 }
 
 /*
@@ -526,33 +517,38 @@ ul#selectSize{
 	z-index:16;
 	width:100%;
 	position: fixed;
+	left:0;
+	border-top: 1px solid #9b9b9b;
+	
+	
 	bottom:0;
 	border-bottom:0px;
 	white-space: nowrap;
 	text-align: center;
-	line-height: 4em;
-	border-top-color: #b5b5b5;
-	border-top-style: solid;
-	border-top-width: 1px;
 }
-#purchaseFooter>span{
+.purchaseFooterBtn{
+	height:52px;
+	line-height: 52px;
+	background-color: #ebebeb;
 	display: inline-block;
-	width:50%;
+	width:100%;
 	font-size:15px;
 	font-weight: bold;
-	margin-right: -4px;
 	border-bottom:0px;
+} 
+.purchaseFooterBtn>.purchaseBtn>div{
+	width:170px;
+	height:52px;
+	background-color:#ebebeb;
+	text-align:center;
+    line-height: 52px;
 }
-.purchaseSpan > img{
+.purchaseFooterBtn > img{
 	width:1.5em;	
 	margin-right: 0.5em;
 	vertical-align: text-top;
 } 
 
-#myShoppingCart{
-	color:#434343;
-	background-color: #f7f7f7;
-}
 #myPurchase{
 	background-color:#f7999e;
 	color:white;
