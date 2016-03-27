@@ -1,37 +1,14 @@
 @CHARSET "UTF-8";
 
-#categoryItem {
-	vertical-align: middle;
-	text-align: center;
-}
-.cateLine{
-	width: 100%;
-	height: 93px;
-	padding: 0px;
+.categoryMiddleBar{
+	height:61px;
+	margin-top: 1px;
+	color: #909090;
 	white-space: nowrap;
-	vertical-align: middle;
-}
-#categoryItem div div {
-	position: relative;
-	background-color:#9B9B9B;
-	display:inline-block;
-	width: 25%;
-	height: 93px;
-	margin-bottom: 1px;
-	border-right: 1px white solid;
-	float: left;
-}
-#categoryItem div img{
-	height: 68px;
-	margin-top: 10px;
-	padding: 23%;
-	margin-bottom: -10px;
-	
-}
-#categoryItem div p{
-	height: 25px;
-	color: white;
-	margin-bottom: 0px;
+	text-align: center;
+	font-size: 11px;
+	border-bottom-width: 0.3px;
+	border-bottom: groove;
 }
 
 #categoryAD {

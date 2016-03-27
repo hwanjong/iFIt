@@ -17,12 +17,14 @@ a:HOVER {
 }
 
 #loadingDiv {
+	margin-left:-16px;
 	width: 100%;
 	height: 48px;
+	line-height:48px;
 	background-color: gray;
 	opacity: 0.6;
 	position: fixed;
-	top: 80%;
+	top: 40%;
 	text-align: center;
 	display: none;
 }
@@ -230,6 +232,7 @@ a:HOVER {
 	margin: 0px;
 	position: absolute;
 	right: 0px;
+	top: 0px;
 	display: none;
 }
 
