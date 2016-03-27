@@ -5,6 +5,14 @@
 	padding: 0 16px;
 }
 
+#cartPage>div>p{
+	padding:0 !important;
+    margin: 0px;
+    padding: 10px 0px 10px 8px;
+    height: 30px;
+    line-height: 30px;
+}
+
 #cartTitle, #zzimTitle{
 	height: 30px;
     margin: 12px 0;
@@ -68,6 +76,9 @@
 
 .cart_item .itemOptionArea .select_count_btn{
 	height:12px;
+}
+.cart_item .itemOptionArea .select_color_btn{
+	height:16px;
 }
 .cart_item .itemOptionArea .item_cart_btn{
 	height:16px;
@@ -145,7 +156,7 @@ ul#selectSize{
 .purchaseBtn>div{
 	width:100%;
 	height:52px;
-	background-color:#ebebeb;
+	background-color:#A5FFEB;
 	text-align:center;
     line-height: 52px;
 }
