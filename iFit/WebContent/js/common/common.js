@@ -43,10 +43,10 @@ function threeDBtn_Handler(e) {
 }
 
 function hotDealBtn_Handler(e) {
-	showAd();
 	init_footer();
 	$("#hotDealBtn").attr("src", " img/footer/hotDealClick.png");
 	$.mobile.changePage("#hotDealPage");
+	hideAd();
 }
 function myPageBtn_Handler(e) {
 	init_footer();
