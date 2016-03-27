@@ -1,38 +1,5 @@
 $(document).ready(function(e){
-	var jssor_1_SlideshowTransitions = [{$Duration:1200,$Opacity:2}];
-	                                  
-	var jssor_1_options = {
-		$AutoPlay: true,
-		$SlideshowOptions: {
-			$Class: $JssorSlideshowRunner$,
-			$Transitions: jssor_1_SlideshowTransitions,
-			$TransitionsOrder: 1
-		},
-		$ArrowNavigatorOptions: {
-			$Class: $JssorArrowNavigator$
-		},
-		$BulletNavigatorOptions: {
-			$Class: $JssorBulletNavigator$
-		}
-	};
 	
-	var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-	
-	//responsive code begin
-	//you can remove responsive code if you don't want the slider scales while window resizing
-	function ScaleSlider() {
-		var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
-		if (refSize) {
-			refSize = Math.min(refSize, 600);
-			jssor_1_slider.$ScaleWidth(refSize);
-		}else {
-			window.setTimeout(ScaleSlider, 30);
-		}
-	}
-	ScaleSlider();
-	$(window).bind("load", ScaleSlider);
-	$(window).bind("resize", ScaleSlider);
-	$(window).bind("orientationchange", ScaleSlider);
 });
 function moreInfoClosetClickHandler(e){
 	alert("옷장 이동");
@@ -60,7 +27,7 @@ function minusCount(){
 }
 
 function plusCount(){
-	var i = parseInt($("#countInput").val());
+	var i = parseInt($("#countInput").val()==""?0:$("#countInput").val());
 	$("#countInput").val(i+1);
 }
 
@@ -75,7 +42,6 @@ function optionSelectorWrapClickHandler(event){
 	isWhileEventHandle=false;
 }
 function registItem(){
-	console.log("enter registItem");
 	event.stopPropagation();
 	var isCorrect = true;
 	$(".optionSelector>select").each(function(index){
@@ -101,20 +67,14 @@ function removeSelectOption(e){
 	try{
 		isWhileEventHandle = true;
 		event.stopPropagation();
-		console.log("enter remove SelectOption");
 		if(animateSyncFlag){
 			animateSyncFlag=false;
 			var target = event.target.id;
 			
 			if(handlerType == 0){
-				//$("#myShoppingCart").css("width","50%");
-				//$("#myPurchase").css("width","50%");
-				//$("#myShoppingCart").html('<img src="img/moreInfoPage/shoppingCart.png">'+"장바구니");
 				$("#myShoppingCart2").addClass("hide");
 				$("#myShoppingCart").removeClass("hide");
 			}
-			
-			
 			
 			$("#optionIcon").removeClass("glyphicon-chevron-down");
 			$("#optionSelectorWrap").animate({height:"0"},{duration:"slow",complete:
@@ -138,11 +98,11 @@ function removeSelectOption(e){
 		console.log("err");
 	}
 }
+var realSize="";
 function selectOption(event){
 	if(isWhileEventHandle) return;
 	if(event.target.tagName !="DIV") return;
 	event.stopPropagation();
-	console.log("enter select SelectOption");
 	try{
 		isWhileEventHandle = true;
 		if(!animateSyncFlag){
@@ -159,9 +119,12 @@ function selectOption(event){
 			}
 			
 			$("#optionIcon").addClass("glyphicon-chevron-up");
+			if(realSize==""){
+				realSize = $("#optionSelectorWrap").css("height");
+			}
 			$("#optionSelectorWrap").css({"display":"block", "height":"0"});
 			$("#optionSlideControl").css("display","block");
-			$("#optionSelectorWrap").animate({height:"+=13em"},{duration:"slow",complete:
+			$("#optionSelectorWrap").animate({height:realSize},{duration:"slow",complete:
 					function(e){				
 						$("#optionIcon").addClass("glyphicon-chevron-down");
 						isWhileEventHandle = false;

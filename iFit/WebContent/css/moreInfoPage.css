@@ -1,22 +1,5 @@
 @CHARSET "UTF-8";
 
-.item > img{
-	overflow: hidden;
-    width: 100%;
-}
-.carousel-indicators .active{
-	border-color: lightgray !important;
-	background-color: lightgray !important;
-}
-.carousel-indicators li{
-	border-color:#6f6f6f !important;
-	background-color: #6f6f6f !important;
-}
-
-.carousel img{
-	height:100% !important;
-}
-
 input[type='number'] {
     -moz-appearance:textfield;
 }
@@ -258,15 +241,6 @@ input::-webkit-inner-spin-button {
 .moreInfoReplyContent>p{
 	margin:0;
 }
-.moreInfoReplyBtn{
-	position: relative !important;
-	float: right;
-	margin-top:12px;
-}
-.moreInfoReplyBtn > img{
-	height:12px; /*디자인 가이드: width:10*/
-	margin-left: 24px;
-}
 
 .purchaseSelect{
 	padding:20px 16px 0 16px;
@@ -445,32 +419,22 @@ ul#selectSize{
 }
 
 #optionSelectorWrap{
+	height:163px;
+	padding: 16px;
 	background-color: #ededed;
-	height: 13em;
-    overflow: scroll;
+
 }
-#optionSelectorWrap *{
-	line-height: 2em;
-    margin: 0;
-    display: block;
-}
-.optionSelector{
-	padding-left: 5%;
-    padding-top: 1em;
-}
+
 .optionSelector > select{
-	line-height:2em !important;
-	width: 90%;
-    border-color: #dfdfdf;
-    font-size: 13px;
+	width: 100%;
+	height: 33px;
+    border-color: #cccccc;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: white url("../img/moreInfoPage/downArrow.png") no-repeat 97% center;
-    background-size: 1.2em;
+    background: white url("../img/moreInfoPage/select_arrow_down.png") no-repeat 100% center;
+    background-size: contain;
     color: #8e8e8e;
-    font-weight: bold;
-    font-size: 12px;
     padding-left: 1em;
 }
 
@@ -484,43 +448,26 @@ ul#selectSize{
 #itemQuantity{
 	text-align: left;
 }
-
+#itemQuantity > img{
+	width:33px;
+}
 #itemQuantity > span{
 	display: inline-block;
-	line-height: 2em;
-}
-#itemCountSpan{
-	vertical-align: bottom;
+	height: 33px;
+	margin:0 -3px;
 }
 #itemCountSpan > input{
 	text-align: center;
-	width:5em;
-	font-size: 13px;
-	border:none;
-	border-width: 1px;
-    border-style: solid;
-    border-color: #dbdbdb
+	height:100%;
+	width:90px;
+    border: 1px solid #cccccc;
 }
-.count_handler{
-	text-align:center;
-	width:2em;
-	background: white;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #dbdbdb;
-    font-weight: bold;
-}
-
-
-
 #purchaseFooter{
 	z-index:16;
 	width:100%;
 	position: fixed;
 	left:0;
 	border-top: 1px solid #9b9b9b;
-	
-	
 	bottom:0;
 	border-bottom:0px;
 	white-space: nowrap;
@@ -532,23 +479,24 @@ ul#selectSize{
 	background-color: #ebebeb;
 	display: inline-block;
 	width:100%;
-	font-size:15px;
-	font-weight: bold;
 	border-bottom:0px;
 } 
-.purchaseFooterBtn>.purchaseBtn>div{
-	width:170px;
-	height:52px;
-	background-color:#ebebeb;
-	text-align:center;
-    line-height: 52px;
-}
+
 .purchaseFooterBtn > img{
 	width:1.5em;	
 	margin-right: 0.5em;
 	vertical-align: text-top;
 } 
 
+#myShoppingCart2{
+	border-top: 1px solid #9b9b9b;
+}
+#myShoppingCart2 div{
+	width:50%;
+}
+#myShoppingCart2 #purchaseBtn{
+	background-color:#A5FFEB;
+}
 #myPurchase{
 	background-color:#f7999e;
 	color:white;
@@ -575,4 +523,10 @@ body{
     right: 0;
     bottom: 0;
     margin: auto;
+}
+
+/*상세페이지의 슬라이더*/
+.slider_image{
+	width: 343px; 
+	height: 437px;
 }

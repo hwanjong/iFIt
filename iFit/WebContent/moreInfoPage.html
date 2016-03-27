@@ -10,6 +10,7 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script type="text/javascript" src="js/jssor.slider.mini.js"></script>
+<script type="text/javascript" src="js/imageSliderCustomize.js"></script>
 
 <!--  Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -35,61 +36,29 @@
 					<div class="iconArea render" data-render="padding-top,padding-left,padding-right">
 						<img src="img/moreInfoPage/hanger.png" class="render" data-render="width">
 						<img src="img/moreInfoPage/3d_fit.png" class="fr render" data-render="width">
-					</div>
-					
-					
-					
-					<!--  
-					<div id="myCarousel1" class="carousel slide" data-ride="carousel">
-						
- 						<ol class="carousel-indicators">
- 							<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
- 							<li data-target="#carousel-example-generic" data-slide-to="1"></li>
- 						</ol>
-
-						
-						<div class="carousel-inner">
-							<div class="item active">
-								<img src="img/moreInfoPage/sample1.png" alt="...">
-							</div>
-							<div class="item">
-								<img src="img/moreInfoPage/sample1.png" alt="...">
-							</div>
-						</div>
-					</div>
-					-->
-					
-					<div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
-						<!-- Loading Screen -->
-				        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
-				        	<div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-				            <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
-				        </div>
-				        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">
-				            <div data-p="112.50" style="display: none;">
+					</div>					
+					<!-- 이미지 슬라이더 시작 -->
+					<div id="jssor_1" class="slider_image">
+				        <div id="jssor_1_container" class="slider_image" data-u="slides">
+				            <div data-p="225.00" style="display: none;">
 				                <img data-u="image" src="img/moreInfoPage/sample1.png" />
 				            </div>
-				            <div data-p="112.50" style="display: none;">
+				            <div data-p="225.00" style="display: none;">
 				                <img data-u="image" src="img/moreInfoPage/sample1.png" />
 				            </div>
-				            <div data-p="112.50" style="display: none;">
-				                <img data-u="image" src="img/moreInfoPage/sample1.png" />
+				            <div data-p="225.00" style="display: none;">
+				                <img data-u="image" src="img/moreInfoPage/sample2.png" />
 				            </div>
-				            <div data-p="112.50" style="display: none;">
-				                <img data-u="image" src="img/moreInfoPage/sample1.png" />
-				            </div>
-				            <a data-u="ad" href="http://www.jssor.com" style="display:none">Responsive Slider</a>
 				        </div>
 				        <!-- Bullet Navigator -->
-				        <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
+				        <div data-u="navigator" class="jssorb05" data-autocenter="1">
 				            <!-- bullet navigator item prototype -->
-				            <div data-u="prototype" style="width:16px;height:16px;"></div>
+				            <div data-u="prototype"></div>
 				        </div>
 				        <!-- Arrow Navigator -->
-				        <span data-u="arrowleft" class="jssora12l" style="top:0px;left:0px;width:30px;height:46px;" data-autocenter="2"></span>
-				        <span data-u="arrowright" class="jssora12r" style="top:0px;right:0px;width:30px;height:46px;" data-autocenter="2"></span>
+				        <span data-u="arrowleft" class="jssora22l" data-autocenter="2"></span>
+				        <span data-u="arrowright" class="jssora22r" data-autocenter="2"></span>
 				    </div>
-					
 				</div>
 				<div id="shareWrap" class="render" data-render="height,margin-top,margin-bottom,line-height">
 					<span id="othersLikeNo" class="render" data-render="height,line-height,font-size">
@@ -130,13 +99,6 @@
 					<div class="moreInfoReplyContent render" data-render="top,height,line-height,margin-right">
 						<p class="font-size-11 render" data-render="font-size">봉제상태가 매우 좋습니다. 잘입을게요~</p>
 					</div>
-					<div class="moreInfoReplyBtn render" data-render="margin-top">
-						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height,margin-left">
-						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height,margin-left">
-						<!-- 
-						<img src="img/moreInfoPage/reply_delete.png" class="fl render" data-render="height">
-						 -->
-					</div>
 				</div>
 				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height,margin-bottom,border-top-width,border-bottom-width">				
 					<div class="moreInfoReplyHeart render" data-render="top">
@@ -152,13 +114,6 @@
 					</div>
 					<div class="moreInfoReplyContent render" data-render="top,height,line-height,margin-right">
 						<p class="font-size-11 render" data-render="font-size">봉제상태가 매우 좋습니다. 잘입을게요~</p>
-					</div>
-					<div class="moreInfoReplyBtn render" data-render="margin-top">
-						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height,margin-left">
-						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height,margin-left">
-						<!-- 
-						<img src="img/moreInfoPage/reply_delete.png" class="fl render" data-render="height">
-						 -->
 					</div>
 				</div>
 				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height,margin-bottom,border-top-width,border-bottom-width">					
@@ -176,13 +131,6 @@
 					<div class="moreInfoReplyContent render" data-render="top,height,line-height">
 						<p class="font-size-11 render" data-render="font-size">봉제상태가 매우 좋습니다. 잘입을게요~</p>
 					</div>
-					<div class="moreInfoReplyBtn render" data-render="margin-top">
-						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height,margin-left">
-						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height,margin-left">
-						<!-- 
-						<img src="img/moreInfoPage/reply_delete.png" class="fl render" data-render="height">
-						 -->
-					</div>
 				</div>
 				<div class="eachMoreInfoReplyWrap render" data-render="padding-left,padding-right,height,margin-bottom,border-top-width,border-bottom-width">					
 					<div class="moreInfoReplyHeart render" data-render="top">
@@ -198,13 +146,6 @@
 					</div>
 					<div class="moreInfoReplyContent render" data-render="top,height,line-height">
 						<p class="font-size-11 render" data-render="font-size">봉제상태가 매우 좋습니다. 잘입을게요~</p>
-					</div>
-					<div class="moreInfoReplyBtn render" data-render="margin-top">
-						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height,margin-left">
-						<img src="img/moreInfoPage/reply_write.png" class="fl render" data-render="height,margin-left">
-						<!-- 
-						<img src="img/moreInfoPage/reply_delete.png" class="fl render" data-render="height">
-						 -->
 					</div>
 				</div>
 			</div>
@@ -313,11 +254,20 @@
 	 			<div id="optionSlideControl" style="display:none;" onclick="removeSelectOption(event)">
 	 				<span id="optionIcon" class="glyphicon glyphicon-chevron-up"></span>
 	 			</div>
-	 			<div id="optionSelectorWrap" style="display: none;" onclick="optionSelectorWrapClickHandler(event)">
-	 				<div class="optionSelector">
-	 					<p class="optionTitle">색상</p>
-	 					<select data-role="none">
-	 						<option value="" disabled selected>--옵션 선택--</option>
+	 			<div id="optionSelectorWrap" style="display: none;" class="render" data-render="padding-top,padding-bottom,padding-left,padding-right,height" data-render-ratio="height" onclick="optionSelectorWrapClickHandler(event)">
+	 				<div class="optionSelector mb14 render" data-render="margin-bottom" data-render-ratio="height">
+	 					<select data-role="none" class="render" data-render="height,padding-left,font-size" data-render-ratio="height">
+	 						<option value="" disabled selected>상품 컬러</option>
+	 						<option>옵션1</option>
+	 						<option>옵션2</option>
+	 						<option>옵션3</option>
+	 						<option>옵션4</option>
+	 						<option>옵션5</option>
+	 					</select>
+	 				</div>			
+	 				<div class="optionSelector mb14 render" data-render="margin-bottom" data-render-ratio="height">
+	 					<select data-role="none" class="render" data-render="height,padding-left,font-size" data-render-ratio="height">
+	 						<option value="" disabled selected>상품 사이즈</option>
 	 						<option>옵션1</option>
 	 						<option>옵션2</option>
 	 						<option>옵션3</option>
@@ -326,49 +276,24 @@
 	 					</select>
 	 				</div>			
 	 				<div class="optionSelector">
-	 					<p class="optionTitle">사이즈</p>
-	 					<select data-role="none">
-	 						<option value="" disabled selected>--옵션 선택--</option>
-	 						<option>옵션1</option>
-	 						<option>옵션2</option>
-	 						<option>옵션3</option>
-	 						<option>옵션4</option>
-	 						<option>옵션5</option>
-	 					</select>
-	 				</div>			
-	 				<div class="optionSelector" style="margin-bottom: 1em;">
-	 					<p class="optionTitle">갯수</p>
 	 					<div id="itemQuantity">
-	 						<span id="minusNo" class="count_handler" onclick="minusCount()">-</span>
-	 						<span id="itemCountSpan" style="margin-left:-5px">
-	 							<input data-role="none" type="number" value="1" id="countInput">
+	 						<img src="img/moreInfoPage/select_arrow_down.png" onclick="minusCount()" class="middle render" data-render="width" data-render-ratio="height" />
+	 						<span id="itemCountSpan" class="middle render" data-render="height,margin-left,margin-right" data-render-ratio="height">
+	 							<input data-role="none" type="number" value="" placeholder="상품수량" id="countInput" class="middle render" data-render="width,border-width" data-render-ratio="height">
 	 						</span>
-	 						<span id="plusNo" class="count_handler" style="margin-left:-5px" onclick="plusCount()">+</span>
+	 						<img src="img/moreInfoPage/select_arrow_up.png" onclick="plusCount()" class="middle render" data-render="width" data-render-ratio="height" />
 	 					</div>
 	 				</div>			
 	 			</div>	
-	 			<!-- 		
-	 			<div class="dib fr render" data-render="width,height,width-basic-line-height">구매하기</div>
- 				-->
 	 			<div id="myShoppingCart" class="purchaseFooterBtn render"  data-render="height,line-height" data-render-ratio="height" onclick="selectOption(event)">구매하기</div>
 	 			<div id="myShoppingCart2" class="purchaseFooterBtn render hide"  data-render="height,line-height" data-render-ratio="height" onclick="selectOption(event)">
-	 				<div class="dib render" data-render="width,height,line-height">장바구니로</div>
-					<div class="dib fr render" data-render="width,height,line-height">구매하기</div>
+	 				<div id="addCartBtn" class="dib">장바구니로</div>
+					<div id="purchaseBtn" class="dib">구매하기</div>
 	 			</div>
-	 			
-	 			<!-- 
-	 			<div class="purchaseBtn font-medium font-size-13 render" data-render="width,margin-bottom,font-size">
-					<div class="dib render" data-render="width,height,line-height">장바구니로</div>
-					<div class="dib fr render" data-render="width,height,line-height">구매하기</div>
-				</div>
-	 			 -->
-	 			<!-- 
-	 			<span id="myPurchase"class="purchaseSpan render" data-render="height" onclick="selectOption(event)"><img src="img/moreInfoPage/myPurchase.png">바로구매</span>
-	 			 -->
 	 		</div>
 
 			<div class="t-center">
-				<img class="bottomAnchor render" src="img/moreInfoPage/anchor.png" data-render="height,margin-top,margin-bottom" />
+				<img class="bottomAnchor render" src="img/moreInfoPage/anchor.png" data-render="height,margin-top,margin-bottom" onclick="window.scrollTo(0,0);" />
 			</div>
 		</div>
 	</div>

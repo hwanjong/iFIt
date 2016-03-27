@@ -78,7 +78,9 @@ $(document).ready(function(){
 				case "border-bottom-width":
 					$(this).css("border-bottom-width", (($(this).css("border-bottom-width").replace(/[^-\d\.]/g, ''))*ratio)+"px");
 					break;
-				/***************************************************************/
+				case "border-width":
+					$(this).css("border-width", (($(this).css("border-width").replace(/[^-\d\.]/g, ''))*ratio)+"px");
+					break;
 			}
 		}
 	});
