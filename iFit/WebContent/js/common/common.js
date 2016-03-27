@@ -104,6 +104,11 @@ $(function() {
 		$.mobile.changePage("#productList");
 	});
 	
+	$(".hotContents").click(function() {
+		var prID=0;
+		window.open("moreInfoPage.html?prId="+prID, '_self');
+	});
+	
 	$("[data-role='header'], [data-role='footer']").toolbar();
 	$("#searchBar").click(searchInputBtn_Handler);
 
