@@ -36,10 +36,10 @@ function categoryBtn_Handler(e) {
 	$.mobile.changePage("#categoryPage");
 }
 function threeDBtn_Handler(e) {
-	showAd();
 	init_footer();
 	$("#threeDBtn").attr("src", " img/footer/threeDClick.png");
 	$.mobile.changePage("#threeDPage");
+	hideAd();
 }
 
 function hotDealBtn_Handler(e) {
@@ -49,10 +49,10 @@ function hotDealBtn_Handler(e) {
 	$.mobile.changePage("#hotDealPage");
 }
 function myPageBtn_Handler(e) {
-	hideAd();
 	init_footer();
 	$("#myPageBtn").attr("src", " img/footer/myPageClick.png");
 	$.mobile.changePage("#myPage");
+	hideAd();
 }
 
 function headBar_handler(select){
@@ -100,6 +100,10 @@ function stopSearchBar() {
 
 
 $(function() {
+	$(".middleEach").click(function() {
+		$.mobile.changePage("#productList");
+	});
+	
 	$("[data-role='header'], [data-role='footer']").toolbar();
 	$("#searchBar").click(searchInputBtn_Handler);
 
