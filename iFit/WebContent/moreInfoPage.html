@@ -6,11 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<link rel="stylesheet"
-	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script
-	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" src="js/jssor.slider.mini.js"></script>
 
 <!--  Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -37,17 +36,60 @@
 						<img src="img/moreInfoPage/hanger.png" class="render" data-render="width">
 						<img src="img/moreInfoPage/3d_fit.png" class="fr render" data-render="width">
 					</div>
-					<div id="myCarousel1" class="carousel slide"
-						data-ride="carousel">
-						<!-- Indicators -->
+					
+					
+					
+					<!--  
+					<div id="myCarousel1" class="carousel slide" data-ride="carousel">
+						
+ 						<ol class="carousel-indicators">
+ 							<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+ 							<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+ 						</ol>
 
-						<!-- Wrapper for slides -->
+						
 						<div class="carousel-inner">
 							<div class="item active">
 								<img src="img/moreInfoPage/sample1.png" alt="...">
 							</div>
+							<div class="item">
+								<img src="img/moreInfoPage/sample1.png" alt="...">
+							</div>
 						</div>
 					</div>
+					-->
+					
+					<div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
+						<!-- Loading Screen -->
+				        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+				        	<div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+				            <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+				        </div>
+				        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">
+				            <div data-p="112.50" style="display: none;">
+				                <img data-u="image" src="img/moreInfoPage/sample1.png" />
+				            </div>
+				            <div data-p="112.50" style="display: none;">
+				                <img data-u="image" src="img/moreInfoPage/sample1.png" />
+				            </div>
+				            <div data-p="112.50" style="display: none;">
+				                <img data-u="image" src="img/moreInfoPage/sample1.png" />
+				            </div>
+				            <div data-p="112.50" style="display: none;">
+				                <img data-u="image" src="img/moreInfoPage/sample1.png" />
+				            </div>
+				            <a data-u="ad" href="http://www.jssor.com" style="display:none">Responsive Slider</a>
+				        </div>
+				        <!-- Bullet Navigator -->
+				        <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
+				            <!-- bullet navigator item prototype -->
+				            <div data-u="prototype" style="width:16px;height:16px;"></div>
+				        </div>
+				        <!-- Arrow Navigator -->
+				        <span data-u="arrowleft" class="jssora12l" style="top:0px;left:0px;width:30px;height:46px;" data-autocenter="2"></span>
+				        <span data-u="arrowright" class="jssora12r" style="top:0px;right:0px;width:30px;height:46px;" data-autocenter="2"></span>
+				    </div>
+					
 				</div>
 				<div id="shareWrap" class="render" data-render="height,margin-top,margin-bottom,line-height">
 					<span id="othersLikeNo" class="render" data-render="height,line-height,font-size">
@@ -324,14 +366,7 @@
 	 			<span id="myPurchase"class="purchaseSpan render" data-render="height" onclick="selectOption(event)"><img src="img/moreInfoPage/myPurchase.png">바로구매</span>
 	 			 -->
 	 		</div>
-			
-			<!-- ---------------------- -->
-			
-			
-			
-			
-			
-		 
+
 			<div class="t-center">
 				<img class="bottomAnchor render" src="img/moreInfoPage/anchor.png" data-render="height,margin-top,margin-bottom" />
 			</div>
@@ -339,20 +374,3 @@
 	</div>
 </body>
 </html>
-<!-- 
-test
-test
-test
-test
-test
-test
-test
-test
-test
-test
-test
-test
-test
-test
-test
- -->
