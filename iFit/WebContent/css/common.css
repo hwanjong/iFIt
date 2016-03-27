@@ -183,39 +183,37 @@ a:HOVER {
 
 #menuBar {
 	width: 100%;
-	height: 30px;
+	height: 28px;
 	top: 0em;
 	white-space: nowrap;
 	background-color: white;
 	border-width: 0px;
 	margin-bottom: 12px;
-	padding: 3px 16px;
+	padding: 0px 16px;
+	line-height:28px;
+	vertical-align: baseline;
 }
 
-#menuBar img,#menuBar span {
-	padding: 2px;
-	height: 24px;
-	vertical-align: top;
-	margin: 0% 2%;
+#menuBar> img,#menuBar >span {
+	vertical-align: baseline;
+	margin-right: 3.5%;
 }
 
 #searchDiv {
 	position: relative;
 	display: inline-block;
-	width: 55%;
-	height: 24px;
+	width: 70%;
+	height: 28px;
 	border-bottom: 1px #9b9b9b solid;
 	color: #9b9b9b;
 	text-align: left;
 }
 
 #searchDiv img {
-	padding-bottom: 5px;
-	float: left;
+	vertical-align: baseline;
 }
 
 #searchDiv input {
-	float: left;
 	font-size: 0.8em;
 	line-height: 24px;
 	border: none;
@@ -223,6 +221,9 @@ a:HOVER {
 	background-color: inherit;
 	width: 80%;
 	height: 100%;
+}
+#searchDiv input:focus{
+	outline: none;
 }
 
 #searchBarClickView {
@@ -240,17 +241,12 @@ a:HOVER {
 }
 
 .eachFoot {
+	line-height: 44px;
 	float: left;
 	width: 20%;
 }
-
-.eachFoot{
-	float:left;
-	width: 20%;
-}
 #footer img {
-	height: 44px;
-	padding: 16%;
+	vertical-align: middle;
 }
 
 #hashRecommandWrapDiv {

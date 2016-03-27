@@ -79,21 +79,23 @@ function showAd(){
 }
 
 function searchInputBtn_Handler(e) {
+	$("#searchBarClickView").show();
 	$("#tagDiv").show();
 	$("#footBalckDiv").show();
 }
 function searchBarBtn_Handler(e) {
 	hideAd();
-	var queryValue = $("#searchBar").attr("value");
+//	var queryValue = $("#searchBar").attr("value");
 	init_footer();
 	stopSearchBar();
-	console.log("검색 질의어 : " + queryValue);
+//	console.log("검색 질의어 : " + queryValue);
 //	localStorage.setItem("isCategory", "false");
 	$.mobile.changePage("#productList");
 }
 function stopSearchBar() {
 	$("#tagDiv").hide();
 	$("#footBalckDiv").hide();
+	$("#searchBarClickView").hide();
 }
 
 

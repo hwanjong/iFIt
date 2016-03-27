@@ -44,18 +44,18 @@
 	<div id="loadingDiv">
 		<img src="img/ajax-loader.gif">
 	</div>
-		<img id="closet" src=" img/header/closet.png" class="left"
+		<img id="closet" src=" img/header/closet.png"
 			onclick="headBar_handler('closet')"> 
-		<span id="searchDiv" class="left"> 
+		<span id="searchDiv"> 
 			<img src="img/header/search.png"> 
 			<input id="searchBar" data-role=none>
 			<span id="searchBarClickView" onclick="searchBarBtn_Handler(event)">
 			Go</span>
-		</span> 
-		<img id="shoppingCart" class="right" src=" img/header/shoppingCart.png"
+		</span>
+		<img id="likeItem"
+			src=" img/header/likeItem.png" onclick="headBar_handler('zzim')"> 
+		<img id="shoppingCart" src=" img/header/shoppingCart.png"
 			onclick="headBar_handler('cart')">
-		<img id="likeItem" class="right"
-			src=" img/header/likeItem.png" onclick="headBar_handler('zzim')" style="padding-top: 5px;">
 		
 
 	</div>
@@ -116,13 +116,33 @@
 	<div data-role="page" id="main_home" 	class="eachPage haveADContent">
 		
 		<div id="mainpage_middleBar">
-			<p>BEST</p>
-			<p>EVENT</p>
-			<p>FITTING</p>
-			<p style="border-right: none;">WEDDING</p>
+			<div class="middleEach">
+				<p class="middleImg">
+					<img src="img/mainHome/best.png">
+				</p>
+				<p class="middleText">BEST</p>
+			</div>
+			<div class="middleEach">
+				<p class="middleImg">
+					<img src="img/mainHome/event.png">
+				</p>
+				<p class="middleText">EVENT</p>
+			</div>
+			<div class="middleEach">
+				<p class="middleImg">
+					<img src="img/mainHome/fitting.png">
+				</p>
+				<p class="middleText">FITTING</p>
+			</div>
+			<div class="middleEach" style="border-right: 0px;">
+				<p class="middleImg">
+					<img src="img/mainHome/wedding.png">
+				</p>
+				<p class="middleText">WEDDING</p>
+			</div>
 		</div>
 		
-		<div class="mainpage_mainBox">
+		<div class="mainpage_mainBox" class="clear">
 			<p class="mainpage_boxTitle">Hot</p>
 			<div class="mainpage_boxContents">
 			
