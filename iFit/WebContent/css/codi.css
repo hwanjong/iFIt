@@ -1,78 +1,31 @@
 @CHARSET "UTF-8";
 
-#backheader {
-	line-height: 3em;
-	padding: 0px;
-	text-align: center;
-	border: 0px;
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden
 }
 
-#backheader span {
-	font-size: 15px;
-	font-weight: bold;
-	color: #626262;
-	vertical-align: middle;
+.clearfix { *+
+	height: 1%;
 }
 
-#codiPage {
-	height: 100%;
+.container {
+	width:100%;
+	height: 130px;
+	border-bottom: 2px solid black;
+	background-color: #555555;
 }
 
-.door {
-	position: relative;
-	display: inline-block;
-	width: 50%;
-	background-color: #f56c74;
-	height: 100%;
-	border: 1px solid;
-	border-color:white;
-	border-top: 0px;
-}
-
-.doorHand {
-	position: absolute;
-	top: 30%;
-	width: 1em;
-	height: 15%;
-	background-color: white;
-	margin: 0em 0.5em;
-}
-
-#footer {
-	padding: 0px;
-	background-color: white;
-	white-space: nowrap;
-}
-
-.footBtn {
-	border: 0px;
-	width: 50%;
-	text-align: center;
-	line-height: 3em;
-	border: 0px;
-}
-
-#btn1 {
-	float:left;
-	color: #626262;
-	background-color: white;
-}
-#btn2 {
-	float:left;
-	color: white;
-	background-color: #f56c74;
-}
-
-#preView {
+.container ul {
 	width: 100%;
-	height: 100%;
+	
 }
-#tabDiv div{
-	float: left;
-	width: 50%;
-	text-align: center;
-	line-height: 2.5em;
-	border: 1px groove;
-	background-color:#444; 
-	color: white;
+
+.container ul li{
+}
+
+.container ul li img {
 }

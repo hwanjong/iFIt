@@ -61,7 +61,8 @@ function headBar_handler(select){
 	stopSearchBar();
 	if(select=="closet"){
 		saveScroll();
-		location = "closetGallerySample.html";
+		location = "codiPage.html";
+//		location = "closetGallerySample.html";
 		//$.mobile.changePage("#codiPage");
 	}else if(select=="zzim"){
 		$.mobile.changePage("#zzimPage");
