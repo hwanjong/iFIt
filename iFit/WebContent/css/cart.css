@@ -119,7 +119,7 @@ ul#selectSize{
 	background-image:url('../img/itemcheck_off.png');
 }
 .cart_item.itemOn .itemDeleteBtn{
-	background-image:url('../img/select_count_down.png');
+	background-image:url('../img/cancel_x_btn.png');
 }
 .itemPrice{
 	margin-right:10px;

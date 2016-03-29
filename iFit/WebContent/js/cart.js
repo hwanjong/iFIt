@@ -76,4 +76,9 @@ $(function(){
 			$(this).parents(".cart_item").addClass("itemOn");
 		}
 	});
+	$(".itemDeleteBtn").click(function(){
+		if(confirm("찜상품을 삭제하시겠습니까?")){
+			$(this).parents(".cart_item").remove();
+		}
+	});
 })
