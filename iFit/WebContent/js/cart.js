@@ -44,6 +44,7 @@ $(document).ready(function() {
 			var count = $(amount).text();
 			$(amount).text(parseInt(count)+1);
 		}
+		alert($(this).parents("cart_item").attr("data-item-idx"));
 	})
 	
 	$(".numDown").click(function(){

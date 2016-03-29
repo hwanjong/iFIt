@@ -1,4 +1,19 @@
-﻿function init_footer() {
+﻿function init_header() {
+	$(".headerIcon").each(function(index) {
+		switch (index) {
+		case 0:
+			$(this).attr("src", " img/header/likeItem.png");
+			break;
+		case 1:
+			$(this).attr("src", " img/header/shoppingCart.png");
+			break;
+		default:
+			break;
+		}
+	});
+	$("#searchBar").attr("value", "");
+}
+function init_footer() {
 	$(".footerIcon").each(function(index) {
 		switch (index) {
 		case 0:
@@ -24,18 +39,21 @@
 }
 function homeBtn_Handler(e) {
 	showAd();
+	init_header();
 	init_footer();
 	$("#homeBtn").attr("src", " img/footer/homeClick.png");
 	$.mobile.changePage("#main_home");
 }
 function categoryBtn_Handler(e) {
 	showAd();
+	init_header();
 	init_footer();
 //	localStorage.setItem("isCategory", "true");
 	$("#categoryBtn").attr("src", " img/footer/categoryClick.png");
 	$.mobile.changePage("#categoryPage");
 }
 function threeDBtn_Handler(e) {
+	init_header();
 	init_footer();
 	$("#threeDBtn").attr("src", " img/footer/threeDClick.png");
 	$.mobile.changePage("#threeDPage");
@@ -43,12 +61,14 @@ function threeDBtn_Handler(e) {
 }
 
 function hotDealBtn_Handler(e) {
+	init_header();
 	init_footer();
 	$("#hotDealBtn").attr("src", " img/footer/hotDealClick.png");
 	$.mobile.changePage("#hotDealPage");
 	hideAd();
 }
 function myPageBtn_Handler(e) {
+	init_header();
 	init_footer();
 	$("#myPageBtn").attr("src", " img/footer/myPageClick.png");
 	$.mobile.changePage("#myPage");
@@ -57,6 +77,7 @@ function myPageBtn_Handler(e) {
 
 function headBar_handler(select){
 	hideAd();
+	init_header();
 	init_footer();
 	stopSearchBar();
 	if(select=="closet"){
@@ -65,9 +86,11 @@ function headBar_handler(select){
 //		location = "closetGallerySample.html";
 		//$.mobile.changePage("#codiPage");
 	}else if(select=="zzim"){
+		//$("#menuBar").hide(); 일단보류. 백헤더관련 확정되면 적용
+		$("#likeItem").attr("src", " img/header/likeItemClick.png");
 		$.mobile.changePage("#zzimPage");
-		
 	}else if(select=="cart"){
+		$("#shoppingCart").attr("src", " img/header/shoppingCartClick.png");
 		$.mobile.changePage("#cartPage");
 	}
 }
@@ -146,30 +169,42 @@ $(function() {
 		
 		switch(pageName){
 			case "":
+			init_header();
 			init_footer();
 			$(homeBtn).attr("src", " img/footer/homeClick.png");
 			break;
 			case "#categoryPage":
+				init_header();
 				init_footer();
 				$("#categoryBtn").attr("src", " img/footer/categoryClick.png");
 				break;
 			case "#threeDPage":
+				init_header();
 				init_footer();
 				$("#threeDBtn").attr("src", " img/footer/threeDClick.png");
 				break;
 			case "#hotDealPage":
+				init_header();
 				init_footer();
 				$("#hotDealBtn").attr("src", " img/footer/hotDealClick.png");
 				break;
 			case "#myPage":
+				init_header();
 				init_footer();
 				$("#myPageBtn").attr("src", " img/footer/myPageClick.png");
 				break;
 			case "#cartPage":
+				init_header();
+				init_footer();
+				$("#shoppingCart").attr("src", " img/header/shoppingCartClick.png");
 				break;
 			case "#zzimPage":
+				init_header();
+				init_footer();
+				$("#likeItem").attr("src", " img/header/likeItemClick.png");
 				break;
 			case "#productList":
+				init_header();
 				init_footer();
 				$("#categoryBtn").attr("src", " img/footer/categoryClick.png");
 				

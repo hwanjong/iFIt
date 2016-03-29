@@ -205,6 +205,10 @@ a:HOVER {
 	margin-right: 3.5%;
 }
 
+#likeItem, #shoppingCart{
+	width: 15px;
+}
+
 #searchDiv {
 	position: relative;
 	display: inline-block;

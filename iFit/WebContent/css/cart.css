@@ -3,6 +3,7 @@
 #cartPage, #zzimPage{
 	text-shadow: none;
 	padding: 0 16px;
+	margin-top:12px;
 }
 
 #cartPage>div>p{
@@ -11,18 +12,6 @@
     padding: 10px 0px 10px 8px;
     height: 30px;
     line-height: 30px;
-}
-
-#cartTitle, #zzimTitle{
-	height: 30px;
-    margin: 12px 0;
-    text-align:center;
-    line-height: 30px;
-    color:#9b9b9b;
-    background-image:url('../img/back.png');
-    background-repeat: no-repeat;
-    background-position-y: center;
-    background-size: 16px;
 }
 
 .cart_item{
@@ -64,16 +53,24 @@
 	height: 20px;
 	display:inline-block;
 }
+#cartPage .wedding_item .itemOptionArea>div{
+	width:226px;
+	height: 30px;
+	display:inline-block;
+}
 #zzimPage .cart_item .itemOptionArea>div{
 	width:226px;
 	height: 30px;
 	display:inline-block;
 }
-
 #zzimPage .cartText{
 	color:#9b9b9b;
 }
-
+.weddingBtn{
+	text-align:center;
+	background-color: #ebebeb;
+	border: 1px solid #cccccc;
+}
 .cart_item .itemOptionArea .select_count_btn{
 	height:12px;
 }
@@ -121,7 +118,7 @@ ul#selectSize{
 .cart_item.itemOn .itemDeleteBtn{
 	background-image:url('../img/cancel_x_btn.png');
 }
-.itemPrice{
+.itemPrice, .weddingBtn{
 	margin-right:10px;
 }
 
