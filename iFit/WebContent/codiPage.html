@@ -15,8 +15,10 @@
 	
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/common.css" rel="stylesheet">
+<link href="css/backHeader.css" rel="stylesheet">
 <link href="css/codi.css" rel="stylesheet">
 
+<script src="js/deviceRender.js"></script>
 <script src="js/Carousel.js"></script>
 
 <script type="text/javascript">
@@ -29,128 +31,122 @@
             distance: 50,
             autoPlay: false
         });
-    	/*
-        $('#container3').carousel({
-            num: 5,
-            maxWidth: 100,
-            maxHeight: 120,
-            scale: 0.9,
-            distance: 50,
-            autoPlay: false
-        });
-    	*/
     });
     </script>
 </head>
 
 <body>
-<div data-role="page">
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader" class="render" data-render="border-bottom-width,height" data-render-ratio="height">
+         <span id="backBtn" data-rel="back" class="render" data-render="width,height,left,background-size" data-render-ratio="height"></span>
+         <span id="pageName" class="font-size-16 render" data-render="line-height,font-size" data-render-ratio="height">옷장</span>
+  </div>
+	<div data-role="page" class="eachPage">
     	<span onclick="history.back();">뒤로가기</span>
     	
-	<div class="container" id="container1">
-		<ul>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<img src="img/left.png" class="left">
-			<img src="img/right.png" class="right">
-		</ul>
+		<div class="container" id="container1">
+			<ul>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<img src="img/left.png" class="left">
+				<img src="img/right.png" class="right">
+			</ul>
+		</div>
+		
+		<div class="container" id="container2">
+			<ul>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<img src="img/left.png" class="left">
+				<img src="img/right.png" class="right">
+			</ul>
+		</div>
+		
+		<div class="container" id="container3">
+			<ul>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<img src="img/left.png" class="left">
+				<img src="img/right.png" class="right">
+			</ul>
+		</div>
+		
+		<div class="container" id="container4">
+			<ul>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<img src="img/left.png" class="left">
+				<img src="img/right.png" class="right">
+			</ul>
+		</div>
+		
+		<div class="container" id="container5">
+			<ul>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item_2.png" alt="" />
+				</li>
+				<li><img src="img/closet/codi_item.png" alt="" />
+				</li>
+				<img src="img/left.png" class="left">
+				<img src="img/right.png" class="right">
+			</ul>
+		</div>
 	</div>
-	
-	<div class="container" id="container2">
-		<ul>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<img src="img/left.png" class="left">
-			<img src="img/right.png" class="right">
-		</ul>
-	</div>
-	
-	<div class="container" id="container3">
-		<ul>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<img src="img/left.png" class="left">
-			<img src="img/right.png" class="right">
-		</ul>
-	</div>
-	
-	<div class="container" id="container4">
-		<ul>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<img src="img/left.png" class="left">
-			<img src="img/right.png" class="right">
-		</ul>
-	</div>
-	
-	<div class="container" id="container5">
-		<ul>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item_2.png" alt="" />
-			</li>
-			<li><img src="img/closet/codi_item.png" alt="" />
-			</li>
-			<img src="img/left.png" class="left">
-			<img src="img/right.png" class="right">
-		</ul>
-	</div>
-</div>
 </body>
 </html>

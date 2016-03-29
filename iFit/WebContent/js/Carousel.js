@@ -55,6 +55,7 @@
         } else {
             return;
         }
+        
         // $container.find('ul li').stop(true, true);
         var tempIndexsInfo = getShowIndexs($container);
         firstIndexBeforeScroll = tempIndexsInfo.indexs[0];
@@ -69,6 +70,8 @@
         } else {
             animationTimeForEdge = config.animationTime;
         }
+        
+        var midleIndex = showIndexsInfo.halfShowNum;
 
         /*
          showIndexsInfo = {
@@ -139,6 +142,11 @@
                     });
                 }
             }
+            //가운데인덱스 배경수정.
+            if(i == midleIndex){
+            	$(element).children('img').css("opacity",'1');
+            }
+            
 
         });
     }
@@ -177,7 +185,8 @@
         }
         return {
             indexs: showIndexs,
-            hashIndexs: hashIndexs
+            hashIndexs: hashIndexs,
+            halfShowNum: halfShowNum
         };
     }
 
@@ -227,6 +236,8 @@
             'z-index': 9999 + $container.data('totalNum') + 1
         });
 
+        var midleIndex = showIndexsInfo.halfShowNum;
+        
         $container.find('ul li').each(function (index, element) {
             var i = showIndexsInfo.hashIndexs[index];
             if (i !== undefined) {
@@ -253,6 +264,11 @@
                     left: halfShowNum * config.distance + (1 - scales) * config.maxWidth / 2,
                     top: 0
                 });
+            }
+            
+          //가운데인덱스 배경수정.
+            if(i == midleIndex){
+            	$(element).children('img').css("opacity",'1');
             }
 
         });
