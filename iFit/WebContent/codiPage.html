@@ -20,7 +20,6 @@
 
 <script src="js/deviceRender.js"></script>
 <script src="js/Carousel.js"></script>
-
 <script type="text/javascript">
 
 function closetCall(){
@@ -40,7 +39,7 @@ function codiCall(){
 	var i=0;
 	var select = $(".codiSelect").length;
 	if(select<2){
-		alert("[temp Message]\n min select :2")
+		alert("2개이상 선택해주세요.")
 		return;
 	}
 	
@@ -51,7 +50,10 @@ function codiCall(){
 	
 	$(".selectItem").each(function(){
 		if(i<select){
+			$(this).show();
 			$(this).attr("src",imgSrc[i++]);
+		}else{
+			$(this).hide();
 		}
 	});
 	//전체 div Change
@@ -92,7 +94,7 @@ function codiCall(){
     		}else{
     			var select = $(".codiSelect").length;
         		if(select==4){
-        			alert("can't select : codi max = 4")
+        			alert("최대 코디가능 갯수는 4개입니다.")
         			return;
         		}
         		$(this).attr('class','codiSelect');
