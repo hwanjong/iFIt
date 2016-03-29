@@ -25,8 +25,9 @@
 
 function closetCall(){
 	//전체 div Change
-	$("#closetSelector").show();
-	$("#codiView").hide();
+	$("#closetSelector").animate({ "bottom": "0px"}, "slow",function(){
+		$("#closetSelector").css("position","relative");
+	} );
 	
 	//푸터 change
 	$("#closetFooter").show();
@@ -36,9 +37,28 @@ function closetCall(){
 	
 }
 function codiCall(){
+	var i=0;
+	var select = $(".codiSelect").length;
+	if(select<2){
+		alert("[temp Message]\n min select :2")
+		return;
+	}
+	
+	var imgSrc =[];
+	$(".codiSelect").each(function(){
+		imgSrc.push($(this).find(".eachImg").attr("src"));
+	});
+	
+	$(".selectItem").each(function(){
+		if(i<select){
+			$(this).attr("src",imgSrc[i++]);
+		}
+	});
 	//전체 div Change
-	$("#closetSelector").hide();
-	$("#codiView").show();
+	$("#closetSelector").css("position","fixed");
+	$("#closetSelector").animate({ "bottom": "1000px"}, "slow",function(){
+		//$("#closetSelector").hide();
+	} );
 	
 	//푸터 change
 	$("#closetFooter").hide();
@@ -93,13 +113,14 @@ function codiCall(){
          <span id="backBtn" data-rel="back" class="render" data-render="width,height,left,background-size" data-render-ratio="height" onclick="history.back();"></span>
          <span id="pageName" class="font-size-16 render" data-render="line-height,font-size" data-render-ratio="height">옷장</span>
   	</div>
-  	<div id="codiView" style="display: none;">
+  	<div id="codiView">
   	<div style="text-align: center;"><img src="img/closet/closetCallBtn.png" style="margin-top: -12px;" onclick="closetCall();"></div>
   		
   		<div id="imgListDiv">
-  			<img class="selectItem" style="position: absolute; left: 10%; top: 10%;" src="img/closet/codi_item.png">
-  			<img class="selectItem" style="position: absolute; left: 35%; top: 35%;" src="img/closet/codi_item.png">
-  			<img class="selectItem" style="position: absolute; left: 60%; top: 10%;" src="img/closet/codi_item.png">
+  			<img class="selectItem" style="position: absolute; left: 10%; top: 10%;" >
+  			<img class="selectItem" style="position: absolute; left: 35%; top: 35%;" >
+  			<img class="selectItem" style="position: absolute; left: 60%; top: 10%;" >
+  			<img class="selectItem" style="position: absolute; left: 75%; top: 70%; width: 60px; " >
   		</div>
   		<div id="order" style="border-top: 2px groove; border-bottom: 2px solid gray; padding: 20px 10px;">
 	  		<div class="font-size-13 mb10" style="height: 20px; margin-bottom: 10px;">
@@ -132,13 +153,13 @@ function codiCall(){
 					</li>
 					<li><img class="eachImg" src="img/closet/codi_item.png" alt="" />
 					</li>
-					<li><img class="eachImg" src="img/closet/codi_item_2.png" alt="" />
+					<li><img class="eachImg" src="img/closet/codi_item_3.PNG" alt="" />
 					</li>
 					<li><img class="eachImg"  src="img/closet/codi_item.png" alt="" />
 					</li>
 					<li><img class="eachImg"  src="img/closet/codi_item_2.png" alt="" />
 					</li>
-					<li><img class="eachImg"  src="img/closet/codi_item.png" alt="" />
+					<li><img class="eachImg" src="img/closet/codi_item_3.PNG" alt="" />
 					</li>
 					<img src="img/left.png" class="left">
 					<img src="img/right.png" class="right">
@@ -148,19 +169,19 @@ function codiCall(){
 			<div class="container" id="container2">
 			<img id="topIcon" src="img/closet/pants.png" style="position: absolute; left: 5px; top:45%;">
 				<ul>
-					<li><img class="eachImg" src="img/closet/codi_item.png" alt="" />
-					</li>
 					<li><img class="eachImg" src="img/closet/codi_item_2.png" alt="" />
 					</li>
+					<li><img class="eachImg" src="img/closet/codi_item_3.PNG" alt="" />
+					</li>
 					<li><img class="eachImg" src="img/closet/codi_item.png" alt="" />
 					</li>
-					<li><img class="eachImg" src="img/closet/codi_item_2.png" alt="" />
+					<li><img class="eachImg" src="img/closet/codi_item_3.PNG" alt="" />
 					</li>
 					<li><img class="eachImg"  src="img/closet/codi_item.png" alt="" />
 					</li>
 					<li><img class="eachImg"  src="img/closet/codi_item_2.png" alt="" />
 					</li>
-					<li><img class="eachImg"  src="img/closet/codi_item.png" alt="" />
+					<li><img class="eachImg" src="img/closet/codi_item_3.PNG" alt="" />
 					</li>
 					<img src="img/left.png" class="left">
 					<img src="img/right.png" class="right">
@@ -170,7 +191,7 @@ function codiCall(){
 			<div class="container" id="container3">
 				<img id="topIcon" src="img/closet/skirt.png" style="position: absolute; left: 5px; top:45%;">
 				<ul>
-					<li><img class="eachImg" src="img/closet/codi_item.png" alt="" />
+					<li><img class="eachImg" src="img/closet/codi_item_3.PNG" alt="" />
 					</li>
 					<li><img class="eachImg" src="img/closet/codi_item_2.png" alt="" />
 					</li>
@@ -258,11 +279,11 @@ function codiCall(){
 		<div id="codiHidDiv" style="display: none;">
 			<img class="cancelImg" src="img/closet/cancel.png" style="position: absolute; top: 8px; right: 8px; ">
 		</div>
-		<div data-role="footer" id="footer" data-position="fixed" data-tap-toggle="false">
+		<div data-role="footer" id="cloCoFooter" data-position="fixed" data-tap-toggle="false">
 			<div id="closetFooter" onclick="codiCall();">
 				<img src="img/closet/codi_icon.png" style="margin-right: 10px;">코디하기
 			</div>
-			<div id="codiFooter" style="display: none;">
+			<div id="codiFooter" style="display: none;" onclick='alert("구매시퀀스로이동");'>
 				구매하기
 			</div>
 		</div>
