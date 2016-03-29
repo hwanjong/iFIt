@@ -90,11 +90,16 @@
             i = showIndexsInfo.hashIndexs[index];
 
             if (i !== undefined) {
-            	$(element).children('img').css("opacity",'0.6');
+            	$(element).children('.eachImg').css("opacity",'0.6');
                 scales = Math.pow(config.scale, Math.abs(i - halfShowNum));
                 $container.data('isanimating', true);
+                $(element).attr({
+                	'class':' '
+                });
+                
                 $(element).css({
                     display: 'block',
+                    'background-color':'black',
                     'z-index': zIndexs[i] + 9999
                 }).animate({
                     width: scales * config.maxWidth,
@@ -144,7 +149,7 @@
             }
             //가운데인덱스 배경수정.
             if(i == midleIndex){
-            	$(element).children('img').css("opacity",'1');
+            	$(element).children('.eachImg').css("opacity",'1');
             }
             
 
@@ -206,7 +211,7 @@
         if (containerHeight < config.maxHeight) {
             $container.height(config.maxHeight);
         }
-        $container.find('ul li img').css({
+        $container.find('ul li .eachImg').css({
             width: "100%",
             opacity:"0.6",
         });
@@ -268,7 +273,7 @@
             
           //가운데인덱스 배경수정.
             if(i == midleIndex){
-            	$(element).children('img').css("opacity",'1');
+            	$(element).children('.eachImg').css("opacity",'1');
             }
 
         });
