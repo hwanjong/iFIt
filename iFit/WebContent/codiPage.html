@@ -23,6 +23,31 @@
 
 <script type="text/javascript">
 
+function closetCall(){
+	//전체 div Change
+	$("#closetSelector").show();
+	$("#codiView").hide();
+	
+	//푸터 change
+	$("#closetFooter").show();
+	$("#codiFooter").hide();
+	
+	$("#pageName").html("옷장");
+	
+}
+function codiCall(){
+	//전체 div Change
+	$("#closetSelector").hide();
+	$("#codiView").show();
+	
+	//푸터 change
+	$("#closetFooter").hide();
+	$("#codiFooter").show();
+	
+	$("#pageName").html("코디하기");
+	
+}
+
     $(document).ready(function() {
     	$('.container').carousel({
             num: 5,
@@ -68,8 +93,10 @@
          <span id="backBtn" data-rel="back" class="render" data-render="width,height,left,background-size" data-render-ratio="height" onclick="history.back();"></span>
          <span id="pageName" class="font-size-16 render" data-render="line-height,font-size" data-render-ratio="height">옷장</span>
   	</div>
-  	<div id="codiView" style="width: 100%; padding: 0px 12px;">
-  		<div id="imgListDiv" style="position: relative; width: 100%; height: 300px; background-color: ;">
+  	<div id="codiView" style="display: none;">
+  	<div style="text-align: center;"><img src="img/closet/closetCallBtn.png" style="margin-top: -12px;" onclick="closetCall();"></div>
+  		
+  		<div id="imgListDiv">
   			<img class="selectItem" style="position: absolute; left: 10%; top: 10%;" src="img/closet/codi_item.png">
   			<img class="selectItem" style="position: absolute; left: 35%; top: 35%;" src="img/closet/codi_item.png">
   			<img class="selectItem" style="position: absolute; left: 60%; top: 10%;" src="img/closet/codi_item.png">
@@ -95,7 +122,7 @@
 				</div>
   	</div>
   	
-  	<div id="closetSelector" style="display: none;">
+  	<div id="closetSelector">
 			<div class="container" id="container1">
 				<img id="topIcon" src="img/closet/top.png" style="position: absolute; left: 5px; top:45%;">
 				<ul>
@@ -231,11 +258,11 @@
 		<div id="codiHidDiv" style="display: none;">
 			<img class="cancelImg" src="img/closet/cancel.png" style="position: absolute; top: 8px; right: 8px; ">
 		</div>
-		<div data-role="footer" id="codiFooter" data-position="fixed" data-tap-toggle="false">
-			<div id="closetFooter">
+		<div data-role="footer" id="footer" data-position="fixed" data-tap-toggle="false">
+			<div id="closetFooter" onclick="codiCall();">
 				<img src="img/closet/codi_icon.png" style="margin-right: 10px;">코디하기
 			</div>
-			<div id="closetFooter" style="display: none;">
+			<div id="codiFooter" style="display: none;">
 				구매하기
 			</div>
 		</div>
