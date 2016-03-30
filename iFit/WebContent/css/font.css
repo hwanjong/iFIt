@@ -48,6 +48,18 @@
        url(../fonts/NotoSansCJKkr/NotoSansCJKkr-Bold.svg#webfont) format('svg');
 }
 
+@font-face {
+  font-family: 'NotoSansCJKkr-DemiLight';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/NotoSansCJKkr/NotoSansCJKkr-DemiLight.eot);
+  src: url(../fonts/NotoSansCJKkr/NotoSansCJKkr-DemiLight.eot?#iefix) format('embedded-opentype'),
+       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-DemiLight.woff2) format('x-woff2'),
+       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-DemiLight.woff) format('woff'),
+       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-DemiLight.ttf) format('truetype'),
+       url(../fonts/NotoSansCJKkr/NotoSansCJKkr-DemiLight.svg#webfont) format('svg');
+}
+
 .font-regular{
 	font-family:'NotoSansCJKkr-Regular' !important;
 }
@@ -59,6 +71,9 @@
 }
 .font-bold{
 	font-family:'NotoSansCJKkr-Bold' !important;
+}
+.font-demilight{
+	font-family:'NotoSansCJKkr-DemiLight' !important;
 }
 
 .font-size-10{
