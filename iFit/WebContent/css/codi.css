@@ -45,8 +45,8 @@
 
 #codiView {
 	position: fixed;
-	top:48px;
-	z-index:2;
+	top: 48px;
+	z-index: 2;
 	width: 100%;
 	padding: 0px 12px;
 }
@@ -57,11 +57,20 @@
 	height: 300px;
 	text-align: center;
 }
-#closetSelector{
-	width:100%;
+
+#closetSelector {
+	width: 100%;
 	z-index: 3;
 	background-color: white;
 }
-.selectItem{
+
+.selectItem {
 	width: 105px;
-}}
+}
+
+#funImg img {
+	z-index:100;
+	display: block;
+	width: 35px;
+	margin-bottom: 20px;
+}
