@@ -1,5 +1,12 @@
 @CHARSET "UTF-8";
 
+#oneByoneQna{
+	text-shadow: none;
+	padding: 0 16px;
+	color:#9b9b9b;
+	min-height: 100% !important;
+}
+
 .hline{
 	border-bottom-color: #dcdcdc !important;
     border-bottom-width: 1px !important;

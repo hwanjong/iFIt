@@ -57,6 +57,10 @@ a:HOVER {
 	margin-left: 10px;
 }
 
+.mr10 {
+	margin-right: 10px;
+}
+
 .mr10-important {
 	margin-right: 10px !important;
 }

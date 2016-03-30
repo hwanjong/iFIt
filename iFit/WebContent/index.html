@@ -761,15 +761,16 @@
 		</div>
 		<div class="topBtn" onclick="window.scrollTo(0,0);"><img width="15px;" src="img/anchor.png"></div>
 	</div>	
-	<div data-role="page" id="myPage" class="eachPage render" data-render="padding-left,padding-right">
-		<div id="myPageTitle" class="font-bold font-size-16 render" data-render="height,margin-left,margin-right,margin-bottom,line-height,background-size,font-size">
-			<span>로그인</span>
-		</div>
+	<div data-role="page" id="myPage" class="eachPage render" data-render="padding-left,padding-right,margin-top">
 		<form>
 			<div id="login_box" class="render" data-render="padding-left,padding-right">
+				<div id="userImage" class="render" data-render="margin-left,margin-right,margin-bottom,height" style="display:none;">
+					<img src="img/mypage/userSample.jpg" />
+				</div>
 				<input type="text" id="input_id" class="font-size-11 mb14 render" data-render="height,font-size,margin-bottom" placeholder="ID"/>
 				<input type="text" id="input_pw" class="font-size-11 mb17 render" data-render="height,font-size,margin-bottom" placeholder="PASSWORD"/>
-				<p class="font-size-11 t-center render" data-render="height,font-size,margin-bottom">아이디찾기 | 비밀번호 찾기 | 회원가입</p>
+				<p class="font-size-11 t-center render" id="loginLabel1" data-render="height,font-size,margin-bottom">아이디찾기 | 비밀번호 찾기 | 회원가입</p>
+				<p class="font-size-11 t-center render" id="loginLabel2" data-render="height,font-size,margin-bottom">최환종님 | 회원정보수정 | <span id="logoutBtn">로그아웃</span></p>
 				<div id="icon_box" class="t-center render" data-render="height,margin-bottom">
 					<img class="mr30" src="img/mypage/wechat_icon.png">
 					<img class="mr30" src="img/mypage/weibo_icon.png">
@@ -783,7 +784,7 @@
 		<div id="list">
 			<div id="requestOrder" class="clear render" data-render="height,padding-left,padding-right">
 				<div class="render" data-render="line-height">
-					<p class="font-medium font-size-13 render" data-render="font-size">주문조회</p>
+					<p class="font-medium font-size-13 render" data-render="font-size">주문 / 배송</p>
 				</div>
 				<div class="t-right render" data-render="line-height">
 					<p class="messageBox t-center font-size-13 render" data-render="width,height,line-height,font-size">1</p>

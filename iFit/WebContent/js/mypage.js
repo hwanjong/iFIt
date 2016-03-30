@@ -15,6 +15,14 @@ $(document).on("click","#requestUsingApp",function(e){
 	alert("이용안내 준비중"); 
 });
 $(document).on("click","#loginBtn",function(e){
-	saveScroll();
-	window.open("loginPage.html", '_self'); 
+	$(this).hide();
+	$(this).siblings().hide();
+	$(this).siblings("p#loginLabel2").show();
+	$("#userImage").show();
+});
+$(document).on("click","#logoutBtn",function(e){
+	$("#loginBtn").show();
+	$("#loginBtn").siblings().show();
+	$("#loginLabel2").hide();
+	$("#userImage").hide();
 });

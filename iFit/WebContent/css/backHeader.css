@@ -7,7 +7,7 @@
 	text-shadow: none;
 	line-height: 3.0em;
 	text-align: center;
-	z-index: 100000;
+	z-index: 999;
 	height: 51px;
 }
 

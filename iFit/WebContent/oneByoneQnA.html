@@ -23,12 +23,10 @@
 <script src="js/common/backHeader.js"></script>
 </head>
 <body>
-	<div data-role="page" class="eachPage">
-		<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader">
-			<span  id="backBtn" data-rel="back"><a data-rel="back" data-role="none" class="glyphicon glyphicon-menu-left"></a></span>
-			<span id="pageName">1:1 문의</span>
-			<span id="backHeaderFn">
-			</span>		
+	<div data-role="page" id="oneByoneQna" class="eachPage render" data-render="padding-left,padding-right">
+		<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader" class="render" data-render="border-bottom-width,height" data-render-ratio="height">
+			<span id="backBtn" data-rel="back" class="render" data-render="width,height,left,background-size" data-render-ratio="height"></span>
+			<span id="pageName" class="font-size-16 render" data-render="line-height,font-size" data-render-ratio="height">1:1 문의</span>
 		</div>
 		<div id="qnaDiv">
 			<select class="form-control hline" id="categoryQnA" data-role="none">
