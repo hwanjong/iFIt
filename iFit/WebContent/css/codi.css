@@ -15,7 +15,7 @@
 .container {
 	position: relative;
 	width: 100%;
-	height: 130px;
+	height: 160px;
 	border-bottom: 2px solid black;
 	background-color: #555555;
 	width: 100%;
@@ -24,6 +24,9 @@
 
 .container ul {
 	width: 100%;
+}
+.container ul li{
+	overflow: hidden;
 }
 
 .container ul li img {
@@ -37,7 +40,7 @@
 	line-height: 45px;
 	text-align: center;
 	z-index: 100000;
-	background-color: #99FFFF;
+	background-color: #A5FFEB;
 	text-shadow: none !important;
 	border: 0px;
 	width: 100%;
@@ -59,6 +62,8 @@
 }
 
 #closetSelector {
+	position:relative;
+	bottom:0px;
 	width: 100%;
 	z-index: 3;
 	background-color: white;
@@ -67,7 +72,14 @@
 .selectItem {
 	width: 105px;
 }
-
+#codiFooter{
+	white-space: nowrap;
+}
+#codiFooter div{
+	display: inline-block;
+	width: 50%;
+	
+}
 #funImg img {
 	z-index:100;
 	display: block;

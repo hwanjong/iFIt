@@ -21,27 +21,31 @@
 <script src="js/deviceRender.js"></script>
 <script src="js/Carousel.js"></script>
 <script type="text/javascript">
-
+var selectNum=0;
+//옷장부르는 function
 function closetCall(){
 	//전체 div Change
 	$("#closetSelector").animate({ "bottom": "0px"}, "slow",function(){
 		$("#closetSelector").css("position","relative");
+		//푸터 change
+		if(selectNum>=2){
+			$("#cloCoFooter").show();
+			$("#closetFooter").show();
+		}else{
+			$("#cloCoFooter").hide();
+			$("#closetFooter").hide();
+		}
+		
+		$("#codiFooter").hide();
+		$("#pageName").html("옷장");
+		
 	} );
 	
-	//푸터 change
-	$("#closetFooter").show();
-	$("#codiFooter").hide();
-	
-	$("#pageName").html("옷장");
-	
 }
+
+//가상 codi페이지 부르는 버튼 누를때 function
 function codiCall(){
 	var i=0;
-	var select = $(".codiSelect").length;
-	if(select<2){
-		alert("2개이상 선택해주세요.")
-		return;
-	}
 	
 	var imgSrc =[];
 	$(".codiSelect").each(function(){
@@ -49,7 +53,7 @@ function codiCall(){
 	});
 	
 	$(".selectItem").each(function(){
-		if(i<select){
+		if(i<selectNum){
 			$(this).show();
 			$(this).attr("src",imgSrc[i++]);
 		}else{
@@ -73,10 +77,10 @@ function codiCall(){
     $(document).ready(function() {
     	$('.container').carousel({
             num: 5,
-            maxWidth: 95,
-            maxHeight: 120,
-            scale: 0.9,
-            distance: 50,
+            maxWidth: 140,
+            maxHeight: 150,
+            scale: 0.8,
+            distance: 35,
             autoPlay: false
         });
     	
@@ -87,21 +91,35 @@ function codiCall(){
     		}
     		//취소
     		if($(this).attr('class') == 'codiSelect'){
+    			selectNum--;
     			$(this).attr('class',' ');
         		$(this).css("background-color","black");
         		$(this).find(".eachImg").css("opacity","1")
         		$(this).find(".cancelImg").remove();
     		}else{
-    			var select = $(".codiSelect").length;
-        		if(select==4){
-        			alert("최대 코디가능 갯수는 4개입니다.")
-        			return;
-        		}
-        		$(this).attr('class','codiSelect');
-        		$(this).css("background-color","#99FFFF");
-        		$(this).find(".eachImg").css("opacity","0.5")
-        		$(this).append($("#codiHidDiv").html());
-    		}
+    			//추가
+    			
+    			if(selectNum==5){
+    				$(this).css("background-color","red");
+    	      $(this).find(".eachImg").css("opacity","0.5")
+    				$(this).animate({"opacity":"1"}, "slow",function(){
+    					$(this).find(".eachImg").css("opacity","1")
+    				} );
+       			return;
+       		}
+    			selectNum++;
+    			$(this).attr('class','codiSelect');
+       		$(this).css("background-color","#A5FFEB");
+       		$(this).find(".eachImg").css("opacity","0.5")
+       		$(this).append($("#codiHidDiv").html());
+  	 		}
+    		if(selectNum>=2){
+					$("#cloCoFooter").show();
+					$("#closetFooter").show();
+				}else{
+					$("#cloCoFooter").hide();
+					$("#closetFooter").hide();
+				}
     	});
     });
     </script>
@@ -111,17 +129,16 @@ function codiCall(){
 
 	
 	<div data-role="page" class="eachPage">
-		<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader" class="render" data-render="border-bottom-width,height" data-render-ratio="height">
-         <span id="backBtn" data-rel="back" class="render" data-render="width,height,left,background-size" data-render-ratio="height" onclick="history.back();"></span>
-         <span id="pageName" class="font-size-16 render" data-render="line-height,font-size" data-render-ratio="height">옷장</span>
+		<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader" >
+         <span id="backBtn" data-rel="back" onclick="history.back();"></span>
+         <span id="pageName" class="font-size-16">옷장</span>
   	</div>
   	<div id="codiView">
-  	<div style="text-align: center;"><img src="img/closet/closetCallBtn.png" style="margin-top: -12px;" onclick="closetCall();"></div>
+  	<div style="text-align: center;"><img src="img/closet/closetCallBtn.png" style="" onclick="closetCall();"></div>
   		
   		<div id="imgListDiv">
 	  		<div id="funImg" style="position: absolute; right: 0px; bottom: 0px;">
   				<img src="img/closet/qrImg.PNG">
-  				<img src="img/moreInfoPage/3d_fit.png"  >
   			</div>
   			
   			<img class="selectItem" style="position: absolute; left: 10%; top: 10%;" >
@@ -282,16 +299,41 @@ function codiCall(){
 					<img src="img/right.png" class="right">
 				</ul>
 			</div>
+			
+			<div class="container" id="container7">
+				<img id="topIcon" src="img/closet/shoes.png" style="position: absolute; left: 5px; top:45%;">
+				<ul>
+					<li><img class="eachImg" src="img/closet/codi_item.png" alt="" />
+					</li>
+					<li><img class="eachImg" src="img/closet/codi_item_2.png" alt="" />
+					</li>
+					<li><img class="eachImg" src="img/closet/codi_item.png" alt="" />
+					</li>
+					<li><img class="eachImg" src="img/closet/codi_item_2.png" alt="" />
+					</li>
+					<li><img class="eachImg"  src="img/closet/codi_item.png" alt="" />
+					</li>
+					<li><img class="eachImg"  src="img/closet/codi_item_2.png" alt="" />
+					</li>
+					<li><img class="eachImg"  src="img/closet/codi_item.png" alt="" />
+					</li>
+					<img src="img/left.png" class="left">
+					<img src="img/right.png" class="right">
+				</ul>
+			</div>
 		</div>
 		<div id="codiHidDiv" style="display: none;">
 			<img class="cancelImg" src="img/closet/cancel.png" style="position: absolute; top: 8px; right: 8px; ">
+			<img class="cancelImg" src="img/closet/buy2.png" style="position: absolute; bottom: 10px; left: 19px; width: 26px;" onclick='location.href="moreInfoPage.html"'>
+			<img class="cancelImg" src="img/closet/fitting.png" style="position: absolute; bottom: 10px; right: 19px; width:26px;" onclick='alert("Fit N Shop 준비중");' >
 		</div>
-		<div data-role="footer" id="cloCoFooter" data-position="fixed" data-tap-toggle="false">
+		<div data-role="footer" id="cloCoFooter" data-position="fixed" data-tap-toggle="false" style="display: none;">
 			<div id="closetFooter" onclick="codiCall();">
 				<img src="img/closet/codi_icon.png" style="margin-right: 10px;">코디하기
 			</div>
-			<div id="codiFooter" style="display: none;" onclick='alert("구매시퀀스로이동");'>
-				구매하기
+			<div id="codiFooter" style="display: none;">
+				<div style="border-right: 1px solid white;" onclick='alert("Fit N shop 준비중")'>3D 피팅</div>
+				<div onclick='alert("구매시퀀스로이동");'>구매하기</div>
 			</div>
 		</div>
 	</div>

@@ -9,8 +9,8 @@
 
     var defaultConfig = {
         num: 3, //要显示的数量，应该是个奇数
-        maxWidth: 250, //代表中央图片的宽度
-        maxHeight: 150, //中央图片的高度
+        maxWidth: 240, //代表中央图片的宽度
+        maxHeight: 140, //中央图片的高度
         autoPlay: true, //是否自动滚动播放
         showTime: 1000, //autoPlay为true时这个属性才有用
         animationTime: 300, //
@@ -254,6 +254,7 @@
                     'z-index': zIndex,
                     overflow: 'hidden',
                     width: scales * config.maxWidth,
+                    height: scales * config.maxHeight,
                     'background-color':'black',
                     left: i * config.distance + (1 - scales) * config.maxWidth * Number(i > halfShowNum),
                     top: (1 - scales) * config.maxHeight / 2
