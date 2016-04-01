@@ -8,7 +8,9 @@
 	line-height: 3.0em;
 	text-align: center;
 	z-index: 999;
-	height: 51px;
+	height: 63px;
+	font-weight: normal;
+	border:0;
 }
 
 
@@ -18,7 +20,12 @@
 	vertical-align: middle;
 	text-shadow: none;
 	text-align:center;
-	
+}
+
+.headerMargin{
+	display:block !important;
+	border-top:1px solid #cccccc;
+	height:12px;
 }
 
 #backheader > #backBtn {
@@ -30,7 +37,7 @@
 	background-image:url('../img/moreInfoPage/back.png');
     background-repeat: no-repeat;
     background-position-y: center;
-    background-size: 16px;
+    background-size: 12px;
 }
 #backheader .glyphicon{
 	font-size:30px;

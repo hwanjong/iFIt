@@ -25,10 +25,11 @@
 <script src="js/deviceRender.js"></script>
 </head>
 <body>
-	<div data-role="page" id="moreInfoPage" class="eachPage render" data-render="padding-left,padding-right">
-		<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader" class="render" data-render="border-bottom-width,height" data-render-ratio="height">
+	<div data-role="page" id="moreInfoPage" class="eachPage render" data-render="padding-left,padding-right,padding-top" data-render-ratio="height">
+		<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader" class="render" data-render="height" data-render-ratio="height">
 			<span id="backBtn" data-rel="back" class="render" data-render="width,height,left,background-size" data-render-ratio="height"></span>
 			<span id="pageName" class="font-size-16 render" data-render="line-height,font-size" data-render-ratio="height">페이크 레더 점퍼</span>
+			<span class="headerMargin render" data-render="height,border-top-width" data-render-ratio="height"></span>
 		</div>
 		<div id="purchaseContent" class="render" data-render="margin-top,margin-bottom">
 			<div id="sumurryInfo" class="moreInfoEachDivWrap">
@@ -247,6 +248,11 @@
 				</div>
 			</div>
 			
+			<div class="t-center">
+				<img class="bottomAnchor render" src="img/anchor.png" data-render="width,margin-top,margin-bottom" onclick="window.scrollTo(0,0);" />
+			</div>
+			<div class="footerMargin render" data-render="margin-bottom" data-render-ratio="height"></div>
+			
 			<div id="purchaseFooter" class="render" data-render="">			
 	 			<div id="optionSlideControl" style="display:none;" onclick="removeSelectOption(event)">
 	 				<span id="optionIcon" class="glyphicon glyphicon-chevron-up"></span>
@@ -289,9 +295,6 @@
 	 			</div>
 	 		</div>
 
-			<div class="t-center">
-				<img class="bottomAnchor render" src="img/moreInfoPage/anchor.png" data-render="height,margin-top,margin-bottom" onclick="window.scrollTo(0,0);" />
-			</div>
 		</div>
 	</div>
 </body>

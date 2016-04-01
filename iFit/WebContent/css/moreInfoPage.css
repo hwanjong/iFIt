@@ -21,7 +21,7 @@ input::-webkit-inner-spin-button {
 
 #moreInfoPage{
 	text-shadow: none;
-	padding: 0 16px;
+	padding: 63px 16px 0 16px;
 }
 
 #purchaseTitle{
@@ -39,7 +39,6 @@ input::-webkit-inner-spin-button {
 #purchaseContent{
 	width:100%;
 	height:100%;
-	margin-bottom:53px;
 }
 
 #purchaseContent > div{
@@ -112,6 +111,9 @@ input::-webkit-inner-spin-button {
 	overflow: hidden;
 }
 
+.footerMargin{
+	margin-bottom:53px;	
+}
 
 #shareWrap{
 	height:24px;
@@ -503,7 +505,7 @@ ul#selectSize{
 }
 
 .bottomAnchor{
-	height:15px;
+	width:15px;
 	margin-top:42px;
 	margin-bottom:42px;
 }

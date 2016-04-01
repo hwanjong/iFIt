@@ -2,7 +2,7 @@
 
 #orderTracking{
 	text-shadow: none;
-	padding: 0 16px;
+	padding: 63px 16px 0 16px;
 	color:#9b9b9b;
 	min-height: 100% !important;
 }
@@ -10,7 +10,6 @@
 #orderContent{
 	width:100%;
 	height:100%;
-	margin-bottom:53px;
 }
 .order_item{
 	width:343px;
@@ -255,3 +254,9 @@ ul#selectSize{
 }
 #pupupFoot>#writeBtn{
 	background-color: #a5FFeb;
+}
+.bottomAnchor{
+	width:15px;
+	margin-top:42px;
+	margin-bottom:42px;
+}

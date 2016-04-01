@@ -18,6 +18,7 @@
 <link href="css/backHeader.css" rel="stylesheet">
 <link href="css/codi.css" rel="stylesheet">
 
+<script src="js/common/backHeader.js"></script>
 <script src="js/deviceRender.js"></script>
 <script src="js/Carousel.js"></script>
 <script type="text/javascript">
@@ -130,8 +131,9 @@ function codiCall(){
 	
 	<div data-role="page" class="eachPage">
 		<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader" >
-         <span id="backBtn" data-rel="back" onclick="history.back();"></span>
-         <span id="pageName" class="font-size-16">옷장</span>
+         <span id="backBtn" data-rel="back"></span>
+         <span id="pageName" class="font-size-16 render" data-render="font-size" data-render-ratio="height">옷장</span>
+         <span class="headerMargin"></span>
   	</div>
   	<div id="codiView">
   	<div style="text-align: center;"><img src="img/closet/closetCallBtn.png" style="" onclick="closetCall();"></div>
