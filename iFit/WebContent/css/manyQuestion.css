@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 #manyQuestionPage{
-	padding: 0 16px;
+	padding: 63px 16px 0 16px;
 }
 
 #accordion{
@@ -23,7 +23,13 @@
 	padding:0 18px;
 }
 
+.panel-title>a{
+	color: #000000 !important;
+	font-weight:initial !important;
+}
+
 .panel-title, .indicator{
+	color:#9b9b9b;
 	line-height:51px;
 }
 .panel-body{
@@ -38,7 +44,6 @@
 .ui-link{
 	width:100%;
 	display: inline-block;
-	font-size:11px;
 }
 .panel-group .panel+.panel{
 	margin:0px;
@@ -51,9 +56,6 @@ a:focus, a:hover{
 }
 i{
 	color:#dcdcdc;
-}
-.panel-body{
-	font-size: 11px;
 }
 .panel-default>.panel-heading+.panel-collapse>.panel-body{
 	border-top-color: #9b9b9b;

@@ -54,18 +54,18 @@ $(document).ready(function() {
 			var amount = $(this).parents().children(".cartAmount");
 			var count = $(amount).text();
 			$(amount).text(parseInt(count)+1);
-			var itemObj = $("#item_price_"+$(this).parents(".cart_item").attr("data-item-idx")+" p:first-child");
-			if(parseInt(count)+1>1){
-				itemObj.children("span").show();
-			}else{
-				itemObj.children("span").hide();
-			}
-			itemObj.children("span:last-child").html(parseInt(count)+1);
-			var itemPrice = $(this).siblings(".itemPrice").html();
-			itemPrice = itemPrice.replace(/[^0-9]/g,"");
-			var calPriceString = "￦"+(itemPrice*(parseInt(count)+1)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			itemObj.siblings().html(calPriceString);
-			itemPriceSum();
+//			var itemObj = $("#item_price_"+$(this).parents(".cart_item").attr("data-item-idx")+" p:first-child");
+//			if(parseInt(count)+1>1){
+//				itemObj.children("span").show();
+//			}else{
+//				itemObj.children("span").hide();
+//			}
+//			itemObj.children("span:last-child").html(parseInt(count)+1);
+//			var itemPrice = $(this).siblings(".itemPrice").html();
+//			itemPrice = itemPrice.replace(/[^0-9]/g,"");
+//			var calPriceString = "￦"+(itemPrice*(parseInt(count)+1)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+//			itemObj.siblings().html(calPriceString);
+//			itemPriceSum();
 		}
 
 	})
@@ -76,21 +76,21 @@ $(document).ready(function() {
 			var count = $(amount).text();
 			if(parseInt(count)>1)	$(amount).text(parseInt(count)-1);
 			
-			var itemObj = $("#item_price_"+$(this).parents(".cart_item").attr("data-item-idx")+" p:first-child");
-			if(parseInt(count)-1>1){
-				itemObj.children("span").show();
-			}else{
-				itemObj.children("span").hide();
-			}
-			
-			if(parseInt(count)-1>0){
-				itemObj.children("span:last-child").html(parseInt(count)-1);
-				var itemPrice = $(this).siblings(".itemPrice").html();
-				itemPrice = itemPrice.replace(/[^0-9]/g,"");
-				var calPriceString = "￦"+(itemPrice*(parseInt(count)-1)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-				itemObj.siblings().html(calPriceString);
-				itemPriceSum();
-			}
+//			var itemObj = $("#item_price_"+$(this).parents(".cart_item").attr("data-item-idx")+" p:first-child");
+//			if(parseInt(count)-1>1){
+//				itemObj.children("span").show();
+//			}else{
+//				itemObj.children("span").hide();
+//			}
+//			
+//			if(parseInt(count)-1>0){
+//				itemObj.children("span:last-child").html(parseInt(count)-1);
+//				var itemPrice = $(this).siblings(".itemPrice").html();
+//				itemPrice = itemPrice.replace(/[^0-9]/g,"");
+//				var calPriceString = "￦"+(itemPrice*(parseInt(count)-1)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+//				itemObj.siblings().html(calPriceString);
+//				itemPriceSum();
+//			}
 		}
 	})
 	
@@ -140,8 +140,16 @@ $(function(){
 		}
 	});
 	$(".itemDeleteBtn").click(function(){
-		if(confirm("찜상품을 삭제하시겠습니까?")){
-			$(this).parents(".cart_item").remove();
+		if($(this).parents("#cartPage").length>0){
+			//	장바구니
+			if(confirm("장바구니 상품을 삭제하시겠습니까?")){
+				$(this).parents(".cart_item").remove();
+				itemPriceSum();
+			}
+		}else if($(this).parents("#zzimPage").length>0){
+			if(confirm("찜상품을 삭제하시겠습니까?")){
+				$(this).parents(".cart_item").remove();
+			}
 		}
 	});
 })
