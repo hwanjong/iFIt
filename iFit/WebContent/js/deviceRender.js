@@ -1,4 +1,8 @@
 $(document).ready(function(){
+	renderStart(".render");
+});
+
+function renderStart(target){
 	var design_width = 375;
 	var design_height = 667;
 	
@@ -11,7 +15,7 @@ $(document).ready(function(){
 	var renderData="";
 	var ratio=0;
 	
-	$(".render").each(function(){
+	$(target).each(function(){
 		renderData = $(this).attr("data-render").split(",");
 		if($(this).attr("data-render-ratio")=="height"){
 			ratio = height_ratio;
@@ -28,7 +32,11 @@ $(document).ready(function(){
 					$(this).css("height", (($(this).css("height").replace(/[^-\d\.]/g, ''))*ratio)+"px");
 					break;
 				case "padding-top":
-					$(this).css("padding-top", (($(this).css("padding-top").replace(/[^-\d\.]/g, ''))*ratio)+"px");
+					if($(this).hasClass("eachPage") === true){
+						$(this).css("padding-top", (($(this).css("padding-top").replace(/[^-\d\.]/g, ''))*height_ratio)+"px");
+					}else{
+						$(this).css("padding-top", (($(this).css("padding-top").replace(/[^-\d\.]/g, ''))*ratio)+"px");
+					}
 					break;
 				case "padding-right":
 					$(this).css("padding-right", (($(this).css("padding-right").replace(/[^-\d\.]/g, ''))*ratio)+"px");
@@ -84,5 +92,4 @@ $(document).ready(function(){
 			}
 		}
 	});
-
-});
+}

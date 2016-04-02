@@ -237,6 +237,7 @@ ul#selectSize{
     width: 280px;
     padding:0 10px;
     border:0;
+    font-size:11px;
 }
 
 #pupupFoot{
@@ -259,4 +260,7 @@ ul#selectSize{
 	width:15px;
 	margin-top:42px;
 	margin-bottom:42px;
+}
+.ui-popup-screen.in{
+	opacity: .8;
 }

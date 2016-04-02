@@ -16,19 +16,6 @@
 	margin-top:48px;
 }
 
-#myPageTitle{
-	height: 28px;
-    margin-bottom:49px;
-    text-align:center;
-    line-height: 28px;
-    color:#9b9b9b;
-    background-image:url('../img/mypage/back.png');
-    background-repeat: no-repeat;
-    background-position-x: 10px;
-    background-position-y: center;
-    background-size: 16px;
-}
-
 #login_box{
     padding: 0 58px;
 }
@@ -108,4 +95,60 @@
 }
 #list .listIcon{
 	height:18px;
+}
+
+#idSearchPopup{
+	background: none;
+    border: none;
+   	-webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.regist{
+	text-decoration:underline;
+	color:#b5b5b5;
+}
+#idSearchPopup-screen{
+	background-color: black !important;
+}
+#popupHead{
+    text-shadow: none;
+    color: white;
+}
+#popupBody{
+	background-color:white;
+}
+#searchWrap{
+	width: 280px;
+	height:35px;
+	line-height:35px;
+    border-bottom: 1px solid black;    
+}
+#searchTitle{
+	width: 280px;
+    height: 34px;
+    padding:0 10px;
+    border:0;
+    font-size:11px;
+}
+
+#pupupFoot{
+	width:280px;
+	height:50px;
+	text-align:center;
+}
+#pupupFoot>div{
+	width:49%;
+	height:34px;
+	line-height:34px;
+}
+#pupupFoot>#cancelBtn{
+	background-color: #ebebeb;
+}
+#pupupFoot>#writeBtn{
+	background-color: #a5FFeb;
+	margin:0 auto;
+}
+.ui-popup-screen.in{
+	opacity: .8;
 }

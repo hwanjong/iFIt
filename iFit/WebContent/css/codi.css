@@ -48,7 +48,7 @@
 
 #codiView {
 	position: fixed;
-	top: 48px;
+	/*top: 48px;*/
 	z-index: 2;
 	width: 100%;
 	padding: 0px 12px;
