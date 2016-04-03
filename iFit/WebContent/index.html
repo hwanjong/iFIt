@@ -769,8 +769,8 @@
 				</div>
 				<input type="text" id="input_id" class="font-size-11 render" data-render="height,font-size,margin-bottom" placeholder="ID"/>
 				<input type="text" id="input_pw" class="font-size-11 render" data-render="height,font-size,margin-bottom" placeholder="PASSWORD"/>
-				<p class="font-size-11 t-center render" id="loginLabel1" data-render="height,font-size,margin-bottom"><span id="idSearch">아이디찾기</span> | 비밀번호 찾기 | <span id="joinBtn">회원가입</span></p>
-				<p style="display:none;cursor:pointer;" class="font-size-11 t-center render" id="loginLabel2" data-render="height,font-size,margin-bottom">최환종님 | 회원정보수정 | <span id="logoutBtn">로그아웃</span></p>
+				<p class="font-size-11 t-center render" id="loginLabel1" data-render="height,font-size,margin-bottom"><span id="idSearch">아이디찾기</span> | <span id="pwSearch">비밀번호 찾기</span> | <span id="joinBtn">회원가입</span></p>
+				<p style="display:none;cursor:pointer;" class="font-size-11 t-center render" id="loginLabel2" data-render="height,font-size,margin-bottom">최환종님 | <span id="updateUserInfo">회원정보수정</span> | <span id="logoutBtn">로그아웃</span></p>
 				<div id="icon_box" class="t-center render" data-render="height,margin-bottom">
 					<img class="mr30" src="img/mypage/wechat_icon.png">
 					<img class="mr30" src="img/mypage/weibo_icon.png">
@@ -819,15 +819,45 @@
 		<div data-role="popup" id="idSearchPopup" data-history="false" data-overlay-theme="d" class="font-size-13 render" data-render="font-size">
 			<div data-role="content">
 				<div id="popupHead" class="font-size-16 render mb10" data-render="margin-bottom,font-size">
-					핸드폰 번호로 찾기
+					핸드폰 번호로 찾기(아이디 찾기)
 				</div>
 				<div id="popupBody" class="mb10 render" data-render="margin-bottom">
 					<div id="searchWrap" class="render" data-render="height,width,line-height,border-bottom-width,padding-left,padding-right">
-						<input id="searchTitle" class="t-center render" data-render="width,height,padding-left,padding-right,font-size" data-role="none" type="text" placeholder="핸드폰 번호를 입력해 주세요.">
+						<input id="idSearchTitle" class="searchTitle t-center render" data-render="width,height,padding-left,padding-right,font-size" data-role="none" type="text" placeholder="핸드폰 번호를 입력해 주세요.">
 					</div>
 				</div>
 				<div id="pupupFoot" class="render" data-render="width,height" >
-					<div id="writeBtn" class="dib render" data-render="height,line-height">확인</div>
+					<div id="idSearchConfirm" class="writeBtn dib render" data-render="height,line-height,width">확인</div>
+				</div>				
+			</div>
+		</div>
+		<div data-role="popup" id="pwSearchPopup" data-history="false" data-overlay-theme="d" class="font-size-13 render" data-render="font-size">
+			<div data-role="content">
+				<div id="popupHead" class="font-size-16 render mb10" data-render="margin-bottom,font-size">
+					핸드폰 번호로 찾기(비밀번호 찾기)
+				</div>
+				<div id="popupBody" class="mb10 render" data-render="margin-bottom">
+					<div id="searchWrap" class="render" data-render="height,width,line-height,border-bottom-width,padding-left,padding-right">
+						<input id="pwSearchTitle" class="searchTitle t-center render" data-render="width,height,padding-left,padding-right,font-size" data-role="none" type="text" placeholder="핸드폰 번호를 입력해 주세요.">
+					</div>
+				</div>
+				<div id="pupupFoot" class="render" data-render="width,height" >
+					<div id="pwSearchConfirm" class="writeBtn dib render" data-render="height,line-height,width">확인</div>
+				</div>				
+			</div>
+		</div>
+		<div data-role="popup" id="updateUserInfoPopup" data-history="false" data-overlay-theme="d" class="font-size-13 render" data-render="font-size">
+			<div data-role="content">
+				<div id="popupHead" class="font-size-16 render mb10" data-render="margin-bottom,font-size">
+					회원정보 수정
+				</div>
+				<div id="popupBody" class="mb10 render" data-render="margin-bottom">
+					<div id="searchWrap" class="render" data-render="height,width,line-height,border-bottom-width,padding-left,padding-right">
+						<input id="updateUserInfoTitle" class="searchTitle t-center render" data-render="width,height,padding-left,padding-right,font-size" data-role="none" type="text" placeholder="비밀번호를 입력 해 주세요.">
+					</div>
+				</div>
+				<div id="pupupFoot" class="render" data-render="width,height" >
+					<div id="updateUserInfoConfirm" class="writeBtn dib render" data-render="height,line-height,width">확인</div>
 				</div>				
 			</div>
 		</div>

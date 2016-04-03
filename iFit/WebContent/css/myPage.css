@@ -97,7 +97,7 @@
 	height:18px;
 }
 
-#idSearchPopup{
+#idSearchPopup, #pwSearchPopup, #updateUserInfoPopup{
 	background: none;
     border: none;
    	-webkit-box-shadow: none;
@@ -108,7 +108,7 @@
 	text-decoration:underline;
 	color:#b5b5b5;
 }
-#idSearchPopup-screen{
+#idSearchPopup-screen, #pwSearchPopup-screen, #updateUserInfoPopup-screen{
 	background-color: black !important;
 }
 #popupHead{
@@ -124,7 +124,7 @@
 	line-height:35px;
     border-bottom: 1px solid black;    
 }
-#searchTitle{
+.searchTitle{
 	width: 280px;
     height: 34px;
     padding:0 10px;
@@ -138,17 +138,19 @@
 	text-align:center;
 }
 #pupupFoot>div{
-	width:49%;
+	width:100px;
 	height:34px;
 	line-height:34px;
 }
 #pupupFoot>#cancelBtn{
 	background-color: #ebebeb;
 }
-#pupupFoot>#writeBtn{
+#pupupFoot>.writeBtn{
 	background-color: #a5FFeb;
 	margin:0 auto;
 }
 .ui-popup-screen.in{
+	position: fixed;
+	height:100%;
 	opacity: .8;
 }
