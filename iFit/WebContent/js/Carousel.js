@@ -88,9 +88,13 @@
         $container.find('ul li').each(function (index, element) {
 
             i = showIndexsInfo.hashIndexs[index];
+            if(i == midleIndex-1 || i == midleIndex+1  ){
+            	$(element).children('.eachImg').css("opacity",'0.8');
+            }else if(i == midleIndex-2 || i == midleIndex+2  ){
+            	$(element).children('.eachImg').css("opacity",'0.6');
+            }
 
             if (i !== undefined) {
-            	$(element).children('.eachImg').css("opacity",'0.6');
                 scales = Math.pow(config.scale, Math.abs(i - halfShowNum));
                 $container.data('isanimating', true);
                 $(element).attr({
@@ -111,6 +115,8 @@
                 });
 
             } else {
+            	//없어지는거 처리인것같다.
+
                 scales = Math.pow(config.scale, halfShowNum);
                 //if(direction === 'right' && index === firstIndexBeforeScroll){
                 //    console.log('right' + index);
@@ -124,6 +130,11 @@
                     top: 0
                 };
                 if (direction === 'left' && index === lastIndexBeforeScroll) {
+                	$(element).css('z-index', -1).animate({
+                        left: "-=" + config.distance + "px"
+                    }, config.animationTime, function () {
+                        $(element).css(targetCss);
+                    });
 
                     $(element).css('z-index', -1).animate({
                         left: "-=" + config.distance + "px"
@@ -151,7 +162,6 @@
             if(i == midleIndex){
             	$(element).children('.eachImg').css("opacity",'1');
             }
-            
 
         });
     }
@@ -213,7 +223,7 @@
         }
         $container.find('ul li .eachImg').css({
             width: "100%",
-            opacity:"0.6",
+            opacity:"0.5",
         });
         $container.find('ul').css({
             position: 'relative',
@@ -245,6 +255,11 @@
         
         $container.find('ul li').each(function (index, element) {
             var i = showIndexsInfo.hashIndexs[index];
+            if(i == midleIndex-1 || i == midleIndex+1  ){
+            	$(element).children('.eachImg').css("opacity",'0.8');
+            }else if(i == midleIndex-2 || i == midleIndex+2  ){
+            	$(element).children('.eachImg').css("opacity",'0.6');
+            }
             if (i !== undefined) {
                 scales = Math.pow(config.scale, Math.abs(i - halfShowNum));
                 zIndex = 9999 + (i > halfShowNum ? (config.num - 1 - i) : i);
