@@ -301,13 +301,17 @@
                 $target.data('totalNum', totalNum);
                 initStyle($target);
 
-                $target.find('.left').off('click').on('click', (function($target) {
+                $target.on('swiperight', (function($target) {
                     return function() {
+                    	selectNum--;
+                    	$($target).find(".cancelImg").remove();
                         scroll($target, 'left');
                     }
                 })($target));
-                $target.find('.right').off('click').on('click',(function($target) {
+                $target.on('swipeleft', (function($target) {
                     return function() {
+                    	selectNum--;
+                    	$($target).find(".cancelImg").remove();
                         scroll($target, 'right');
                     }
                 })($target));
