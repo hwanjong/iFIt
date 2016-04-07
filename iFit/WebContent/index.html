@@ -13,6 +13,8 @@
 <script src="js/jquery-1.11.1.min.js"></script>
 <script
 	src="js/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" src="js/jssor.slider.mini.js"></script>
+<script type="text/javascript" src="js/imageSliderCustomize.js"></script>
 
 <!--  Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -79,6 +81,32 @@
 	</div>
 	
 	<div data-role="header" id="adWrap">
+		<div class="photoArea">	
+			<div id="jssor_1" class="slider_image">
+		        <div id="jssor_1_container" class="slider_image" data-u="slides">
+		            <div data-p="225.00" style="display: none;">
+		                <img data-u="image" src="img/ad/00.png" />
+		            </div>
+		            <div data-p="225.00" style="display: none;">
+		                <img data-u="image" src="img/ad/01.jpg" />
+		            </div>
+		            <div data-p="225.00" style="display: none;">
+		                <img data-u="image" src="img/ad/02.jpg" />
+		            </div>
+		        </div>
+		        <!-- Bullet Navigator -->
+		        <div data-u="navigator" class="jssorb05" data-autocenter="1">
+		            <!-- bullet navigator item prototype -->
+		            <div data-u="prototype"></div>
+		        </div>
+		        <!-- Arrow Navigator -->
+		        <!-- 일단보류
+		        <span data-u="arrowleft" class="jssora22l" data-autocenter="2"></span>
+		        <span data-u="arrowright" class="jssora22r" data-autocenter="2"></span>
+		         -->
+		    </div>
+		</div>
+		<!-- 
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				<li data-target="#carousel-example-generic" data-slide-to="0"
@@ -88,7 +116,6 @@
 				<li data-target="#carousel-example-generic" data-slide-to="3"></li>
 				<li data-target="#carousel-example-generic" data-slide-to="4"></li>
 			</ol>
-				<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
 					<img src="img/ad/00.png" alt="...">
@@ -107,6 +134,7 @@
 				</div>
 			</div>
 		</div>
+		 -->
 	</div>
 	
 	<div data-role="page" id="main_home" 	class="eachPage haveADContent">
