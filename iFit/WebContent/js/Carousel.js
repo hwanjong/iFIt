@@ -118,23 +118,12 @@
             	//없어지는거 처리인것같다.
 
                 scales = Math.pow(config.scale, halfShowNum);
-                //if(direction === 'right' && index === firstIndexBeforeScroll){
-                //    console.log('right' + index);
-                //} else if(direction === 'left' && index === lastIndexBeforeScroll) {
-                //    console.log('left' + index);
-                //}
-
                 targetCss = {
                     display: 'none',
                     left: halfShowNum * config.distance + (1 - scales) * config.maxWidth / 2,
                     top: 0
                 };
                 if (direction === 'left' && index === lastIndexBeforeScroll) {
-                	$(element).css('z-index', -1).animate({
-                        left: "-=" + config.distance + "px"
-                    }, config.animationTime, function () {
-                        $(element).css(targetCss);
-                    });
 
                     $(element).css('z-index', -1).animate({
                         left: "-=" + config.distance + "px"
