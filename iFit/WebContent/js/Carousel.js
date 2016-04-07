@@ -303,14 +303,18 @@
 
                 $target.on('swiperight', (function($target) {
                     return function() {
-                    	selectNum--;
+                    	if($($target).find(".codiSelect").length==1){
+                    		selectNum--;
+                		}
                     	$($target).find(".cancelImg").remove();
                         scroll($target, 'left');
                     }
                 })($target));
                 $target.on('swipeleft', (function($target) {
                     return function() {
-                    	selectNum--;
+                    	if($($target).find(".codiSelect").length==1){
+                    		selectNum--;
+                		}
                     	$($target).find(".cancelImg").remove();
                         scroll($target, 'right');
                     }
