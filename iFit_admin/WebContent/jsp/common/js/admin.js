@@ -1,0 +1,11 @@
+$(function(){
+	$("#loginBtn").click(function(){
+		$("#loginForm").submit();
+	});
+	$("#logoutBtn").click(function(){
+		$(location).attr("href","/logoutAction.ifit");
+	});
+	$("#productWriteBtn").click(function(){
+		$(location).attr("href","/product/productWrite.html");
+	});
+});

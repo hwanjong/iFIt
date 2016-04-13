@@ -1,0 +1,31 @@
+*{margin:0 auto;padding:0;font-family:'NotoSansCJKkr-Regular' !important;}
+html{height:100%;}
+body{font-size: 13px; margin:0 auto; min-width:1200px;}
+input{width:237px; height: 44px;}
+input[type="text"], input[type="password"]{width:227px; height: 34px;}
+input[type="button"], input[type="submit"]{cursor:pointer;}
+a:link, a:visited{color:#333333;	text-decoration:none;}
+a:hover{color:#ff7365; text-decoration:none;}
+
+.mt10{margin-top:10px;}
+.mt15{margin-top:15px;}
+.mt45{margin-top:45px;}
+.mt200{margin-top:200px;}
+
+.mb10{margin-bottom:10px;}
+.mb20{margin-bottom:20px;}
+.mb100{margin-bottom:100px;}
+
+.mr5{margin-right:5px;}
+
+.dib{display:inline-block;}
+
+.tr{text-align:right;}
+.tc{text-align:center;}
+
+.clear{clear:both;}
+
+.fl{float:left;}
+.fr{float:right;}
+
+.bold{font-weight:bold;}
