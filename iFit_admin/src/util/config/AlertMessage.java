@@ -11,6 +11,7 @@ public class AlertMessage{
 	//*******************기본알림*******************/
 	private String InputError = "입력값이 올바르지 않습니다.";				//	입력값오류
 	private String fileUploadError = "파일 첨부가 실패 하였습니다.";	
+	private String deleteOK = "삭제 되었습니다.";
 	
 	//*******************로그인관련*******************/
 	private String LoginError = "입력하신 내용과 일치하는 정보를 찾을 수 없습니다.\\n아이디와 비밀번호를 확인해주시기 바랍니다.";
@@ -23,6 +24,34 @@ public class AlertMessage{
 //    private String findPasswordFail = "임시 비밀번호 발송이 실패되었습니다.\\n\\n시스템 관리자 (admin@kipex.or.kr 또는 02-570-5224)에게 문의 하시기 바랍니다.";
 //    private String joinErrorMSG = "이미 회원가입 되었거나 잘못된 요청 입니다.";
 //    private String falseUrlMSG = "잘못된 접근입니다.";
+	
+	//*******************입점회원관련*******************/
+	private String ShopWriteOK = "입점회원이 등록되었습니다.";
+	private String ShopEditOK = "정보가 수정되었습니다.";
+	private String ShopIdError = "올바른 아이디를 입력해 주세요.\n아이디는 5~19자의 영문 대 소문자, 숫자만 사용 가능합니다.";
+	private String ShopPwError = "올바른 비밀번호를 입력해 주세요.\n비밀번호는 6~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
+	private String ShopNameError = "올바른 입점 업체명을 입력해 주세요.";
+	private String ShopDuplicateError = "이미 등록되어있는 아이디 입니다.";
+	private String ShopTelError = "올바른 연락처를 입력해 주세요.";
+	
+	//*******************FAQ관련*******************/
+	private String FaqWriteOK = "자주하는질문이 등록되었습니다.";
+	private String FaqTitleError = "올바른 제목을 입력해 주세요.";
+	private String FaqContentError = "내용을 입력해 주세요.";
+	
+	//*******************일반상품관련*******************/
+	private String GeneralProductWriteOK = "상품이 등록되었습니다.";
+	private String GeneralProductShopError = "올바른 업체를 검색해 주세요.";
+	private String GeneralProductNameError = "올바른 상품명을 입력해 주세요.";
+	private String GeneralProductCategoryError = "올바른 상품분류를 선택해 주세요.";
+	private String GeneralProductPriceError = "올바른 가격을 입력해 주세요.";
+	private String GeneralProductColorError = "올바른 색상을 입력해 주세요.";
+	private String GeneralProductSizeError = "첫번째 사이즈는 반드시 입력해야 합니다.";
+	private String GeneralProductMainImageError = "메인이미지를 등록해 주세요.";
+	private String GeneralProductTopImageError = "상품이미지를 등록해 주세요.";
+	private String GeneralProductDetailImageError = "상세정보이미지를 등록해 주세요.";
+	private String GeneralProductCodiImageError = "코디이미지를 등록해 주세요.";
+	
 	
 	//*******************회원가입관련*******************/
 	private String joinClause1 = "";

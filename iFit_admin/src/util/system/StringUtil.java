@@ -32,6 +32,25 @@ import javax.servlet.http.HttpServletResponse;
 public class StringUtil {
 	
 	/**
+	 * TODO property정보를 가져온다
+	 * 
+	 * @param fileName : 대상 property 파일 이름 <br>
+	 * @param key : 가져올 속성(key)값 <br>
+	 * @return String <br>
+	 */
+	public static String getPropertiesValue(String fileName,String Key){
+		String propertiesValue = "";
+		try{
+			InputStream is = StringUtil.class.getResourceAsStream("/"+fileName);
+			Properties props = new Properties();
+			props.load(is);
+			propertiesValue = props.get(Key).toString();
+		}catch(Exception e){}
+		
+		return propertiesValue;
+	}
+	
+	/**
 	 * TODO NVL 함수처럼 null인 것을 다른 문자로 치환한다.
 	 * 
 	 * @param str1	: 비교할 문자 <br>
@@ -44,13 +63,50 @@ public class StringUtil {
 	}
 	
 	/**
+	 * TODO string to boolean 변환
+	 * 
+	 * @param str : 변환할 문자 <br>
+	 * @return boolean <br>
+	 */
+	public static boolean stringToBool(String str){
+		return Boolean.valueOf(str).booleanValue();
+	}	
+	
+	/**
+	 * TODO string to boolean 변환
+	 * 
+	 * @param l : 변환할 long데이터 <br>
+	 * @return int <br>
+	 */
+	public static int longToInt(long l) {
+	    int i = (int)l;
+	    if ((long)i != l) {
+	        throw new IllegalArgumentException(l + " cannot be cast to int without changing its value.");
+	    }
+	    return i;
+	}
+	
+	/**
+	 * TODO 객체에 gson형식으로 다른 객체 추가
+	 * 
+	 * @param str1 : 원본gson문자열 <br>
+	 * @param str2 : 추가할gson문자열 값 <br>
+	 * @param str3 : 추가할gson문자열 키 <br>
+	 * @return String <br>
+	 */
+	public static String addObjectGson(String str1, String str2, String str3){
+		return str1.substring(0, str1.length()-1) + ",\"" + str3 + "\":" + str2 + "}";
+	}	
+	
+	/**
 	 * TODO 아이디 validation 체크.
 	 * 
 	 * @param str : 체크할 아이디 <br>
 	 * @return boolean <br>
 	 */
-	public static boolean id_validation(String str){
-		String strRegex = "^[A-Za-z]{1}[A-Za-z0-9]{4,14}$";
+	public boolean id_validation(String str){
+		// 5~19자의 영문 대 소문자, 숫자 사용 가능
+		String strRegex = "^[A-Za-z0-9]{5,19}$";
 		return str.matches(strRegex);
 	}
 	
@@ -60,32 +116,11 @@ public class StringUtil {
 	 * @param str : 체크할 패스워드 <br>
 	 * @return boolean <br>
 	 */
-	public static boolean password_validation(String str){
-		String strRegex = "^(?=([a-zA-Z]+[0-9]+[a-zA-Z0-9]*|[0-9]+[a-zA-Z]+[a-zA-Z0-9]*)$).{6,15}";
+	public boolean pw_validation(String str){
+		// 6~16자의 영문 대 소문자, 숫자, 특수문자 사용 가능
+		String strRegex = "^[A-Za-z0-9~!@#$%<>^&*()-=+_\']{6,16}$";
 		return str.matches(strRegex);
 	}	
-	
-	/**
-	 * TODO 이름 validation 체크.
-	 * 
-	 * @param str : 체크할 이름 <br>
-	 * @return boolean <br>
-	 */
-	public static boolean name_validation(String str){
-		String strRegex = "[가-힣]{2,10}";
-		return str.matches(strRegex);
-	}	
-
-	/**
-	 * TODO 이메일 validation 체크.
-	 * 
-	 * @param str : 체크할 이메일 <br>
-	 * @return boolean <br>
-	 */
-	public static boolean email_validation(String str){
-		String strRegex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-		return str.matches(strRegex);
-	}
 	
 	/**
 	 * TODO 휴대폰번호 validation 체크.
@@ -96,44 +131,34 @@ public class StringUtil {
 	 * @param num1Map : 휴대폰번호 앞자리가 명시되어있는 맵
 	 * @return boolean <br>
 	 */
-	public static boolean mobileNumber_validation(String num1, String num2, String num3, LinkedHashMap num1Map){
+	public boolean mobileNumber_validation(String num1, String num2, String num3, LinkedHashMap num1Map){
 		String strRegex = "[0-9]{3,4}";
 		int falseCnt = 0;
 		falseCnt = num1Map.containsKey(num1) ? falseCnt : falseCnt+1;
 		falseCnt = num2.matches(strRegex) ? falseCnt : falseCnt+1;
 		strRegex = "[0-9]{4}";
 		falseCnt = num3.matches(strRegex) ? falseCnt : falseCnt+1;
-		System.out.println(falseCnt);
 		return falseCnt > 0  ? false : true;
-	}	
-	
-	/**
-	 * TODO 생년월일 validation 체크.
-	 * 
-	 * @param str : 체크할 생년월일 <br>
-	 * @return boolean <br>
-	 */
-	public static boolean birth_validation(String str){
-		String strRegex = "^(19[0-9]{2}|2[0-9]{3})-(0[1-9]|1[012])-([123]0|[012][1-9]|31)$";
-		return str.matches(strRegex);
 	}
 	
 	/**
-	 * TODO 주소 validation 체크.
+	 * TODO 16진수 색상 체크.
 	 * 
-	 * @param str1 : 우편번호 <br>
-	 * @param str2 : 상세주소 <br>
+	 * @param filePath : 파일 전체 경로 <br>
+	 * @param fileExtMap : 파일확장자가 명시되어있는 맵
 	 * @return boolean <br>
 	 */
-	public static boolean address_validation(String str1, String str2){
-		String strRegex = "^([0-9]{3})-([0-9]{3})$";
-		return str1.matches(strRegex) && str2.length() < 100;
+	public boolean colorHex_validation(String str){
+		String strRegex = "^#?([a-f0-9]{6}|[a-f0-9]{3})$";
+		int falseCnt = 0;
+		falseCnt = str.matches(strRegex) ? falseCnt : falseCnt+1;
+		return falseCnt > 0  ? false : true;
 	}
 	
 	/**
 	 * TODO String -> Hex 변환.
 	 * 
-	 * @param str1 : 변환할 String <br>
+	 * @param str : 변환할 String <br>
 	 * @return String <br>
 	 */
 	public static String stringToHex(String str) {
@@ -146,145 +171,198 @@ public class StringUtil {
 	}
 	
 	/**
-	 * TODO String -> int 변환.
+	 * TODO Hex -> String 변환.
 	 * 
-	 * @param str : 변환할 String <br>
-	 * @param intStr : 변환불가일 경우 return할 int <br>
+	 * @param hexText : 변환할 hexText <br>
 	 * @return String <br>
 	 */
-	public static int parseInt(String str, int intStr) throws IOException {
-		str = isNullOrSpace(str, "");
-		str = str.trim();
+	public static String hexToString(String hexText) {
 
-		if (str.length() <= 0)
-			return intStr;
+		String decodedText = "";
+		String chunk = null;
 
-		int charLength = str.length();
+		if (hexText != null && hexText.length() > 0) {
+			int numBytes = hexText.length() / 2;
 
-		for (int i = 0; i < charLength; i++) {
-			if (Character.getType(str.charAt(i)) != 9) {
-				return intStr;
+			byte[] rawToByte = new byte[numBytes];
+			int offset = 0;
+			int bCounter = 0;
+			for (int i = 0; i < numBytes; i++) {
+				chunk = hexText.substring(offset, offset + 2);
+				offset += 2;
+				rawToByte[i] = (byte) (Integer.parseInt(chunk, 16) & 0x000000FF);
 			}
+			decodedText = new String(rawToByte);
 		}
-		return Integer.parseInt(str);
+		return decodedText;
 	}
 	
-	/**
-	 * TODO property정보를 가져온다
-	 * 
-	 * @param fileName : 대상 property 파일 이름 <br>
-	 * @param key : 가져올 속성(key)값 <br>
-	 * @return String <br>
-	 */
-	public static String getPropertiesValue(String fileName,String Key){
-		String propertiesValue = "";
-		
-		try{
-			InputStream is = StringUtil.class.getResourceAsStream("/"+fileName);
-//			InputStream is = getClass().getResourceAsStream("/"+fileName);
-			Properties props = new Properties();
-			props.load(is);
-			propertiesValue = props.get(Key).toString();
-		}catch(Exception e){}
-		
-		return propertiesValue;
-	}
-	
-	/**
-	 * TODO 문자열 치환
-	 * 
-	 * @param str
-	 * @param pattern
-	 * @param replace
-	 * @return <br>
-	 */
-	public static String strReplace(String str, String pattern, String replace) {
-		int s = 0; // 찾기 시작할 위치
-		int e = 0; // StringBuffer에 append 할 위치
-
-		if (str == null || str.equals(""))
-			return "";
-
-		StringBuffer buffer = new StringBuffer(str);
-		buffer.delete(0, buffer.length());
-
-		while ((e = str.indexOf(pattern, s)) >= 0) {
-			buffer.append(str.substring(s, e));
-			buffer.append(replace);
-			s = e + pattern.length();
-		}
-		buffer.append(str.substring(s));
-		return buffer.toString();
-	}
-	
-	public static String arrayToString(String[][] arrayStr, int col, String joinStr) {		//2차원 배열 전용
-		String returnVal = "";
-		if (arrayStr == null)
-			return "0";
-
-		for (int i = 0; i < arrayStr.length; i++) {
-			if (arrayStr[i][col] == null)
-				arrayStr[i][col] = "0";
-			if (i == 0) {
-				returnVal += arrayStr[i][col];
-			} else {
-				returnVal += joinStr + arrayStr[i][col];
-			}
-		}
-		return returnVal;
-	}
-	
-	//	xml형태 찾기
-	public static String xmlDeclareRemove(String xmlStr){
-	    String rtnStr = "";
-	    String xmlRegex = "^\\s*<\\?xml.*\\?>";
-	    Matcher matcher = Pattern.compile(xmlRegex).matcher(xmlStr);
-	    if(matcher.find()){
-	    	rtnStr = xmlStr.replace(matcher.group(), "");
-	    }
-	    
-	    return rtnStr;
-	}
-	
-	/**
-	 * TODO 도메인 체크.
-	 * 
-	 * @param str : 체크할 이름 <br>
-	 * @return boolean <br>
-	 */
-	public static String domain_check(String urlStr){
-		String rtnStr = "";
-
-		String domain="";
-		
-		Pattern urlPattern = Pattern.compile("^(https?):\\/\\/([^:\\/\\s]+)(:([^\\/]*))?((\\/[^\\s/\\/]+)*)?\\/([^#\\s\\?]*)(\\?([^#\\s]*))?(#(\\w*))?$");
-		
-		Matcher matcher = urlPattern.matcher(urlStr);
-	    
-		if(matcher.matches()){
-			domain = matcher.group(2);
-	    }
-		
-		if(domain.indexOf("app") > -1){
-			rtnStr = "APP";
-		}else{
-			rtnStr = "WEB";
-		}
-		
-	    
-	    return rtnStr;
-	}	
-	
-	/**
-	 * TODO action url을 완성한다
-	 * 
-	 * @param path : 확장자 제외한 대상 action path <br>
-	 * @return String <br>
-	 */
-	public static String getCompleteUrl(String path){
-		return path + "." + getPropertiesValue("struts.properties","struts.action.extension");
-	}
-	
+//	/**
+//	 * TODO 이름 validation 체크.
+//	 * 
+//	 * @param str : 체크할 이름 <br>
+//	 * @return boolean <br>
+//	 */
+//	public static boolean name_validation(String str){
+//		String strRegex = "[가-힣]{2,10}";
+//		return str.matches(strRegex);
+//	}	
+//
+//	/**
+//	 * TODO 이메일 validation 체크.
+//	 * 
+//	 * @param str : 체크할 이메일 <br>
+//	 * @return boolean <br>
+//	 */
+//	public boolean email_validation(String str){
+//		String strRegex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+//		return str.matches(strRegex);
+//	}
+//	
+//	/**
+//	 * TODO 생년월일 validation 체크.
+//	 * 
+//	 * @param str : 체크할 생년월일 <br>
+//	 * @return boolean <br>
+//	 */
+//	public static boolean birth_validation(String str){
+//		String strRegex = "^(19[0-9]{2}|2[0-9]{3})-(0[1-9]|1[012])-([123]0|[012][1-9]|31)$";
+//		return str.matches(strRegex);
+//	}
+//	
+//	/**
+//	 * TODO 주소 validation 체크.
+//	 * 
+//	 * @param str1 : 우편번호 <br>
+//	 * @param str2 : 상세주소 <br>
+//	 * @return boolean <br>
+//	 */
+//	public static boolean address_validation(String str1, String str2){
+//		String strRegex = "^([0-9]{3})-([0-9]{3})$";
+//		return str1.matches(strRegex) && str2.length() < 100;
+//	}
+//	
+//	
+//	/**
+//	 * TODO String -> int 변환.
+//	 * 
+//	 * @param str : 변환할 String <br>
+//	 * @param intStr : 변환불가일 경우 return할 int <br>
+//	 * @return String <br>
+//	 */
+//	public static int parseInt(String str, int intStr) throws IOException {
+//		str = isNullOrSpace(str, "");
+//		str = str.trim();
+//
+//		if (str.length() <= 0)
+//			return intStr;
+//
+//		int charLength = str.length();
+//
+//		for (int i = 0; i < charLength; i++) {
+//			if (Character.getType(str.charAt(i)) != 9) {
+//				return intStr;
+//			}
+//		}
+//		return Integer.parseInt(str);
+//	}
+//	
+//	
+//	/**
+//	 * TODO 문자열 치환
+//	 * 
+//	 * @param str
+//	 * @param pattern
+//	 * @param replace
+//	 * @return <br>
+//	 */
+//	public static String strReplace(String str, String pattern, String replace) {
+//		int s = 0; // 찾기 시작할 위치
+//		int e = 0; // StringBuffer에 append 할 위치
+//
+//		if (str == null || str.equals(""))
+//			return "";
+//
+//		StringBuffer buffer = new StringBuffer(str);
+//		buffer.delete(0, buffer.length());
+//
+//		while ((e = str.indexOf(pattern, s)) >= 0) {
+//			buffer.append(str.substring(s, e));
+//			buffer.append(replace);
+//			s = e + pattern.length();
+//		}
+//		buffer.append(str.substring(s));
+//		return buffer.toString();
+//	}
+//	
+//	public static String arrayToString(String[][] arrayStr, int col, String joinStr) {		//2차원 배열 전용
+//		String returnVal = "";
+//		if (arrayStr == null)
+//			return "0";
+//
+//		for (int i = 0; i < arrayStr.length; i++) {
+//			if (arrayStr[i][col] == null)
+//				arrayStr[i][col] = "0";
+//			if (i == 0) {
+//				returnVal += arrayStr[i][col];
+//			} else {
+//				returnVal += joinStr + arrayStr[i][col];
+//			}
+//		}
+//		return returnVal;
+//	}
+//	
+//	//	xml형태 찾기
+//	public static String xmlDeclareRemove(String xmlStr){
+//	    String rtnStr = "";
+//	    String xmlRegex = "^\\s*<\\?xml.*\\?>";
+//	    Matcher matcher = Pattern.compile(xmlRegex).matcher(xmlStr);
+//	    if(matcher.find()){
+//	    	rtnStr = xmlStr.replace(matcher.group(), "");
+//	    }
+//	    
+//	    return rtnStr;
+//	}
+//	
+//	/**
+//	 * TODO 도메인 체크.
+//	 * 
+//	 * @param str : 체크할 이름 <br>
+//	 * @return boolean <br>
+//	 */
+//	public static String domain_check(String urlStr){
+//		String rtnStr = "";
+//
+//		String domain="";
+//		
+//		Pattern urlPattern = Pattern.compile("^(https?):\\/\\/([^:\\/\\s]+)(:([^\\/]*))?((\\/[^\\s/\\/]+)*)?\\/([^#\\s\\?]*)(\\?([^#\\s]*))?(#(\\w*))?$");
+//		
+//		Matcher matcher = urlPattern.matcher(urlStr);
+//	    
+//		if(matcher.matches()){
+//			domain = matcher.group(2);
+//	    }
+//		
+//		if(domain.indexOf("app") > -1){
+//			rtnStr = "APP";
+//		}else{
+//			rtnStr = "WEB";
+//		}
+//		
+//	    
+//	    return rtnStr;
+//	}	
+//	
+//	/**
+//	 * TODO action url을 완성한다
+//	 * 
+//	 * @param path : 확장자 제외한 대상 action path <br>
+//	 * @return String <br>
+//	 */
+//	public static String getCompleteUrl(String path){
+//		return path + "." + getPropertiesValue("struts.properties","struts.action.extension");
+//	}
+//	
 //	// 일치하는 문자열(문자)의 수를 구한다.(문자열, 비교값)
 //	static public int countEqualStr(String str, String compare){
 //		int cnt = 0;
@@ -1596,26 +1674,6 @@ public class StringUtil {
 //	}
 //
 //
-//	public static String hexToString(String hexText) {
-//
-//		String decodedText = "";
-//		String chunk = null;
-//
-//		if (hexText != null && hexText.length() > 0) {
-//			int numBytes = hexText.length() / 2;
-//
-//			byte[] rawToByte = new byte[numBytes];
-//			int offset = 0;
-//			int bCounter = 0;
-//			for (int i = 0; i < numBytes; i++) {
-//				chunk = hexText.substring(offset, offset + 2);
-//				offset += 2;
-//				rawToByte[i] = (byte) (Integer.parseInt(chunk, 16) & 0x000000FF);
-//			}
-//			decodedText = new String(rawToByte);
-//		}
-//		return decodedText;
-//	}
 //
 //	public static String strip_tags(String str) {
 //		return str.replaceAll(

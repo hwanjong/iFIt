@@ -47,27 +47,39 @@ public class SessionInterceptor extends AbstractInterceptor {
         	String nextAction = request.getRequestURI().substring(1);	//	이동할 페이지 액션(다음페이지)
         	String[] nextActionArr = nextAction.split("/");
         	
-        	String isAdminSession = (String)session.get("isAdmin");		//	관리자세션
+        	boolean isAdminSession = StringUtil.stringToBool(StringUtil.isNullOrSpace((String)session.get("isAdmin"),"").trim());		//	관리자세션
+        	boolean isShopSession = StringUtil.stringToBool(StringUtil.isNullOrSpace((String)session.get("isShop"),"").trim());			//	업체세션
         	
-        	isAdminSession = StringUtil.isNullOrSpace(isAdminSession,"").trim();
-        	
-        	String isAdminValue = actionConfig.getActionAttr(context.getName(), "isAdmin");			// Action의 isAdmin 값 추출
+        	boolean needSessionAction = StringUtil.stringToBool(actionConfig.getActionAttr(context.getName(), "needSession"));		// Action의 needSession 값 추출
+        	boolean needAdminAction = StringUtil.stringToBool(actionConfig.getActionAttr(context.getName(), "needAdmin"));		// Action의 needAdmin 값 추출
         	
         	String result = "";
         	
         	if(!actionConfig.ActionNameChk(context.getName())){		// 1. Action이 명시되어 있는지 체크
         		result = "exception";
-        	}else if(Boolean.valueOf(isAdminValue).booleanValue() && !Boolean.valueOf(isAdminSession).booleanValue()){
-        		result = "login";
-               	if(nextActionArr.length==1){
-            		session.put("nextActionName", nextActionArr[0]);
-            	}else{
-            		session.put("nextActionNamespace", nextActionArr[0]);
-            		session.put("nextActionName", nextActionArr[1]);
-            	}
+        	}else if(needSessionAction){
+        		// session이 필요한 액션 체크
+        		if(!isAdminSession && !isShopSession){
+        			// session 둘다 없을 때
+        			result = "login";
+                   	if(nextActionArr.length==1){
+                		session.put("nextActionName", nextActionArr[0]);
+                	}else{
+                		session.put("nextActionNamespace", nextActionArr[0]);
+                		session.put("nextActionName", nextActionArr[1]);
+                	}
+        		}else{
+        			// session이 있긴 있다
+        			if(needAdminAction && !isAdminSession){
+        				// admin액션인데 admin이 아니면 -> shop의 불법 접근
+        				result = "logout";
+        			}
+        		}
         	}
         	
         	System.out.println("context::::" + context.getName() + "(sessionIntercepteor.java)");
+        	System.out.println("isAdminSession:"+isAdminSession);
+        	System.out.println("isShopSession:"+isShopSession);
         	System.out.println("result::::" + result + "(sessionIntercepteor.java)");
         	
         	if(result.equals("")){

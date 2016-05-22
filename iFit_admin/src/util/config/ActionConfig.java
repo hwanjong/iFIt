@@ -13,7 +13,8 @@ public class ActionConfig{
 	public ActionConfig(){
 		/************session체크 모든 action정보 [16.04.10 by.Nam]**********
 		
-		isAdmin : 관리자세션 필수여부(true/false)
+		needSession : 세션(관리자/업체) 필수여부(true/false)
+		needAdmin : 관리자세션 필수여부(true/false)
 		pageTitle : action에 대한 title(설명)
 		pageSubTitle : action에 대한 sub title(부제목)
 		
@@ -24,25 +25,33 @@ public class ActionConfig{
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// ----------------------------basic.xml-----------------------------
-		hashmap.put("index", 						"isAdmin => true,	pageTitle => 인덱스");
-		hashmap.put("login", 						"isAdmin => false,	pageTitle => global");
-		hashmap.put("loginAction", 				"isAdmin => false, 	pageTitle => ");
-		hashmap.put("logoutAction",				"isAdmin => true, 	pageTitle => ");
+		hashmap.put("index", 								"needSession => true,		needAdmin => false,		pageTitle => 인덱스");
+		hashmap.put("login", 								"needSession => false,		needAdmin => false,		pageTitle => global");
+		hashmap.put("loginAction", 						"needSession => false,		needAdmin => false,		pageTitle => ");
+		hashmap.put("logoutAction",						"needSession => true, 	needAdmin => false,		pageTitle => ");
+		hashmap.put("ajaxFormValidate",					"needSession => true, 	needAdmin => false,		pageTitle => ");
+		hashmap.put("ajaxGetData",						"needSession => true, 	needAdmin => false,		pageTitle => ");
+		
+		// ----------------------------member.xml-----------------------------
+		hashmap.put("shopMemberList",					"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("shopMemberWrite",				"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("shopMemberWriteAction",		"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("shopMemberEditAction",			"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("shopMemberDeleteAction",		"needSession => true,		needAdmin => true,		pageTitle => ");
 		
 		// ----------------------------product.xml-----------------------------
-		hashmap.put("productList",	 			"isAdmin => true,	pageTitle => 테스트용");
-		hashmap.put("httpConnectTest", 			"isAdmin => false,	isMember =>false,	pageTitle => 테스트용");
-		hashmap.put("address_search", 			"isAdmin => false,	isMember =>false,	pageTitle => 우편번호 찾기");
-		hashmap.put("address_select_change", 	"isAdmin => false,	isMember =>false,	pageTitle => 시도 셀렉트 생성");
+		hashmap.put("generalProductList",				"needSession => true,		needAdmin => false,		pageTitle => ");
+		hashmap.put("generalProductEditor",			"needSession => true,		needAdmin => false,		pageTitle => ");
+		hashmap.put("generalProductWriteAction",		"needSession => true,		needAdmin => false,		pageTitle => ");
+		hashmap.put("generalProductEditAction",		"needSession => true,		needAdmin => false,		pageTitle => ");
+		hashmap.put("generalProductDeleteAction",	"needSession => true,		needAdmin => false,		pageTitle => ");
 		
-		// ----------------------------admin.xml-----------------------------
-		hashmap.put("adminMain", 				"isAdmin => true,	isMember =>false,	pageTitle => ");
-		hashmap.put("adminLogin", 				"isAdmin => false, 	isMember =>false,	pageTitle => ");
+		// ----------------------------help.xml-----------------------------
+		hashmap.put("faqList",								"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("faqWriteAction",					"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("faqEditAction",						"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("faqDeleteAction",					"needSession => true,		needAdmin => true,		pageTitle => ");
 		
-		hashmap.put("adminHireList", 			"isAdmin => true, 	isMember =>false,	pageTitle => 게시판,	pageSubTitle => 글목록 ");
-		hashmap.put("hireWrite", 					"isAdmin => true, 	isMember =>false,	pageTitle => 게시판,	pageSubTitle => 글작성/글수정 ");
-		hashmap.put("hireWriteAction", 			"isAdmin => true, 	isMember =>false,	pageTitle => 게시판,	pageSubTitle => 글작성/글수정 ");
-		hashmap.put("pushTest", 					"isAdmin => true,	isMember =>false,	pageTitle => ");
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

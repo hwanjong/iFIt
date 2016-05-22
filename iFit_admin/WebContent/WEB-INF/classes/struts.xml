@@ -19,7 +19,11 @@
 		<default-action-ref name="exception" />
 		
 	    <global-results>
-	        <result name="login">/jsp/common/login.jsp</result> 
+	        <result name="login">/jsp/common/login.jsp</result>
+	        <result name="logout" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">logoutAction</param>
+	        </result> 
 	     <!-- <result name="exception">/jsp/common/error.jsp</result>	 --> 		<!-- 기타 모든 에러 -->
 	    </global-results>
 
@@ -47,6 +51,8 @@
     </package>
     
     <include file="struts2/basic/basic.xml" />
+    <include file="struts2/member/member.xml" />
     <include file="struts2/product/product.xml" />
+    <include file="struts2/help/help.xml" />
     
 </struts> 

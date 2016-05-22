@@ -26,6 +26,7 @@
 }
 
 .mainLogo{
+	background-image: url('../img/logo2.png');
     background-size: 229px;
     width: 100%;
     height: 100px;
@@ -35,7 +36,7 @@
 	width:500px;
 }
 
-#admin_id, #admin_pw{
+#loginForm #admin_id, #loginForm #admin_pw{
 	width:217px; height: 24px; padding:10px;}
 }
 
@@ -58,12 +59,11 @@
 #logoutBtn{
 	width: 100px;
 }
-.writeBtn{
+.writeBtn, .writeActionBtn, .submitBtn, .selectBtn{
 	background-color:#A5FFEB;
-	border:0;
+	border:1px solid #78C7F4;
 }
 .simpleBtn{
-	border:1px solid #78C7F4;
 	width: 100px;
 }
 
@@ -77,20 +77,254 @@
 /* admin 컨텐츠 영역 */
 .adminContentArea{width:900px; float:left; padding:30px 50px 30px 50px;}
 .adminContentArea .contentBody{margin-bottom:30px;}
+.adminContentArea h2{
+	border-bottom: 2px solid #4A4A4A;
+	padding-bottom: 8px;
+}
+.adminContentArea h2 span{
+	border-left: 4px solid #4A4A4A;
+    padding-left: 8px;
+    height: 18px;
+    line-height: 18px;
+    display:inline-block;
+}
+.contentBody form{
+	width:100%;
+}
+.contentBody form #countPerPage + div{ 
+	width:60px !important; 
+}
+.contentBody form #countPerPage + div>.wSelect-options-holder{ 
+	width:60px !important; 
+}
 
 /* admin table */
 table{border-collapse: collapse;width:100%;  border-top:2px solid #CCCCCC; border-bottom:2px solid #CCCCCC;}
 table thead th{background-color:#EBEBEB; border-bottom:1px solid #CCCCCC; padding:14px 0; }
 table tbody th{background-color:#EBEBEB;}
 table td{padding:10px 0; border-bottom:1px solid #CCCCCC;}
-.table_write tbody th{background-color:#EBEBEB; border-bottom:1px solid #CCCCCC; padding:14px 0; }
-.table_write td{padding:5px 0px 5px 20px; border-bottom:1px solid #CCCCCC;}
 table td img{height: 150px;}
 
+/* list */
+table.table_write tbody th{background-color:#EBEBEB; border-bottom:1px solid #CCCCCC; padding:14px 0; }
+table.table_write td{padding:5px 0px 5px 20px; border-bottom:1px solid #CCCCCC;}
+
+/* write/edit */
+table.table_editor{
+    border: 1px solid #CCCCCC;
+}
+table.table_editor tr th{
+    border-right: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+    padding: 10px 0 10px 20px;
+    width: 180px;
+    text-align: left;
+    vertical-align: middle;
+}
+table.table_editor tr td{
+    padding: 10px 12px;
+}
+table.table_editor tr td input[type="text"]{
+	margin: 0;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    height: 24px;
+    line-height: 20px;
+    border-radius: 3px;
+    text-indent: 5px;
+}
+
+.listSort:hover{
+	cursor: pointer;
+	text-decoration:underline;
+}
+
+/*검색 공통*/
+.searchInput{
+	height:30px !important;
+	margin-top: 15px;
+	font-size:13px !important;
+	padding:1px;
+}
+
+/* 레이어 팝업 */
+.layer {display:none; position:fixed; _position:absolute; top:0; left:0; width:100%; height:100%; z-index:100;}
+.layer .bg {position:absolute; top:0; left:0; width:100%; height:100%; background:#000; opacity:.5; filter:alpha(opacity=50);}
+.layer .pop-layer {
+	display:block;
+}
+ 
+.pop-layer{
+	display:none; 
+	position: absolute;
+	top: 50%; 
+	left: 50%; 
+	max-width: 900px; 
+	height:auto;  
+	background-color:#fff; 
+	border: 5px solid #4A4A4A; 
+	z-index: 10;
+}
+.pop-layer p{
+	font-size:15px;
+}
+.pop-layer input{
+	font-size:15px;
+}
+#pop-title{
+	font-size:20px;
+}
+.pop-layer form>div:first-child{
+	max-height:450px;
+	overflow-y:auto;
+}
+.pop-layer .pop-container {padding: 20px 25px;}
+.pop-layer p.ctxt {color: #666; line-height: 25px;}
+.pop-layer .btn-r {
+	width: 100%;
+    position: absolute;
+    top: 0px;
+    text-align: right;
+    right: 0px;
+}
+.pop-title{
+	border-bottom:1px solid;
+}
+.pop-content-box{
+	width: 366px;
+    border: 1px groove #EBEBEB;
+    word-break: break-all;
+    padding: 0 5px;
+}
+
 /* 페이징 버튼 공통 */
-.paging{text-align:center; margin-top:20px;}
+.paging{text-align:center; margin-top:20px; margin-top:20px;}
 .paging ul{display:inline-block;}
 .paging ul li{display:inline-block;}
 .paging .btnOn {display:inline-block; width:30px; height:34px; padding:10px 14px 0; border:1px solid #9B9B9B; background-color:#9B9B9B; font-size:13px; color:#fff; line-height:25px; margin-left: -1px; cursor: default;}
 .paging a.btnOff {display:inline-block; width:30px; height:34px; padding:10px 14px 0; border:1px solid #dddddd; font-size:13px; color:#000; line-height:25px; margin-left: -1px;}
 .paging a.btnOff:hover {border: 1px solid #EBEBEB; background-color:#EBEBEB; color:#000000;}
+
+/* 입점회원 */
+form#shopMember #searchCol + div{ 
+	width:130px !important; 
+}
+form#shopMember #searchCol + div>.wSelect-options-holder{ 
+	width:130px !important; 
+}
+
+.layer-shopSearch>.pop-layer{
+	width:440px;
+	height: 530px;
+}
+.layer-shopSearch #result{
+	border-bottom: 1px solid #4A4A4A;
+}
+
+.layer-shopSearch #result>span:first-child{
+	width: 380px;
+    border-top: 1px solid #4A4A4A;
+    background-color: #EBEBEB;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+.layer-shopSearch #result>div>div, .layer-shopSearch #result #listEmpty{
+	width:330px;
+	padding: 10px 30px;
+    border-top: 1px solid #CCCCCC;
+}
+.layer-shopSearch #result #listExist{
+	height: 330px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.layer-shopSearch #result dt{
+    color:#777;
+}
+.layer-shopSearch #result>div span{
+    color: #e52d38;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.layer-colorSelector>.pop-layer{
+	height: 360px;
+}
+.layer-colorSelector #colorpicker{
+	height:100px;
+}
+.layer-colorSelector #hexColor{
+	width:80px;
+}
+
+input#shop_id, input#shop_pw, input#shop_name{
+	width:326px;
+}
+input#shop_tel2,input#shop_tel3{
+	width:100px;
+}
+
+/* FAQ */
+.layer-faqWrite>.pop-layer, .layer-faqEdit>.pop-layer, .layer-faqView>.pop-layer{
+	width:470px;
+}
+input#faq_title{
+	width:333px;
+}
+textarea#faq_content{
+	width:313px;
+	height: 200px;
+}
+
+/* 일반상품 */
+form#generalProduct #searchCol + div{ 
+	width:130px !important; 
+}
+form#generalProduct #searchCol + div>.wSelect-options-holder{ 
+	width:130px !important; 
+}
+
+.layer-generalProductView>.pop-layer{
+	width:640px;
+}
+
+span#generalProduct_admin_name{
+	width:180px;
+	background-color:#EBEBEB;
+    vertical-align: top;
+    height: 38px;
+    line-height: 38px;
+}
+form[name="generalProductWriter"] input#admin_name, form[name="generalProductWriter"] input#p_name{
+	width:99%;
+}
+form[name="generalProductWriter"] input#p_price{
+	width:230px;
+	margin-right:5px;
+}
+form[name="generalProductWriter"] #p_category + div{ 
+	width:120px !important; 
+}
+form[name="generalProductWriter"] #p_category + div>.wSelect-options-holder{ 
+	width:120px !important; 
+}
+form[name="generalProductWriter"] p.colorReady, form[name="generalProductWriter"] p.colorSelected{
+	display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+form[name="generalProductWriter"] p.colorSelected{
+	cursor:pointer;
+	border:1px solid black;
+}
+form[name="generalProductWriter"] p.colorSelected i{
+	display:none;
+}
+form[name="generalProductWriter"] textarea#detail_info{
+	width: 97%;
+	height: 200px;
+	resize:none;
+}

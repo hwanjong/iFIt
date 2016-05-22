@@ -14,10 +14,11 @@ import util.system.AESCrypto;
 import util.system.MySqlFunction;
 import util.system.StringUtil;
 
+import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-import dao.AdminDAO;
+import dao.IfitDAO;
 import dto.AdminDTO;
 import lombok.Data;
 
@@ -26,12 +27,13 @@ public class Index extends ActionSupport  {
 	private Map session;
 	private ActionContext context;
 	private WebApplicationContext wac;
-	private ActionConfig actionConfig = new ActionConfig();
 	private FormValidate formValidate = new FormValidate();
-	private AdminDAO adminDAO;
+	private IfitDAO ifitDAO;
 	private AdminDTO adminDTO;
 	private Map<String, Object> paramMap = new HashMap<String, Object>();
+	private Map<String, Object> whereMap = new HashMap<String, Object>();
 	private Map<String, Object> validateMsgMap = new HashMap<String, Object>();
+	private String rtnString;
 	
 	private String admin_id;		//	관리자 아이디
 	private String admin_pw;		//	관리자 비밀번호
@@ -50,7 +52,7 @@ public class Index extends ActionSupport  {
 	
 	//	요소 초기화 및 세팅
 	public void init(){
-		this.adminDAO = (AdminDAO)this.wac.getBean("admin");
+		this.ifitDAO = (IfitDAO)this.wac.getBean("admin");
 		this.adminDTO = new AdminDTO();
 		this.context = ActionContext.getContext();	//session을 생성하기 위해
 		this.session = this.context.getSession();		// Map 사용시
@@ -59,27 +61,32 @@ public class Index extends ActionSupport  {
 	//	로그인 체크
 	public String loginAction() throws Exception {	
 		init();
+		Gson gson = new Gson();
 		this.admin_id = StringUtil.isNullOrSpace(this.admin_id,"").trim();
 		this.admin_pw = StringUtil.isNullOrSpace(this.admin_pw,"").trim();
-		paramMap.put("id", this.admin_id);
-		paramMap.put("pw", this.admin_pw);
+		paramMap.put("admin_id", this.admin_id);
+		paramMap.put("admin_pw", this.admin_pw);
 		validateMsgMap = formValidate.loginForm(paramMap);
 		paramMap.clear();
 		if(!(boolean)validateMsgMap.get("res")){
+			this.rtnString = gson.toJson(validateMsgMap);
+			this.rtnString = "test";
 			return "validation";
 		}
 		String passwordEncode = MySqlFunction.password(AESCrypto.encryptPassword(this.admin_pw));
-		paramMap.put("searchCol", "id");
-		paramMap.put("searchVal", this.admin_id);
-		this.adminDTO = this.adminDAO.getRow(paramMap);
+		whereMap.put("id", this.admin_id);
+		paramMap.put("whereMap", whereMap);
+		this.adminDTO = (AdminDTO)this.ifitDAO.getOneRow(paramMap);
 		paramMap.clear();
 		if(this.adminDTO == null){
 			//아이디 불일치
 			validateMsgMap = formValidate.loginAuthError();
+			this.rtnString = gson.toJson(validateMsgMap);
 			return "validation";
 		}else if(!this.adminDTO.getPw().equals(passwordEncode)){
 			//비밀번호 불일치
 			validateMsgMap = formValidate.loginAuthError();
+			this.rtnString = gson.toJson(validateMsgMap);
 			return "validation";
 		}
 
@@ -94,8 +101,13 @@ public class Index extends ActionSupport  {
 		session.remove("nextActionNamespace");
 		session.remove("nextActionName");
 		
-		session.put("admin_seq", this.adminDTO.getSeq());
-		this.session.put("isAdmin", "true");
+		// admin, shop 구분
+		if(this.adminDTO.getIsAdmin()){
+			this.session.put("isAdmin", "true");
+		}else{
+			this.session.put("isShop", "true");
+		}
+		this.session.put("admin_seq", this.adminDTO.getSeq());
 		this.context.setSession(this.session);
 		
 		return SUCCESS;

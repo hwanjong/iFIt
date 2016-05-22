@@ -25,19 +25,19 @@
 		<action name="logoutAction" class="action.basic.Index" method="logoutAction">
 			<result type="redirectAction">
 			    <param name="namespace">/</param>
-		  		<param name="actionName">index</param>
+		  		<param name="actionName">login</param>
     	  	</result>
 		</action>
 		
 		<!-- ajax FormValidate 로직-->
-		<action name="ajaxFormValidate" class="util.config.FormValidate" method="useAjax">
-			<result type="redirectAction">
-		  		<param name="actionName">admin</param>
-		  		<param name="namespace">/</param>
-    	  	</result>
+		<action name="ajaxFormValidate" class="action.basic.Ajax" method="ajaxFormValidate">
+			<result>/jsp/common/json_result.jsp</result>
 		</action>
 		
-		
+		<!-- ajax popupView 로직-->
+		<action name="ajaxGetData" class="action.basic.Ajax" method="ajaxGetData">
+			<result>/jsp/common/json_result.jsp</result>
+		</action>
 
 		<!--예시
 		<action name="ipApporveList" class="action.ip.IpAction" method="IpList">
