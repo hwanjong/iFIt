@@ -1,4 +1,10 @@
 $(function(){
+	$(".adminGnbArea .logo").click(function(){
+		$(location).attr("href","/index.ifit");
+	});
+	
+	$('.number').trigger('keyup');
+	
 	$.fn.wSelect.defaults.size = 6;
 	$("select").wSelect();
 	$("#loginBtn").click(function(){
@@ -33,11 +39,17 @@ $(function(){
 		$(location).attr("href",$(this).parents("form").attr("id")+"Editor.ifit?queryIncode=" + queryIncode);
 	});
 	
+	$(".editBtn").click(function(){
+		var queryIncode = $(this).parents("form").find("#queryIncode").val();
+		
+		$(location).attr("href",$(this).parents("form").attr("id")+"Editor.ifit?queryIncode=" + queryIncode + "&isUpdateMode=" + true + "&seq=" + $(this).attr("data-seq"));
+	});
+	
 	$(".deleteBtn").click(function(){
 		var seq = $(this).attr("data-seq");
 		var	 title = $(this).attr("data-title");
 		if(confirm("[" + title + "] 항목을 삭제하시겠습니까?")){
-			$(location).attr("href",$(this).parents("form").attr("id")+"DeleteAction.ifit?seq="+seq+"&pageNum=1");
+			$(location).attr("href",$(this).parents("form").attr("id")+"DeleteAction.ifit?seq="+seq);
 		}
 	});
 	
@@ -47,8 +59,6 @@ $(function(){
 	});
 	
 	$(".writeActionBtn").click(function(){
-//		var queryDecode = $(this).parents("form").find("#queryDecode").val();
-//		$(location).attr("href",$(this).parents("form").attr("id")+"List.ifit?" + queryDecode);
 		if(validateCheck($(this).parents("form"))){
 			if(confirm($(this).parents("form").attr("data-confirm-msg"))){
 				return true;
@@ -56,6 +66,26 @@ $(function(){
 		}
 		return false;
 	});
+	
+	$(".updateActionBtn").click(function(){
+		if(validateCheck($(this).parents("form"))){
+			if(confirm($(this).parents("form").attr("data-confirm-msg"))){
+				return true;
+			}
+		}
+		return false;
+	});
+
+});
+
+//숫자 입력시
+$(document).on("keyup",".number",function(e){
+	$(this).val($(this).val().replace(/[^0-9]/gi,""));		// 숫자만 입력
+	if($(this).val() > 1000000000){
+		$(this).val("1000000000");
+	}
+	$(this).val($(this).val().replace(/(^0+)/,""));		// 앞의 0제거
+	$(this).val($(this).val().replace(/\B(?=(\d{3})+(?!\d))/g, ","));	// 3자리마다 콤마 
 });
 
 $(document).on("click",".paging ul li a.btnOff",function(e){
@@ -67,57 +97,61 @@ $(document).on("click",".paging ul li a.btnOff",function(e){
 });
 
 function getAjaxData(data){
+	console.log(data);
 	var rtnData = "";
+//	$("body").waitMe({
+//		effect : 'bounce',
+//		text : '데이터 처리중 입니다. 잠시만 기다려 주세요.',
+//		bg : 'rgba(255,255,255,0.5)',
+//		color : '#000'
+//	});
 	$.ajax({
-		url: "/ajaxGetData.ifit",
+		url: data.url,
 		type: "post",
 		data: {"data":JSON.stringify(data)},
 		dataType:"text",
 		async: false,
 		success:function(result){
+			console.log(result);
 			rtnData = result;
 		},
 		error: function(xhr,status, error){
 			alert("에러발생");
 		}
 	});
+//	$("body").waitMe('hide');
 	return rtnData;
 }
 
 function validateCheck(obj){
 	var rtn = false;
 	var data = {"formID":obj.attr("id")+obj.attr("data-mode")};
-	obj.find(".validate").each(function(){
-		console.log($(this));
-		if($(this).attr("type")=="checkbox"){
-			data[$(this).attr("id")] = $(this).val();
-		}else if($(this).attr("type")=="file"){
-			data[$(this).attr("id")] = $("."+$(this).attr("id")).size()-1;
-		}else if($(this).attr("id") == null){
-			//$(this).attr("id")
+	
+	obj.find("input[name!='']").each(function(){
+		if($(this).attr("type")=="file"){
+			data[$(this).attr("name")] = $(this)[0].jFiler.files_list.length;
+		}else if($(this).attr("type")=="radio"){
+			data[$(this).attr("name")] = $(':radio[name="banner_type"]:checked').val();
 		}else{
-			data[$(this).attr("id")] = $(this).val();
-		}
-	});
-	console.log(data);
-	$.ajax({
-		url: "/ajaxFormValidate.ifit",
-		type: "post",
-		data: {"data":JSON.stringify(data)},
-		dataType:"text",
-		async: false,
-		success:function(result){
-			var jsonObj = JSON.parse(result);
-			if(!jsonObj.res){
-				alert(jsonObj.msg);
-				$("#"+jsonObj.elementID).focus();
+			if($(this).attr("name") in data && $.isArray(data[$(this).attr("name")])){
+				data[$(this).attr("name")].push($(this).val());
 			}else{
-				rtn = true;
+				data[$(this).attr("name")] = data[$(this).attr("name")] = $(this).hasClass("arrayData") ?  [$(this).val()] : $(this).val();
 			}
-		},
-		error: function(xhr,status, error){
-			alert("에러발생");
 		}
 	});
+	obj.find("select[name!='']").each(function(){
+		data[$(this).attr("name")] = $(this).val();
+	});
+	
+	data.url = "/ajaxFormValidate.ifit";
+	var jsonObj = JSON.parse(getAjaxData(data));
+	if(!jsonObj.res){
+		alert(jsonObj.msg);
+		$("#"+jsonObj.elementID).focus();
+	}else{
+		rtn = true;
+	}
+	
 	return rtn;
 }

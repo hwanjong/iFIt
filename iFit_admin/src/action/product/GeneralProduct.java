@@ -2,6 +2,7 @@ package action.product;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -11,11 +12,12 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import util.config.*;
-import util.file.FileUploader;
+import util.file.FileManager;
 import util.system.StringUtil;
 
 import com.google.gson.Gson;
@@ -27,6 +29,7 @@ import dto.ProductListDTO;
 import dto.SubPhotoDTO;
 import dto.SizeListDTO;
 import dto.SizeMapDTO;
+import dto.TagListDTO;
 import lombok.Data;
 
 @Data
@@ -41,11 +44,18 @@ public class GeneralProduct extends ActionSupport  {
 	private IfitDAO sizeListDAO;
 	private IfitDAO sizeMapDAO;
 	private IfitDAO subPhotoDAO;
+	private IfitDAO tagListDAO;
 	private ProductListDTO productListDTO;
 	private SizeMapDTO sizeMapDTO;
 	private SubPhotoDTO subPhotoDTO;
+	private TagListDTO tagListDTO;
+	
 	private List<ProductListDTO> dataList;
 	private List<SizeListDTO> sizeList;
+	private List<SizeMapDTO> sizeMap;
+	private List<TagListDTO> tagList;
+	private List<SubPhotoDTO> subPhotoList;
+	private List<SubPhotoDTO> detailPhotoList;
 	private Paging paging = new Paging();
 	private Map<String, Object> paramMap = new HashMap<String, Object>();
 	private Map<String, Object> searchMap = new HashMap<String, Object>();
@@ -66,48 +76,60 @@ public class GeneralProduct extends ActionSupport  {
     private String queryIncode = "";						//	쿼리스트링(인코딩)
     private String queryDecode = "";						//	쿼리스트링(디코딩)
     
+    private int seq;											// view/update시 seq
+	private String isUpdateMode = "";					// 편집모드
+    
     private LinkedHashMap searchColKindMap = new LinkedHashMap() {{	// 검색 가능한 종류
     	// db상의 name과 매칭 
-    	put(0,"id");					// 기본값
+    	put(0,"p_name");				// 기본값
     	put(1,"p_name");				// 상품 검색	
     	put(2,"ADMIN_NAME");		// 업체명 검색
     }};
     
     private LinkedHashMap sortColKindMap = new LinkedHashMap() {{	// 정렬항목 정의
     	// db상의 name과 매칭
-		put(0,"regdate");				// 기본값 정렬
+		put(0,"orig_regdate");		// 기본값 정렬
 		put(1,"p_name");				// 상품명 정렬
 		put(2,"ADMIN_NAME");	 	// 입점 업체명 정렬
-		put(3,"regdate");	 			// 등록일 정렬
+		put(3,"orig_regdate"); 		// 등록일 정렬
 	}};
     
-	private int admin_seq;												//	업체seq
-	private String p_name;												//	상품명
-	private int category;												//	상품 분류
-	private int p_price;													//	가격
-	private String color_list;											//	상품색상
-	private List<Integer> sizeArray = new ArrayList<Integer>();	//	상품사이즈
-	private String cat_ref;												//	3D코드
-	private String detail_info;											//	상품상세설명
-	private int seq;
+	private int admin_seq;													//	업체seq
+	private String p_name;													//	상품명
+	private int category;													//	상품 분류
+	private String p_price;													//	가격
+	private List<String> color_list = new ArrayList<String>();		//	상품색상
+	private List<String> sizeArray = new ArrayList<String>();		//	상품사이즈
+	private String cat_ref;													//	3D코드
+	private String detail_info;												//	상품상세설명
+	private List<String> tag_list = new ArrayList<String>();			//	태그
 	
 	// 첨부파일 영역
-	private List<File> p_main_url = new ArrayList<File>();											//	상품 메인이미지
-	private List<String> p_main_urlContentType = new ArrayList<String>(); 						//	상품 메인이미지 첨부파일 종류
-	private List<String> p_main_urlFileName = new ArrayList<String>(); 							//	상품 메인이미지 첨부파일명
-	private List<File> generalProduct_topImage = new ArrayList<File>();							//	상품이미지
-	private List<String> generalProduct_topImageContentType = new ArrayList<String>(); 	//	상품이미지 첨부파일 종류
-	private List<String> generalProduct_topImageFileName = new ArrayList<String>(); 		//	상품이미지 첨부파일명
-	private List<File> detail_url = new ArrayList<File>();												//	상품상세이미지
-	private List<String> detail_urlContentType = new ArrayList<String>(); 	//	상품상세이미지 첨부파일 종류
-	private List<String> detail_urlFileName = new ArrayList<String>(); 		//	상품상세이미지 첨부파일명
-	private List<File> lookup_url = new ArrayList<File>();											//	상품코디이미지
-	private List<String> lookup_urlContentType = new ArrayList<String>(); 						//	상품코디이미지 첨부파일 종류
-	private List<String> lookup_urlFileName = new ArrayList<String>(); 							//	상품코디이미지 첨부파일명
+	private List<File> p_main_url = new ArrayList<File>();								//	상품 메인이미지
+	private List<String> p_main_urlContentType = new ArrayList<String>(); 			//	상품 메인이미지 첨부파일 종류
+	private List<String> p_main_urlFileName = new ArrayList<String>(); 				//	상품 메인이미지 첨부파일명
+	private List<String> p_main_urlDeleteFileName = new ArrayList<String>();		//	상품 메인이미지 삭제 요청시 파일명
+	private List<File> sub_url = new ArrayList<File>();									//	상품 서브이미지
+	private List<String> sub_urlContentType = new ArrayList<String>(); 				//	상품 서브이미지 첨부파일 종류
+	private List<String> sub_urlFileName = new ArrayList<String>(); 					//	상품 서브이미지 첨부파일명
+	private List<String> sub_urlDeleteFileName = new ArrayList<String>();			//	상품 서브이미지 삭제 요청시 파일명
+	private List<File> detail_url = new ArrayList<File>();									//	상품 상세이미지
+	private List<String> detail_urlContentType = new ArrayList<String>(); 			//	상품 상세이미지 첨부파일 종류
+	private List<String> detail_urlFileName = new ArrayList<String>(); 				//	상품 상세이미지 첨부파일명
+	private List<String> detail_urlDeleteFileName = new ArrayList<String>();			//	상품 상세이미지 삭제 요청시 파일명
+	private List<File> lookup_url = new ArrayList<File>();								//	상품 코디이미지
+	private List<String> lookup_urlContentType = new ArrayList<String>(); 			//	상품 코디이미지 첨부파일 종류
+	private List<String> lookup_urlFileName = new ArrayList<String>(); 				//	상품 코디이미지 첨부파일명
+	private List<String> lookup_urlDeleteFileName = new ArrayList<String>();		//	상품 코디이미지 삭제 요청시 파일명
 	
 	public GeneralProduct() {
 		ServletContext servletContext = ServletActionContext.getServletContext();
 	    this.wac = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+	    
+	    this.productListDTO = new ProductListDTO();
+		this.sizeMapDTO = new SizeMapDTO();
+		this.tagListDTO = new TagListDTO();
+		this.subPhotoDTO = new SubPhotoDTO();
 	}
 	
 	public void setServletRequest(HttpServletRequest request) { 
@@ -125,17 +147,17 @@ public class GeneralProduct extends ActionSupport  {
 		this.sizeListDAO = (IfitDAO)this.wac.getBean("sizeList");
 		this.sizeMapDAO = (IfitDAO)this.wac.getBean("sizeMap");
 		this.subPhotoDAO = (IfitDAO)this.wac.getBean("subPhoto");
+		this.tagListDAO = (IfitDAO)this.wac.getBean("tagList");
 		
-		this.productListDTO = new ProductListDTO();
-		this.sizeMapDTO = new SizeMapDTO();
-		this.subPhotoDTO = new SubPhotoDTO();
 		this.context = ActionContext.getContext();	//session을 생성하기 위해
 		this.session = this.context.getSession();		// Map 사용시
+		
 		this.rtnString = "";
 	}
 	
 	public String getList() throws Exception{
 		init();
+		
 		if(this.searchColKindMap.containsKey(this.searchCol)){
 			this.searchMap.put(this.searchColKindMap.get(this.searchCol).toString(), this.searchVal);
 		}
@@ -172,47 +194,117 @@ public class GeneralProduct extends ActionSupport  {
 	}
 	
 	// 일반상품 조회
-	public ProductListDTO getData(Map<String, Object> paramMap){
+	public Object getData(Map<String, Object> paramMap){
 		init();
+		String queryMode = paramMap.containsKey("queryMode") ? paramMap.get("queryMode").toString() : "one";
+		this.whereMap.clear();
 		if(!StringUtil.stringToBool(StringUtil.isNullOrSpace((String)session.get("isAdmin"),"").trim())){
 			this.whereMap.put("PL.admin_seq", session.get("admin_seq"));
 		}
+		if(queryMode.equals("one")){
+			if(paramMap.containsKey("seq")){
+				this.whereMap.put("PL.p_id", paramMap.get("seq"));
+				this.paramMap.put("whereMap", this.whereMap);
+			}
+			ProductListDTO data = (ProductListDTO) this.productListDAO.getOneRow(this.paramMap);
+			data.setCategory_name(this.code.getProductCategoryMap().get(data.getCategory()).toString());
+			return data;
+		}else if(queryMode.equals("list")){
+			if(!paramMap.containsKey("p_name")){
+				return null;
+			}
+			this.searchMap.put("p_name", StringUtil.isNullOrSpace(paramMap.get("p_name").toString(),"").trim());
+			paramMap.put("searchMap", this.searchMap);
+			paramMap.put("isCount",false);
+			return (List<ProductListDTO>)this.productListDAO.getList(paramMap);
+		}
+		return null;
+	}
+	
+	public Object getSizeListData(Map<String, Object> paramMap){
+		init();
+		Gson gson = new Gson();
+		String queryMode = paramMap.containsKey("queryMode") ? paramMap.get("queryMode").toString() : "one";
+		if(queryMode.equals("one")){
+		}else if(queryMode.equals("list")){
+			if(paramMap.containsKey("sizeArray") && paramMap.get("sizeArray") != null){
+				List<Object> test = (List<Object>)gson.fromJson(paramMap.get("sizeArray").toString(), List.class);
+				String customSQL = "size_id IN(0";
+				for(Object code : test){
+					customSQL += "," + Integer.parseInt(String.valueOf(Math.round(Double.valueOf(code.toString()).doubleValue())));
+				}
+				customSQL += ")";
+				paramMap.put("customSQL", customSQL);
+				return ((List<SizeListDTO>)this.sizeListDAO.getList(paramMap)).size();
+			}
+		}
+		return null;
+	}
+	
+	public Object getSizeMapData(Map<String, Object> paramMap){
+		init();
+		this.whereMap.clear();
 		if(paramMap.containsKey("seq")){
-			this.whereMap.put("PL.p_id", paramMap.get("seq"));
+			this.whereMap.put("p_id", paramMap.get("seq"));
 			this.paramMap.put("whereMap", this.whereMap);
 		}
-
-		return (ProductListDTO) this.productListDAO.getOneRow(this.paramMap);
+		return (List<SizeMapDTO>)this.sizeMapDAO.getList(this.paramMap);
 	}
 	
-	// 일반상품 조회
-	public SizeMapDTO getSizeMapData(Map<String, Object> paramMap){
+	public Object getTagListData(Map<String, Object> paramMap){
 		init();
-		
-		if(paramMap.containsKey("product_seq")){
-			this.whereMap.clear();
-			this.whereMap.put("product_seq", paramMap.get("product_seq"));
+		this.whereMap.clear();
+		if(paramMap.containsKey("seq")){
+			this.whereMap.put("p_id", paramMap.get("seq"));
 			this.paramMap.put("whereMap", this.whereMap);
 		}
-
-		return (SizeMapDTO) this.sizeMapDAO.getOneRow(this.paramMap);
+		return (List<TagListDTO>)this.tagListDAO.getList(this.paramMap);
 	}
 	
-	public SubPhotoDTO getSubPhotoData(Map<String, Object> paramMap){
+	public Object getSubPhotoData(Map<String, Object> paramMap){
 		init();
 		
-		if(paramMap.containsKey("product_seq")){
-			this.whereMap.clear();
-			this.whereMap.put("product_seq", paramMap.get("product_seq"));
+		this.whereMap.clear();
+		if(paramMap.containsKey("seq")){
+			this.whereMap.put("p_id", paramMap.get("seq"));
+			this.whereMap.put("photo_type", paramMap.get("photo_type"));
 			this.paramMap.put("whereMap", this.whereMap);
 		}
-
-		return (SubPhotoDTO) this.subPhotoDAO.getOneRow(this.paramMap);
+		return (List<SubPhotoDTO>)this.subPhotoDAO.getList(this.paramMap);
+	}
+	
+	public Map<String, Object> getOriginalData(int seq) throws Exception{
+		Map<String, Object> rtnMap = new HashMap<String, Object>();
+		this.paramMap.put("seq", seq);
+		rtnMap.put("productData", (ProductListDTO) this.getData(this.paramMap));
+		if(rtnMap.get("productData") == null){
+			return null;
+		}
+		rtnMap.put("productData", (ProductListDTO) this.getData(this.paramMap));
+		rtnMap.put("sizeData", (List<SizeMapDTO>) this.getSizeMapData(this.paramMap));
+		rtnMap.put("colorData", Arrays.asList(((ProductListDTO)rtnMap.get("productData")).getColor_list().split(",")));
+		rtnMap.put("tagData", (List<TagListDTO>) this.getTagListData(this.paramMap));
+		this.paramMap.put("photo_type", 1);
+		rtnMap.put("subPhotoData", (List<SubPhotoDTO>) this.getSubPhotoData(this.paramMap));
+		this.paramMap.put("photo_type", 2);
+		rtnMap.put("detailPhotoData", (List<SubPhotoDTO>) this.getSubPhotoData(this.paramMap));
+		return rtnMap;
 	}
 	
 	public String getEditor() throws Exception{
 		init();
 		setSizeList();
+		
+		if(Boolean.valueOf(this.isUpdateMode).booleanValue()){
+			Map<String, Object> data = getOriginalData(this.seq);
+			this.productListDTO = (ProductListDTO) data.get("productData");
+			this.sizeMap = (List<SizeMapDTO>) data.get("sizeData");
+			this.color_list = (List<String>) data.get("colorData");
+			this.tagList = (List<TagListDTO>) data.get("tagData");
+			this.subPhotoList = (List<SubPhotoDTO>) data.get("subPhotoData");
+			this.detailPhotoList = (List<SubPhotoDTO>) data.get("detailPhotoData");
+		}
+		
 		this.queryDecode = StringUtil.hexToString(this.queryIncode);
 		
 		return SUCCESS;
@@ -221,7 +313,7 @@ public class GeneralProduct extends ActionSupport  {
 	public String writeAction() throws Exception {	
 		init();
 		
-		FileUploader fileUploader = new FileUploader("generalProduct");
+		FileManager fileManager = new FileManager("generalProduct");
 		
 		int product_seq=0;
 		Gson gson = new Gson();
@@ -232,104 +324,107 @@ public class GeneralProduct extends ActionSupport  {
 		}
 
 		this.p_name = StringUtil.isNullOrSpace(this.p_name,"").trim();
-		this.color_list = StringUtil.isNullOrSpace(this.color_list,"").trim();
 		paramMap.put("admin_seq", this.admin_seq);
 		paramMap.put("p_name", this.p_name);
 		paramMap.put("category", this.category);
 		paramMap.put("p_price", this.p_price);
 		paramMap.put("color_list", this.color_list);
-		paramMap.put("cat_ref", this.cat_ref);
-		paramMap.put("detail_info", this.detail_info);
+		paramMap.put("sizeArray", this.sizeArray);
 		paramMap.put("p_main_url", this.p_main_url.size());
+		paramMap.put("sub_url", this.sub_url.size());
 		paramMap.put("detail_url", this.detail_url.size());
 		paramMap.put("lookup_url", this.lookup_url.size());
-//		paramMap.put("generalProduct_topImage", this.generalProduct_topImage.size());
-		this.validateMsgMap = formValidate.generalProductWriteForm(paramMap);
+		paramMap.put("cat_ref", this.cat_ref);
+		paramMap.put("detail_info", this.detail_info);
+		paramMap.put("tag_list", this.tag_list);
+		this.validateMsgMap = formValidate.generalProductEditorForm(paramMap);
 		paramMap.clear();
 		if(!(boolean)validateMsgMap.get("res")){
 			this.rtnString = gson.toJson(validateMsgMap);
 			return "validation";
-		}else if(!fileUploader.fileValidation(getP_main_url(), getP_main_urlFileName(), this.p_main_url)){
+		}else if(!fileManager.fileValidation(getP_main_url(), getP_main_urlFileName(), this.p_main_url)){
 			validateMsgMap = formValidate.fileUploadError();
 			this.rtnString = gson.toJson(validateMsgMap);
 			return "validation";
-		}else if(!fileUploader.fileValidation(getDetail_url(), getDetail_urlFileName(), this.detail_url)){
+		}else if(!fileManager.fileValidation(getSub_url(), getSub_urlFileName(), this.sub_url)){
 			validateMsgMap = formValidate.fileUploadError();
 			this.rtnString = gson.toJson(validateMsgMap);
 			return "validation";
-		}else if(!fileUploader.fileValidation(getLookup_url(), getLookup_urlFileName(), this.lookup_url)){
+		}else if(!fileManager.fileValidation(getDetail_url(), getDetail_urlFileName(), this.detail_url)){
+			validateMsgMap = formValidate.fileUploadError();
+			this.rtnString = gson.toJson(validateMsgMap);
+			return "validation";
+		}else if(!fileManager.fileValidation(getLookup_url(), getLookup_urlFileName(), this.lookup_url)){
 			validateMsgMap = formValidate.fileUploadError();
 			this.rtnString = gson.toJson(validateMsgMap);
 			return "validation";
 		}
-//		}else if(!fileUploader.fileValidation(getGeneralProduct_topImage(), getGeneralProduct_topImageFileName(), this.generalProduct_topImage)){
-//			validateMsgMap = formValidate.fileUploadError();
-//			this.rtnString = gson.toJson(validateMsgMap);
-//			return "validation";
 
 		this.productListDTO.setAdmin_seq(this.admin_seq);
 		this.productListDTO.setP_name(this.p_name);
 		this.productListDTO.setCategory(this.category);
-		this.productListDTO.setP_price(this.p_price);
+		this.productListDTO.setP_price(Integer.parseInt(StringUtil.removeStrType(this.p_price)));
+		this.productListDTO.setColor_list(StringUtil.arrayToString(this.color_list));
+		
 		this.productListDTO.setDetail_info(this.detail_info);
 		this.productListDTO.setCat_ref(this.cat_ref);
-		this.productListDTO.setColor_list(this.color_list);
-
+		
+		/****************** 이미지파일 Insert & upload START ******************/
 		String saveFileName = "";
 		
 		// 메인이미지 업로드
 		for (int i = 0; i < this.p_main_url.size(); i++) { 
-			saveFileName = fileUploader.fileUpload(getP_main_urlFileName(), getP_main_url(), i, 0);	//파일업로드
+			saveFileName = fileManager.fileUpload(getP_main_urlFileName(), getP_main_url(), i, 0);	//파일업로드
 			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
 			this.productListDTO.setP_main_url(saveFileName);
 		}
 		// 코디이미지 업로드
 		for (int i = 0; i < this.lookup_url.size(); i++) { 
-			saveFileName = fileUploader.fileUpload(getLookup_urlFileName(), getLookup_url(), i, 0);	//파일업로드
+			saveFileName = fileManager.fileUpload(getLookup_urlFileName(), getLookup_url(), i, 1);	//파일업로드
 			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
 			this.productListDTO.setLookup_url(saveFileName);
 		}		
 		product_seq = this.productListDAO.write(this.productListDTO);
 		
-		this.sizeMapDTO.setP_id(product_seq);
-		for(int i=0; i<this.sizeArray.size(); i++){
-			if(!this.sizeArray.get(i).equals("")){
-				this.sizeMapDTO.setSize_id(this.sizeArray.get(i));
-				this.sizeMapDAO.write(this.sizeMapDTO);
-			}
-		}
-		
-		// 파일 여러장 업로드 시작
+		// 파일 여러장 업로드 시작(서브이미지, 상세이미지)
 		this.subPhotoDTO.setP_id(product_seq);
 		
-		// 상품이미지 업로드
-//		for (int i = 0; i < this.generalProduct_topImage.size(); i++) { 
-//			saveFileName = fileUploader.fileUpload(getGeneralProduct_topImageFileName(), getGeneralProduct_topImage(), i, 0);	//파일업로드
-//			this.imageMapDTO.setImage_kind(2);
-//			this.imageMapDTO.setOriginal_name(getGeneralProduct_topImageFileName().get(i));
-//			this.imageMapDTO.setReal_name(saveFileName);
-//			this.imageMapDTO.setSize(StringUtil.longToInt(getGeneralProduct_topImage().get(i).length()));
-//			this.imageMapDAO.write(this.imageMapDTO);
-//		}
-//		
-		// 상품상세이미지 업로드
+		// 서브이미지  업로드
+		for (int i = 0; i < this.sub_url.size(); i++) { 
+			saveFileName = fileManager.fileUpload(getSub_urlFileName(), getSub_url(), i, 2);	//파일업로드
+			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
+			this.subPhotoDTO.setPhoto_url(saveFileName);
+			this.subPhotoDTO.setPhoto_type(1);
+			this.subPhotoDAO.write(this.subPhotoDTO);
+		}
+		
+		// 상세이미지 업로드
 		for (int i = 0; i < this.detail_url.size(); i++) { 
-			saveFileName = fileUploader.fileUpload(getDetail_urlFileName(), getDetail_url(), i, 0);	//파일업로드
+			saveFileName = fileManager.fileUpload(getDetail_urlFileName(), getDetail_url(), i, 3);	//파일업로드
 			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
 			this.subPhotoDTO.setPhoto_url(saveFileName);
 			this.subPhotoDTO.setPhoto_type(2);
 			this.subPhotoDAO.write(this.subPhotoDTO);
 		}
-//		
-//		// 상품코디이미지 업로드
-//		for (int i = 0; i < this.generalProduct_codiImage.size(); i++) { 
-//			saveFileName = fileUploader.fileUpload(getGeneralProduct_codiImageFileName(), getGeneralProduct_codiImage(), i, 0);	//파일업로드
-//			this.imageMapDTO.setImage_kind(4);
-//			this.imageMapDTO.setOriginal_name(getGeneralProduct_codiImageFileName().get(i));
-//			this.imageMapDTO.setReal_name(saveFileName);
-//			this.imageMapDTO.setSize(StringUtil.longToInt(getGeneralProduct_codiImage().get(i).length()));
-//			this.imageMapDAO.write(this.imageMapDTO);
-//		}
+		/****************** 이미지파일 Insert & upload END ******************/
+		
+		/****************** 별도테이블(사이즈, 태그) Insert START ******************/
+		this.sizeMapDTO.setP_id(product_seq);
+		for(int i=0; i<this.sizeArray.size(); i++){
+			if(!this.sizeArray.get(i).equals("")){
+				this.sizeMapDTO.setSize_id(Integer.parseInt(this.sizeArray.get(i)));
+				this.sizeMapDAO.write(this.sizeMapDTO);
+			}
+		}
+		
+		this.tagListDTO.setP_id(product_seq);
+		for(int i=0; i<this.tag_list.size(); i++){
+			if(!this.tag_list.get(i).equals("")){
+				this.tagListDTO.setTag(this.tag_list.get(i));
+				this.tagListDAO.write(this.tagListDTO);
+			}
+		}
+		/****************** 별도테이블(사이즈, 태그) Insert END ******************/
 		
 		this.session.put("alertMsg", this.alertMessage.getGeneralProductWriteOK());
 		this.context.setSession(this.session);
@@ -337,38 +432,214 @@ public class GeneralProduct extends ActionSupport  {
 		return SUCCESS;
 	}
 	
-	public String editAction() throws Exception {	
+	public String updateAction() throws Exception {	
 		init();
-/*
-		Gson gson = new Gson();
-		this.generalProduct_name = StringUtil.isNullOrSpace(this.generalProduct_name,"").trim();
-		this.generalProduct_price = this.generalProduct_price;
-		paramMap.put("generalProduct_name", this.generalProduct_name);
-		paramMap.put("generalProduct_price", this.generalProduct_price);
 		
-		this.validateMsgMap = formValidate.generalProductEditForm(paramMap);
+		FileManager fileManager = new FileManager("generalProduct");
+		
+		Gson gson = new Gson();
+		
+		if(!StringUtil.stringToBool(StringUtil.isNullOrSpace((String)session.get("isAdmin"),"").trim())){
+			// 업체 접근시
+			this.admin_seq = (int) session.get("admin_seq");
+		}
+		
+		this.paramMap.put("seq", this.seq);
+				
+		Map<String, Object> data = getOriginalData(this.seq);
+		
+		ProductListDTO productData = (ProductListDTO) data.get("productData");
+		List<SizeMapDTO> sizeData = (List<SizeMapDTO>) data.get("sizeData");
+		List<String> colorData = (List<String>) data.get("colorData");
+		List<TagListDTO> tagData = (List<TagListDTO>) data.get("tagData");
+		List<SubPhotoDTO> subPhotoData = (List<SubPhotoDTO>) data.get("subPhotoData");
+		List<SubPhotoDTO> detailPhotoData = (List<SubPhotoDTO>) data.get("subPhotoData");
+		
+		if(productData == null){
+			validateMsgMap = formValidate.accessError();
+			this.rtnString = gson.toJson(validateMsgMap);
+			return "validation";
+		}
+		this.paramMap.clear();
+
+		this.p_name = StringUtil.isNullOrSpace(this.p_name,"").trim();
+		paramMap.put("admin_seq", this.admin_seq);
+		paramMap.put("p_name", this.p_name);
+		paramMap.put("category", this.category);
+		paramMap.put("p_price", this.p_price);
+		paramMap.put("color_list", this.color_list);
+		paramMap.put("sizeArray", this.sizeArray);
+		paramMap.put("p_main_url", 1 - (p_main_urlDeleteFileName.contains(productData.getP_main_url_name()) ? 1 : 0) + this.p_main_url.size() );
+		paramMap.put("sub_url", 1);
+		paramMap.put("detail_url", 1);
+		paramMap.put("lookup_url", 1 - (lookup_urlDeleteFileName.contains(productData.getLookup_url_name()) ? 1 : 0) + this.lookup_url.size() );
+		paramMap.put("cat_ref", this.cat_ref);
+		paramMap.put("detail_info", this.detail_info);
+		paramMap.put("tag_list", this.tag_list);
+		this.validateMsgMap = formValidate.generalProductEditorForm(paramMap);
 		paramMap.clear();
 		if(!(boolean)validateMsgMap.get("res")){
 			this.rtnString = gson.toJson(validateMsgMap);
 			return "validation";
+		}else if(!fileManager.fileValidation(getP_main_url(), getP_main_urlFileName(), this.p_main_url)){
+			validateMsgMap = formValidate.fileUploadError();
+			this.rtnString = gson.toJson(validateMsgMap);
+			return "validation";
+		}else if(!fileManager.fileValidation(getSub_url(), getSub_urlFileName(), this.sub_url)){
+			validateMsgMap = formValidate.fileUploadError();
+			this.rtnString = gson.toJson(validateMsgMap);
+			return "validation";
+		}else if(!fileManager.fileValidation(getDetail_url(), getDetail_urlFileName(), this.detail_url)){
+			validateMsgMap = formValidate.fileUploadError();
+			this.rtnString = gson.toJson(validateMsgMap);
+			return "validation";
+		}else if(!fileManager.fileValidation(getLookup_url(), getLookup_urlFileName(), this.lookup_url)){
+			validateMsgMap = formValidate.fileUploadError();
+			this.rtnString = gson.toJson(validateMsgMap);
+			return "validation";
+		}
+
+		/****************** 기존 데이터 삭제 START ******************/
+		List<String> allDeleteFileName =  new ArrayList<String>();
+		allDeleteFileName.addAll(this.p_main_urlDeleteFileName);
+		allDeleteFileName.addAll(this.sub_urlDeleteFileName);
+		allDeleteFileName.addAll(this.detail_urlDeleteFileName);
+		allDeleteFileName.addAll(this.lookup_urlDeleteFileName);
+		
+		if(this.sub_urlDeleteFileName.size() > 0){
+			this.paramMap.put("p_id", this.seq);
+			this.paramMap.put("photo_url", this.sub_urlDeleteFileName);
+			this.subPhotoDAO.delete(this.paramMap);
+		}
+		this.paramMap.clear();
+		
+		if(this.detail_urlDeleteFileName.size() > 0){
+			this.paramMap.put("p_id", this.seq);
+			this.paramMap.put("photo_url", this.detail_urlDeleteFileName);
+			this.subPhotoDAO.delete(this.paramMap);
+		}
+		this.paramMap.clear();
+		
+		for(String str : allDeleteFileName){
+			fileManager.fileDelete(str);
 		}
 		
-		this.generalProductDTO.setName(this.generalProduct_name);
-		this.generalProductDTO.setPrice(this.generalProduct_price);
-		this.generalProductDTO.setSeq(this.seq);
+		this.paramMap.put("p_id", this.seq);
+		this.sizeMapDAO.delete(this.paramMap);
+		this.tagListDAO.delete(this.paramMap);
+		this.paramMap.clear();
+		/****************** 기존 데이터 삭제 END ******************/
 		
-		this.generalProductDAO.edit(this.generalProductDTO);
+		this.productListDTO.setP_id(this.seq);
+		this.productListDTO.setAdmin_seq(this.admin_seq);
+		this.productListDTO.setP_name(this.p_name);
+		this.productListDTO.setCategory(this.category);
+		this.productListDTO.setP_price(Integer.parseInt(StringUtil.removeStrType(this.p_price)));
+		this.productListDTO.setColor_list(StringUtil.arrayToString(this.color_list));
+		this.productListDTO.setDetail_info(this.detail_info);
+		this.productListDTO.setCat_ref(this.cat_ref);
 		
-		this.session.put("alertMsg", this.alertMessage.getShopEditOK());
+		/****************** 이미지파일 update & upload START ******************/
+		
+		String saveFileName = "";
+		
+		// 메인이미지 업로드
+		for (int i = 0; i < this.p_main_url.size(); i++) { 
+			saveFileName = fileManager.fileUpload(getP_main_urlFileName(), getP_main_url(), i, 0);	//파일업로드
+			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
+			this.productListDTO.setP_main_url(saveFileName);
+		}
+		// 코디이미지 업로드
+		for (int i = 0; i < this.lookup_url.size(); i++) { 
+			saveFileName = fileManager.fileUpload(getLookup_urlFileName(), getLookup_url(), i, 1);	//파일업로드
+			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
+			this.productListDTO.setLookup_url(saveFileName);
+		}		
+		
+		this.productListDTO.setP_main_url((this.productListDTO.getP_main_url() == null) ? productData.getP_main_url() : this.productListDTO.getP_main_url());
+		this.productListDTO.setLookup_url((this.productListDTO.getLookup_url() == null) ? productData.getLookup_url() : this.productListDTO.getLookup_url());
+		
+		this.productListDAO.update(this.productListDTO);
+		
+		// 파일 여러장 업로드 시작(서브이미지, 상세이미지)
+		this.subPhotoDTO.setP_id(this.seq);
+		
+		// 서브이미지  업로드
+		for (int i = 0; i < this.sub_url.size(); i++) { 
+			saveFileName = fileManager.fileUpload(getSub_urlFileName(), getSub_url(), i, 2);	//파일업로드
+			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
+			this.subPhotoDTO.setPhoto_url(saveFileName);
+			this.subPhotoDTO.setPhoto_type(1);
+			this.subPhotoDAO.write(this.subPhotoDTO);
+		}
+		
+		// 상세이미지 업로드
+		for (int i = 0; i < this.detail_url.size(); i++) { 
+			saveFileName = fileManager.fileUpload(getDetail_urlFileName(), getDetail_url(), i, 3);	//파일업로드
+			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
+			this.subPhotoDTO.setPhoto_url(saveFileName);
+			this.subPhotoDTO.setPhoto_type(2);
+			this.subPhotoDAO.write(this.subPhotoDTO);
+		}
+		/****************** 이미지파일 Insert & upload END ******************/
+		
+		/****************** 별도테이블(사이즈, 태그) Insert START ******************/
+		this.sizeMapDTO.setP_id(this.seq);
+		for(int i=0; i<this.sizeArray.size(); i++){
+			if(!this.sizeArray.get(i).equals("")){
+				this.sizeMapDTO.setSize_id(Integer.parseInt(this.sizeArray.get(i)));
+				this.sizeMapDAO.write(this.sizeMapDTO);
+			}
+		}
+		
+		this.tagListDTO.setP_id(this.seq);
+		for(int i=0; i<this.tag_list.size(); i++){
+			if(!this.tag_list.get(i).equals("")){
+				this.tagListDTO.setTag(this.tag_list.get(i));
+				this.tagListDAO.write(this.tagListDTO);
+			}
+		}
+		/****************** 별도테이블(사이즈, 태그) Insert END ******************/
+
+		this.session.put("alertMsg", this.alertMessage.getGeneralProductUpdateOK());
 		this.context.setSession(this.session);
-*/
+		
 		return SUCCESS;
 	}
 	
-	public String deleteAction(){
+	public String deleteAction() throws Exception{
 		init();
 
-		this.productListDAO.delete(this.seq);
+		FileManager fileManager = new FileManager("generalProduct");
+		
+		Gson gson = new Gson();
+		
+		this.paramMap.put("p_id", this.seq);
+		
+		Map<String, Object> data = getOriginalData(this.seq);
+		this.productListDTO = (ProductListDTO) data.get("productData");
+		this.subPhotoList = (List<SubPhotoDTO>) data.get("subPhotoData");
+		this.detailPhotoList = (List<SubPhotoDTO>) data.get("detailPhotoData");
+		
+		if(this.productListDTO == null){
+			validateMsgMap = formValidate.accessError();
+			this.rtnString = gson.toJson(validateMsgMap);
+			return "validation";
+		}
+		
+		this.productListDAO.delete(this.paramMap);
+		
+		/****************** 기존 데이터 삭제 START ******************/		
+		fileManager.fileDelete(this.productListDTO.getP_main_url_name());
+		fileManager.fileDelete(this.productListDTO.getLookup_url_name());
+		for(SubPhotoDTO subPhoto : this.subPhotoList){
+			fileManager.fileDelete(subPhoto.getPhoto_url_name());
+		}
+		for(SubPhotoDTO detailPhoto : this.detailPhotoList){
+			fileManager.fileDelete(detailPhoto.getPhoto_url_name());
+		}
+		/****************** 기존 데이터 삭제 END ******************/
+		
 		this.session.put("alertMsg", this.alertMessage.getDeleteOK());
 		this.context.setSession(this.session);
 		

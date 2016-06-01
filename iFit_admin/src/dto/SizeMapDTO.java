@@ -9,5 +9,4 @@ public class SizeMapDTO {
 	private int size_map_seq;		//	시퀀스
 	private int p_id;					//	상품 seq
 	private int size_id;				//	사이즈 id
-	private String allSize;			//	사이즈 row 전체
 }

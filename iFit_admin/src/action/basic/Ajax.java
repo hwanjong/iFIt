@@ -62,16 +62,20 @@ public class Ajax extends ActionSupport  {
 		init();
 		JSONObject jsonObject = (JSONObject) JSONValue.parse(data);
 		String formID = jsonObject.get("formID").toString();
-		if(formID.equals("shopMemberWriteForm")){
-			validateMsgMap = this.isAdmin ? formValidate.shopMemberWriteForm(jsonObject) : null;
-		}else if(formID.equals("shopMemberEditForm")){
-			validateMsgMap = this.isAdmin ? formValidate.shopMemberEditForm(jsonObject) : null;
-		}else if(formID.equals("faqWriteForm")){
-			validateMsgMap = this.isAdmin ? formValidate.faqWriteForm(jsonObject) : null;
-		}else if(formID.equals("faqEditForm")){
-			validateMsgMap = this.isAdmin ? formValidate.faqWriteForm(jsonObject) : null;
-		}else if(formID.equals("generalProductWriteForm")){
-			validateMsgMap = formValidate.generalProductWriteForm(jsonObject);
+		if(formID.equals("shopMemberEditorForm")){
+			validateMsgMap = this.isAdmin ? formValidate.shopMemberEditorForm(jsonObject) : null;
+		}else if(formID.equals("faqEditorForm")){
+			validateMsgMap = this.isAdmin ? formValidate.faqEditorForm(jsonObject) : null;
+		}else if(formID.equals("generalProductEditorForm")){
+			validateMsgMap = formValidate.generalProductEditorForm(jsonObject);
+		}else if(formID.equals("eventBannerEditorForm")){
+			validateMsgMap = formValidate.eventBannerEditorForm(jsonObject);
+		}else if(formID.equals("mainLabelEditorForm")){
+			validateMsgMap = formValidate.mainLabelEditorForm(jsonObject);
+		}else if(formID.equals("labelProductEditorForm")){
+			validateMsgMap = formValidate.labelProductEditorForm(jsonObject);
+		}else if(formID.equals("adminTagEditorForm")){
+			validateMsgMap = formValidate.adminTagEditorForm(jsonObject);
 		}
 		
 		Gson gson = new Gson();
@@ -80,12 +84,12 @@ public class Ajax extends ActionSupport  {
 		return SUCCESS;		
 	}
 	
-	public String ajaxGetData(){
+	public String ajaxGetData() throws Exception{
 		init();
 		Gson gson = new Gson();
 		JSONObject jsonObject = (JSONObject) JSONValue.parse(data);
 		String dataKind = jsonObject.get("dataKind").toString();
-		
+		System.out.println(jsonObject);
 		if(this.isAdmin && dataKind.equals("shop")){
 			jsonObject.put("queryMode","one");
 			ShopMember shopMember= new ShopMember();
@@ -99,13 +103,11 @@ public class Ajax extends ActionSupport  {
 			this.rtnString = gson.toJson(faq.getData(jsonObject));
 		}else if(dataKind.equals("generalProduct")){
 			GeneralProduct generalProduct = new GeneralProduct();
-			ProductListDTO genralProductDTO = generalProduct.getData(jsonObject);
-			String productStr = gson.toJson(genralProductDTO);
-//			jsonObject.put("product_seq", genralProductDTO.getSeq());
-			String sizeMapStr = gson.toJson(generalProduct.getSizeMapData(jsonObject).getAllSize());
-			String imageMapStr = gson.toJson(generalProduct.getSubPhotoData(jsonObject).getPhoto_url());
-			this.rtnString = stringUtil.addObjectGson(productStr, sizeMapStr, "sizeMap");
-			this.rtnString = stringUtil.addObjectGson(this.rtnString, imageMapStr, "image");
+			Map<String, Object> data = generalProduct.getOriginalData(Integer.parseInt(jsonObject.get("seq").toString()));
+			this.rtnString = gson.toJson(data);
+		}else if(dataKind.equals("generalProductList")){
+			GeneralProduct generalProduct = new GeneralProduct();
+			this.rtnString = gson.toJson(generalProduct.getData(jsonObject));
 		}
 		
 		System.out.println("AJAX!!!!!!!!!" + this.rtnString);

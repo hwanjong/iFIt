@@ -7,35 +7,41 @@ $(function(){
 	
 	// 글 보기 레이어팝업
 	$(".viewBtn").click(function(){
-		var layerObj = $(".layer-"+$(this).attr("data-layer-id"));
-		var dataKind = $(this).attr("data-kind");
+		var dataKind = $(this).parents("form").attr("id");
+		var layerObj = $(".layer-"+dataKind+"View");
 		layer_init(layerObj);
 		
 		var data = {
 				"dataKind":dataKind,
-				"seq":$(this).attr("data-seq")
+				"seq":$(this).attr("data-seq"),
+				"url":"/ajaxGetData.ifit"
 		};
 
-		$.ajax({
-			url: "/ajaxGetData.ifit",
-			type: "post",
-			data: {"data":JSON.stringify(data)},
-			dataType:"text",
-			async: false,
-			success:function(result){
-				var jsonObj = JSON.parse(result);
-				console.log(jsonObj);
-				for(key in jsonObj) {
-//					if(typeof(jsonObj[key])=="object"){
-//						layerObj.find("#"+dataKind+"_"+key).html(jsonObj[key]);
-//					}
-					layerObj.find("#"+dataKind+"_"+key).html(jsonObj[key]);
-				}
-			},
-			error: function(xhr,status, error){
-				alert("에러발생");
-			}
-		});
+//		var jsonObj = JSON.parse(getAjaxData(data));
+		layerObj.find("#jsonObj").val(getAjaxData(data));
+		layerObj.find("#jsonObj").trigger("change");
+		
+//		console.log(jsonObj);
+//		for(key in jsonObj) {
+//			if((jsonObj[key]).constructor == Object){
+//				console.log("Object::" + key);
+//				for(key2 in jsonObj[key]) {
+//					layerObj.find("#"+dataKind+"_"+key).html(jsonObj[key]);
+//					$("#" + key + "-" + key2).html(jsonObj[key][key2]);
+//				}
+////				layerObj.find("#"+dataKind+"_"+key).html(jsonObj[key]);
+//			}else if((jsonObj[key]).constructor == Array){
+//				console.log("Array::" + key);
+//				for(key2 in jsonObj[key]) {
+////					layerObj.find("#"+dataKind+"_"+key).html(jsonObj[key]);
+////					$("#" + key + "-" + key2).html(jsonObj[key][key2]);
+//					console.log(key2);
+//				}
+////				layerObj.find("#"+dataKind+"_"+key).html(jsonObj[key]);
+//			}
+////			layerObj.find("#"+dataKind+"_"+key).html(jsonObj[key]);
+//		}
+		
 	});
 	
 	function layer_init(layerObj){

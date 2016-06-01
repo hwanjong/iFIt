@@ -8,17 +8,46 @@ $(document).ready(function() {
 	}
 	
 	$(".selectBtn").click(function(){
+		var selectedColor = $("#hexColor").val();
+		
+		var pattern = /^#?([a-f0-9]{6}|[a-f0-9]{3})$/;
+		if(!pattern.test(selectedColor)){
+			alert("올바른 색상을 선택해 주세요.");
+			return false;
+		}
+		
 		var colorHTML = "";
 		colorHTML += '<p class="colorReady vm mr10">';
 		colorHTML += '<i class="openPop ml10 fa fa-plus" data-pop-id="colorSelector" title="색상추가"></i>';
 		colorHTML += '</p>';
 		
-		$(".colorReady").last().css("background-color", $("#hexColor").val());
+		$(".colorReady").last().css("background-color", selectedColor);
 		$(".colorReady").last().addClass("colorSelected");
+		$(".colorReady").last().addClass("ellipse");
 		$(".colorReady").last().removeClass("colorReady");
-		$(".colorSelected").last().append('<input type="text" name="color_list" class="hide" value="' + $("#hexColor").val() + '" readonly />');
-		$(".colorSelected").last().after(colorHTML);
+		$(".colorSelected").last().append('<input type="text" id="color_list" name="color_list" class="validate arrayData hide" value="' + selectedColor + '" readonly />');
+		if($(".colorSelected").length < 10){
+			$(".colorSelected").last().after(colorHTML);
+		}
+		
 		$('.layer-colorSelector .layerClose').trigger('click');
+	});
+	
+	$(document).on("click",".colorSelected",function(e){
+		if(!confirm("해당 색상을 삭제 하시겠습니까?")){
+			return false;
+		}
+		
+		$(this).remove();
+		
+		if($(".colorSelected").length == 10-1){
+			var colorHTML = "";
+			colorHTML += '<p class="colorReady vm mr10">';
+			colorHTML += '<i class="openPop ml10 fa fa-plus" data-pop-id="colorSelector" title="색상추가"></i>';
+			colorHTML += '</p>';
+			$(".colorSelected").last().after(colorHTML);
+		}
+		
 	});
 });
 </script>
@@ -33,7 +62,7 @@ $(document).ready(function() {
 					<div class="mb25">
 						<p class="dib">
 							<div class="dib" id="colorpicker"></div>
-							<input type="text" id="hexColor" class="tc ml30" autocomplete="off" value="#000000"  readonly="readonly" />
+							<input type="text" id="hexColor" class="tc ml30" value="#000000" />
 						</p>
 					</div>
 				</div>

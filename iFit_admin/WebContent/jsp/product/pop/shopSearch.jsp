@@ -12,6 +12,7 @@ $(document).ready(function() {
 		$("#listExist").hide();
 		$("#listExist").empty();
 		var data = {
+			"url":"/ajaxGetData.ifit",
 			"dataKind":"shopList",
 			"id":$("#shopSearchID").val()
 		};
@@ -21,7 +22,7 @@ $(document).ready(function() {
 			var listHtml;
 			for(var i=0; i<jsonObj.length; i++){
 				listHtml = "";
-				listHtml += '<div data-idx=' + jsonObj[i].seq + ' data-name=' + jsonObj[i].name + '>';
+				listHtml += '<div data-idx="' + jsonObj[i].seq + '" data-name="' + jsonObj[i].name + '">';
 				listHtml += '<span class="shopSelect pointer">' + jsonObj[i].id + '</span>';
 				listHtml += '<dl>';
 				listHtml += '<dt class="fl mr8">업체명</dt>';

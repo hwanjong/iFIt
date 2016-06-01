@@ -19,10 +19,9 @@
 			<result name="validation">/jsp/product/generalProductList.jsp</result>
 		</action>
 		
-		<action name="generalProductEditAction" class="action.product.GeneralProduct" method="editAction">
+		<action name="generalProductUpdateAction" class="action.product.GeneralProduct" method="updateAction">
 			<result type="redirectAction">
 		  		<param name="actionName">generalProductList</param>
-		  		<param name="pageNum">${pageNum}</param>
     	  	</result>
 			<result name="validation">/jsp/product/generalProductList.jsp</result>
 		</action>
@@ -30,8 +29,8 @@
 		<action name="generalProductDeleteAction" class="action.product.GeneralProduct" method="deleteAction">
 			<result type="redirectAction">
 		  		<param name="actionName">generalProductList</param>
-		  		<param name="pageNum">${pageNum}</param>
     	  	</result>
+    	  	<result name="validation">/jsp/product/generalProductList.jsp</result>
 		</action>
 		
 		<!--예시

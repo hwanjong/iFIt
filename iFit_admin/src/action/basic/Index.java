@@ -104,8 +104,10 @@ public class Index extends ActionSupport  {
 		// admin, shop 구분
 		if(this.adminDTO.getIsAdmin()){
 			this.session.put("isAdmin", "true");
+			this.session.put("admin_name", "iFit 관리자");
 		}else{
 			this.session.put("isShop", "true");
+			this.session.put("admin_name", this.adminDTO.getName() + " 관리자");
 		}
 		this.session.put("admin_seq", this.adminDTO.getSeq());
 		this.context.setSession(this.session);

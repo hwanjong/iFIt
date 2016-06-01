@@ -23,11 +23,11 @@ import util.system.StringUtil;
 import dto.FaqDTO;
 
 @Repository
-public class FaqDAOImp implements FaqDAO {
+public class FaqDAOImp implements IfitDAO {
 
 	private FaqDTO faqDTO; 
 	private NamedParameterJdbcTemplate jdbcTemplate;
-	private String table_name = " FAQ  ";
+	private String table_name = " faq  ";
 	
 	@Autowired
 	public void setDataSource(DataSource dataSource){ 
@@ -39,7 +39,7 @@ public class FaqDAOImp implements FaqDAO {
 	}
 	
 	//	조건에 맞는 관리자목록
-	public FaqDTO getOneRow(Map<String, Object> paramMap) {	
+	public Object getOneRow(Map<String, Object> paramMap) {	
 		Map<String,Object> sqlMap = new HashMap<String,Object>();
 		List<FaqDTO> list = new ArrayList<FaqDTO>();
 		Map<String, Object> whereMap = (Map<String, Object>) (paramMap.containsKey("whereMap") ? paramMap.get("whereMap") : null);
@@ -66,9 +66,12 @@ public class FaqDAOImp implements FaqDAO {
 		List<FaqDTO> list = new ArrayList<FaqDTO>();
 		boolean isCount = paramMap.containsKey("isCount") ? (boolean)paramMap.get("isCount") : false;
 		Map<String, Object> whereMap = (Map<String, Object>) (paramMap.containsKey("whereMap") ? paramMap.get("whereMap") : null);
+		Map<String, Object> searchMap = (Map<String, Object>) (paramMap.containsKey("searchMap") ? paramMap.get("searchMap") : null);
 		int pageNum = paramMap.containsKey("pageNum") ? (int)paramMap.get("pageNum") : 0;
 		int countPerPage = paramMap.containsKey("countPerPage") ? (int)paramMap.get("countPerPage") : 0;
 		int startNum = (pageNum-1)*countPerPage;
+		String sortCol = paramMap.containsKey("sortCol") ? (String)paramMap.get("sortCol") : "";
+		String sortVal = paramMap.containsKey("sortVal") ? (String)paramMap.get("sortVal") : "";
 		
 		String sql = "";
 		
@@ -80,8 +83,7 @@ public class FaqDAOImp implements FaqDAO {
 			sql += "	SELECT COUNT(*)	\n";
 		}else{
 			sql += "	SELECT TITLE, CONTENT, 	\n";
-			sql += "	SEQ,	\n";
-			sql += "	DATE_FORMAT(REGDATE, '%Y-%m-%d') AS REGDATE		\n";
+			sql += "	faq_seq	\n";
 		}
         sql += " FROM "+ table_name + " T WHERE :one = :one \n";
         if(whereMap!=null && !whereMap.isEmpty()){
@@ -90,10 +92,19 @@ public class FaqDAOImp implements FaqDAO {
             	sql += " and " + key + " = :"+key+"		\n";
             }
         }
+        if(searchMap!=null && !searchMap.isEmpty()){
+            for( String key : searchMap.keySet() ){
+            	sqlMap.put(key, "%" + searchMap.get(key) + "%");
+            	sql += " and LOWER( "+key+" ) like LOWER( :"+key+" )";
+            }
+        }
         
-        if(isCount){
+        if(!sortCol.equals("")){
+        	sql += " ORDER BY " + sortCol + " " + sortVal + "		\n";
+        }
+        
+        if(isCount || pageNum==0){
 		}else{
-			sql += " ORDER BY seq DESC		\n";
 			sql += " LIMIT :startNum, :countPerPage	\n";
 		}
         
@@ -108,15 +119,15 @@ public class FaqDAOImp implements FaqDAO {
 	}
 	
 	//	Write
-	public int write(FaqDTO dto) {
+	public int write(Object dto) {
 		String sql = "";
 		sql += "	INSERT INTO " + table_name + "	\n";
 		sql += "	(title, content)	\n";
 		sql += "	values(:title, :content)	\n";
 
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-		paramSource.addValue("title", dto.getTitle(), Types.VARCHAR);
-		paramSource.addValue("content", dto.getContent(), Types.VARCHAR);
+		paramSource.addValue("title", ((FaqDTO) dto).getTitle(), Types.VARCHAR);
+		paramSource.addValue("content", ((FaqDTO) dto).getContent(), Types.VARCHAR);
 		
 		int rtnInt = 0;
 		
@@ -133,39 +144,40 @@ public class FaqDAOImp implements FaqDAO {
 		}
 	}
 	
-	//	Edit
-	public int edit(FaqDTO dto) {
+	public int update(Object dto) {
 		String sql = "";
 		sql += "	UPDATE " + table_name + " SET	\n";
 		sql += "	title = :title, content = :content	\n";
-		sql += "	where seq = :seq	\n";
+		sql += "	where faq_seq = :faq_seq	\n";
 		
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-		paramSource.addValue("title", dto.getTitle(), Types.VARCHAR);
-		paramSource.addValue("content", dto.getContent(), Types.VARCHAR);
-		paramSource.addValue("seq", dto.getSeq(), Types.NUMERIC);
+		paramSource.addValue("title", ((FaqDTO) dto).getTitle(), Types.VARCHAR);
+		paramSource.addValue("content", ((FaqDTO) dto).getContent(), Types.VARCHAR);
+		paramSource.addValue("faq_seq", ((FaqDTO) dto).getFaq_seq(), Types.NUMERIC);
 		
 		if(this.jdbcTemplate.update(sql, paramSource) > 0){
-			return dto.getSeq();
+			return ((FaqDTO) dto).getFaq_seq();
 		}else{
 			return 0;
 		}
 	}
 	
 	//	DELETE
-	public int delete(int seq) {
+	public int delete(Map<String, Object> paramMap) {
 //		int next_seq = getMaxSeq();
 //		if(next_seq == 0){
 //			next_seq = 1;
 //		}
+		int faq_seq = paramMap.containsKey("faq_seq") ? (int)paramMap.get("faq_seq") : 0;
+		
 		String sql = "";
 		sql += "	DELETE FROM " + table_name + "	\n";
-		sql += "	WHERE seq = :seq	\n";
+		sql += "	WHERE faq_seq = :faq_seq	\n";
 
 //		SqlLobValue lobValue = new SqlLobValue(dto.getBbs_content(), lobHandler);
 
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-		paramSource.addValue("seq", seq, Types.NUMERIC);
+		paramSource.addValue("faq_seq", faq_seq, Types.NUMERIC);
 		int rtnInt = this.jdbcTemplate.update(sql, paramSource);
 		if(rtnInt > 0){
 			return rtnInt;

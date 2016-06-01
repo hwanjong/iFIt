@@ -73,4 +73,10 @@ public class Code{
     	put("bmp","bmp");
     	put("png","png");
     }};
+    
+    //	배너 형식
+    private LinkedHashMap eventBannerTypeMap = new LinkedHashMap() {{
+    	put(1,"상단배너");
+    	put(2,"하단배너");
+    }};
 }

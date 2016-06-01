@@ -19,6 +19,11 @@ public class ProductListDTO {
 	private int admin_seq;
 	private String regdate;
 	
+	// make data
+	private String category_name;
+	private String p_main_url_name;
+	private String lookup_url_name;
+	
 	// join data
 	private String admin_name;
 }

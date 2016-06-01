@@ -71,6 +71,7 @@ public class SizeListDAOImp implements IfitDAO {
 		int pageNum = paramMap.containsKey("pageNum") ? (int)paramMap.get("pageNum") : 0;
 		int countPerPage = paramMap.containsKey("countPerPage") ? (int)paramMap.get("countPerPage") : 0;
 		int startNum = (pageNum-1)*countPerPage;
+		String customSql = paramMap.containsKey("customSQL") ? paramMap.get("customSQL").toString() : "";
 		
 		String sql = "";
 		
@@ -89,6 +90,10 @@ public class SizeListDAOImp implements IfitDAO {
             	sqlMap.put(key, whereMap.get(key));
             	sql += " and " + key + " = :"+key+"		\n";
             }
+        }
+        
+        if(customSql!=null && !customSql.equals("")){
+        	sql += " and " + customSql + "		\n";
         }
         
         sql += " ORDER BY size_id DESC		\n";
@@ -139,9 +144,8 @@ public class SizeListDAOImp implements IfitDAO {
 			return 0;
 //		}
 	}
-//	
-//	//	Edit
-	public int edit(Object dto) {
+
+	public int update(Object dto) {
 //		String sql = "";
 //		sql += "	UPDATE " + table_name + " SET	\n";
 //		sql += "	admin_seq = :admin_seq, name = :name, price = :price, color = :color, detailExplain = :detailExplain	\n";
@@ -163,19 +167,21 @@ public class SizeListDAOImp implements IfitDAO {
 	}
 	
 	//	DELETE
-	public int delete(int seq) {
+	public int delete(Map<String, Object> paramMap) {
 //		int next_seq = getMaxSeq();
 //		if(next_seq == 0){
 //			next_seq = 1;
 //		}
+		int seq = paramMap.containsKey("seq") ? (int)paramMap.get("seq") : 0;
+		
 		String sql = "";
 		sql += "	DELETE FROM " + table_name + "	\n";
-		sql += "	WHERE p_id = :p_id	\n";
+		sql += "	WHERE seq = :seq	\n";
 
 //		SqlLobValue lobValue = new SqlLobValue(dto.getBbs_content(), lobHandler);
 
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-		paramSource.addValue("p_id", seq, Types.NUMERIC);
+		paramSource.addValue("seq", seq, Types.NUMERIC);
 		int rtnInt = this.jdbcTemplate.update(sql, paramSource);
 		if(rtnInt > 0){
 			return rtnInt;

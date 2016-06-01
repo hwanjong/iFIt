@@ -49,6 +49,8 @@ public class AdminDAOImp implements IfitDAO {
             }
         }
         
+        System.out.println(sql);
+        
         list  = this.jdbcTemplate.query(sql,sqlMap,new BeanPropertyRowMapper(AdminDTO.class));
         this.adminDTO = (list.size() == 1) ? list.get(0) : null;
         return this.adminDTO;
@@ -63,21 +65,27 @@ public class AdminDAOImp implements IfitDAO {
 		Map<String, Object> searchMap = (Map<String, Object>) (paramMap.containsKey("searchMap") ? paramMap.get("searchMap") : null);
 		int pageNum = paramMap.containsKey("pageNum") ? (int)paramMap.get("pageNum") : 0;
 		int countPerPage = paramMap.containsKey("countPerPage") ? (int)paramMap.get("countPerPage") : 0;
+		int startNum = (pageNum-1)*countPerPage;
 		String sortCol = paramMap.containsKey("sortCol") ? (String)paramMap.get("sortCol") : "";
 		String sortVal = paramMap.containsKey("sortVal") ? (String)paramMap.get("sortVal") : "";
-		int startNum = (pageNum-1)*countPerPage;
 		
 		String sql = "";
 		
 		sqlMap.put("one", 1);
 		sqlMap.put("startNum", startNum);
 		sqlMap.put("countPerPage", countPerPage);
+		
 		if(isCount){
 			sql += "	SELECT COUNT(*)	\n";
 		}else{
 			sql += "	SELECT ID, NAME, TEL1, TEL2, TEL3, 	\n";
 			sql += "	SEQ,	\n";
-			sql += "	DATE_FORMAT(REGDATE, '%Y-%m-%d') AS REGDATE		\n";
+			sql += "	CASE		\n";
+			sql += "	WHEN DATE_FORMAT(regdate,'%p') = 'AM' THEN 		\n";
+			sql += "	DATE_FORMAT(regdate, '%Y.%m.%d 오전 %h:%i:%s')		\n";
+			sql += "	ELSE		\n";
+			sql += "	DATE_FORMAT(regdate, '%Y.%m.%d 오후 %h:%i:%s')		\n";
+			sql += "	END AS REGDATE, regdate as orig_regdate		\n";
 		}
         sql += " FROM "+ table_name + " T WHERE :one = :one \n";
         if(whereMap!=null && !whereMap.isEmpty()){
@@ -142,14 +150,24 @@ public class AdminDAOImp implements IfitDAO {
 		}
 	}
 	
-	//	Edit
-	public int edit(Object dto) {
+	public int update(Object dto) {
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();
 		String sql = "";
 		sql += "	UPDATE " + table_name + " SET	\n";
 		sql += "	name = :name, tel1 = :tel1, tel2 = :tel2, tel3 = :tel3	\n";
+		
+		if(!((AdminDTO)dto).getId().equals("")){
+			sql += ", id = :id	\n";
+			paramSource.addValue("id", ((AdminDTO)dto).getId(), Types.VARCHAR);
+		}
+		
+		if(!((AdminDTO)dto).getPw().equals("")){
+			sql += ", pw = :pw	\n";
+			paramSource.addValue("pw", ((AdminDTO)dto).getPw(), Types.VARCHAR);
+		}
+		
 		sql += "	where seq = :seq	\n";
 		
-		MapSqlParameterSource paramSource = new MapSqlParameterSource();
 		paramSource.addValue("name", ((AdminDTO)dto).getName(), Types.VARCHAR);
 		paramSource.addValue("tel1", ((AdminDTO)dto).getTel1(), Types.VARCHAR);
 		paramSource.addValue("tel2", ((AdminDTO)dto).getTel2(), Types.VARCHAR);
@@ -164,11 +182,13 @@ public class AdminDAOImp implements IfitDAO {
 	}
 	
 	//	DELETE
-	public int delete(int seq) {
+	public int delete(Map<String, Object> paramMap) {
 //		int next_seq = getMaxSeq();
 //		if(next_seq == 0){
 //			next_seq = 1;
 //		}
+		int seq = paramMap.containsKey("seq") ? (int)paramMap.get("seq") : 0;
+		
 		String sql = "";
 		sql += "	DELETE FROM " + table_name + "	\n";
 		sql += "	WHERE seq = :seq	\n";

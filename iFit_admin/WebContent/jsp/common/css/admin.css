@@ -59,7 +59,7 @@
 #logoutBtn{
 	width: 100px;
 }
-.writeBtn, .writeActionBtn, .submitBtn, .selectBtn{
+.writeBtn, .writeActionBtn, .updateActionBtn, .submitBtn, .selectBtn{
 	background-color:#A5FFEB;
 	border:1px solid #78C7F4;
 }
@@ -124,7 +124,7 @@ table.table_editor tr th{
 table.table_editor tr td{
     padding: 10px 12px;
 }
-table.table_editor tr td input[type="text"]{
+table.table_editor tr td input[type="text"], table.table_editor tr td input[type="password"]{
 	margin: 0;
     font-size: 12px;
     border: 1px solid #ccc;
@@ -174,10 +174,6 @@ table.table_editor tr td input[type="text"]{
 #pop-title{
 	font-size:20px;
 }
-.pop-layer form>div:first-child{
-	max-height:450px;
-	overflow-y:auto;
-}
 .pop-layer .pop-container {padding: 20px 25px;}
 .pop-layer p.ctxt {color: #666; line-height: 25px;}
 .pop-layer .btn-r {
@@ -211,6 +207,13 @@ form#shopMember #searchCol + div{
 }
 form#shopMember #searchCol + div>.wSelect-options-holder{ 
 	width:130px !important; 
+}
+
+form[name="shopMemberEditor"] #tel1 + div{ 
+	width:120px !important; 
+}
+form[name="shopMemberEditor"] #tel1 + div>.wSelect-options-holder{ 
+	width:120px !important; 
 }
 
 .layer-shopSearch>.pop-layer{
@@ -267,15 +270,14 @@ input#shop_tel2,input#shop_tel3{
 }
 
 /* FAQ */
-.layer-faqWrite>.pop-layer, .layer-faqEdit>.pop-layer, .layer-faqView>.pop-layer{
-	width:470px;
+form#faq #searchCol + div{ 
+	width:100px !important; 
 }
-input#faq_title{
-	width:333px;
+form#faq #searchCol + div>.wSelect-options-holder{ 
+	width:100px !important; 
 }
-textarea#faq_content{
-	width:313px;
-	height: 200px;
+form[name="faqEditor"] input#title, form[name="faqEditor"] input#content{
+	width:99%;
 }
 
 /* 일반상품 */
@@ -288,6 +290,13 @@ form#generalProduct #searchCol + div>.wSelect-options-holder{
 
 .layer-generalProductView>.pop-layer{
 	width:640px;
+	height:600px;
+}
+
+.layer-generalProductView .contentsArea{
+	height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 span#generalProduct_admin_name{
@@ -297,34 +306,228 @@ span#generalProduct_admin_name{
     height: 38px;
     line-height: 38px;
 }
-form[name="generalProductWriter"] input#admin_name, form[name="generalProductWriter"] input#p_name{
+form[name="generalProductEditor"] input#admin_name, form[name="generalProductEditor"] input#p_name{
 	width:99%;
 }
-form[name="generalProductWriter"] input#p_price{
+form[name="generalProductEditor"] input#p_price{
 	width:230px;
 	margin-right:5px;
 }
-form[name="generalProductWriter"] #p_category + div{ 
-	width:120px !important; 
+form[name="generalProductEditor"] #category + div{ 
+	width:140px !important; 
 }
-form[name="generalProductWriter"] #p_category + div>.wSelect-options-holder{ 
-	width:120px !important; 
+form[name="generalProductEditor"] #category + div>.wSelect-options-holder{ 
+	width:140px !important; 
 }
-form[name="generalProductWriter"] p.colorReady, form[name="generalProductWriter"] p.colorSelected{
+form[name="generalProductEditor"] p.colorReady, p.colorSelected{
 	display: inline-block;
     width: 30px;
     height: 30px;
     line-height: 30px;
 }
-form[name="generalProductWriter"] p.colorSelected{
-	cursor:pointer;
+p.colorSelected{
 	border:1px solid black;
 }
-form[name="generalProductWriter"] p.colorSelected i{
+form[name="generalProductEditor"] p.colorSelected{
+	cursor:pointer;
+}
+
+form[name="generalProductEditor"] p.colorSelected i{
 	display:none;
 }
-form[name="generalProductWriter"] textarea#detail_info{
+form[name="generalProductEditor"] #sizeArray + div{ 
+	width:100px !important; 
+}
+form[name="generalProductEditor"] #sizeArray + div>.wSelect-options-holder{ 
+	width:100px !important; 
+}
+
+form[name="generalProductEditor"] textarea#detail_info{
 	width: 97%;
 	height: 200px;
 	resize:none;
+}
+
+/* 이벤트배너 */
+form[name="eventBannerList"] img#banner_img_preview{
+	width: 200px;
+    height: 100%;
+}
+
+/* 메인라벨관리 */
+form[name="mainLabelList"] div#mainLabelEditArea{
+	width: 645px;
+	height: 323px;
+	overflow-y: auto;
+	padding: 10px;
+	border: 1px solid #CCCCCC;
+}
+form[name="mainLabelList"] div#mainLabelEditArea div#mainLabelDetailArea{
+	padding-left:10px;
+}
+form[name="mainLabelList"] div#mainLabelEditArea div#mainLabelDetailArea ul{
+    list-style-type: square;
+    margin-left:20px;
+}
+form[name="mainLabelList"] #sortable{ 
+	list-style-type: none; margin: 0; padding: 0;
+}
+form[name="mainLabelList"] #sortable li { 
+	margin: 0 5px 5px 5px; 
+	padding: 5px; 
+	font-size: 1.2em; 
+	height: 1.5em; 
+	width:250px;
+}
+form[name="mainLabelList"] #sortable li, form[name="mainLabelList"] .ui-state-highlight { 
+	height: 1.5em; line-height: 1.5em; 
+}
+
+form[name="mainLabelList"] #sortable + p{
+    height: 23px;    
+    width: 250px;
+    border: 1px solid #ccc;
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+}
+
+form[name="mainLabelList"] #mainLabelDetailArea input{
+	margin: 0;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    height: 24px;
+    line-height: 20px;
+    border-radius: 3px;
+    text-indent: 5px;
+}
+
+form[name="mainLabelList"] #mainLabelDetailAreaDefault{
+	height: 100px;
+    padding: 15px;
+}
+
+form[name="mainLabelList"] #mainLabelDetailAreaInput{
+	height: 120px;
+	padding-top:70px;
+	text-align:center;
+}
+form[name="mainLabelList"] #mainLabelDetailAreaInput input[type="button"]{
+	width: 30px;
+    text-indent: 0;
+    border: 1px solid #000000;
+    border-radius: 0;
+}
+
+/* 라벨컨텐츠 */
+form[name="labelProductEditor"] div#labelProductEditArea{
+	width: 645px;
+	height: 323px;
+	overflow-y: auto;
+	padding: 10px;
+	border: 1px solid #CCCCCC;
+}
+form[name="labelProductEditor"] div#labelProductEditArea div#labelProductDetailArea{
+	padding-left:10px;
+}
+form[name="labelProductEditor"] div#labelProductEditArea div#labelProductDetailArea ul{
+    list-style-type: square;
+    margin-left:20px;
+}
+form[name="labelProductEditor"] #sortable{ 
+	list-style-type: none; margin: 0; padding: 0;
+}
+form[name="labelProductEditor"] #sortable li { 
+	margin: 0 5px 5px 5px; 
+	padding: 5px; 
+	font-size: 1.2em; 
+	height: 1.5em; 
+	width:250px;
+}
+form[name="labelProductEditor"] #sortable li, form[name="labelProductEditor"] .ui-state-highlight { 
+	height: 1.5em; line-height: 1.5em; 
+}
+
+form[name="labelProductEditor"] #sortable + p{
+    height: 23px;    
+    width: 250px;
+    border: 1px solid #ccc;
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+}
+
+form[name="labelProductEditor"] #labelProductDetailArea input{
+	margin: 0;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    height: 24px;
+    line-height: 20px;
+    border-radius: 3px;
+    text-indent: 5px;
+}
+
+form[name="labelProductEditor"] #labelProductDetailAreaDefault{
+	height: 100px;
+    padding: 15px;
+}
+
+form[name="labelProductEditor"] #labelProductDetailAreaInput{
+	height: 100px;
+	padding-top:70px;
+	text-align:center;
+}
+form[name="labelProductEditor"] #labelProductDetailAreaInput input[type="button"]{
+	width: 30px;
+    text-indent: 0;
+    border: 1px solid #000000;
+    border-radius: 0;
+}
+form[name="labelProductList"] #main_type + div{ 
+	width:200px !important; 
+	margin-left: 117px;
+    margin-bottom: 10px !important;
+}
+form[name="labelProductList"] #main_type + div>.wSelect-options-holder{ 
+	width:200px !important; 
+}
+
+.layer-productSearch>.pop-layer{
+	width:440px;
+	height: 530px;
+}
+.layer-productSearch #result{
+	border-bottom: 1px solid #4A4A4A;
+}
+
+.layer-productSearch #result>span:first-child{
+	width: 380px;
+    border-top: 1px solid #4A4A4A;
+    background-color: #EBEBEB;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+.layer-productSearch #result>div>div, .layer-productSearch #result #listEmpty{
+	width:330px;
+	padding: 10px 30px;
+    border-top: 1px solid #CCCCCC;
+}
+.layer-productSearch #result #listExist{
+	height: 330px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.layer-productSearch #result dt{
+    color:#777;
+}
+.layer-productSearch #result>div span{
+    color: #e52d38;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+
+/* 태그관리 */
+form[name="adminTagList"] table{
+	width:40%;
 }

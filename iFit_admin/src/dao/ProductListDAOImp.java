@@ -48,8 +48,8 @@ public class ProductListDAOImp implements IfitDAO {
 		String sql = "";
 		
 		sqlMap.put("one", 1);
-		
-        sql = "	SELECT PL.*, A.name AS admin_name FROM "+ table_name + " PL JOIN ADMIN A ON PL.admin_seq = A.seq WHERE :one = :one	\n";
+        sql += "	SELECT PL.*, A.name AS admin_name, SUBSTRING_INDEX(PL.p_main_url, '/', -1) AS p_main_url_name, SUBSTRING_INDEX(PL.lookup_url, '/', -1) AS lookup_url_name	\n"; 
+        sql += "	FROM "+ table_name + " PL JOIN ADMIN A ON PL.admin_seq = A.seq WHERE :one = :one	\n";
         if(whereMap!=null && !whereMap.isEmpty()){
             for( String key : whereMap.keySet() ){
             	sqlMap.put(key, whereMap.get(key));
@@ -57,8 +57,11 @@ public class ProductListDAOImp implements IfitDAO {
             }
         }
         
+        System.out.println("sql:::"+sql);
+        
         list  = this.jdbcTemplate.query(sql,sqlMap,new BeanPropertyRowMapper(ProductListDTO.class));
         this.productListDTO = (list.size() == 1) ? list.get(0) : null;
+        
         return this.productListDTO;
 	}
 	
@@ -68,9 +71,12 @@ public class ProductListDAOImp implements IfitDAO {
 		List<ProductListDTO> list = new ArrayList<ProductListDTO>();
 		boolean isCount = paramMap.containsKey("isCount") ? (boolean)paramMap.get("isCount") : false;
 		Map<String, Object> whereMap = (Map<String, Object>) (paramMap.containsKey("whereMap") ? paramMap.get("whereMap") : null);
+		Map<String, Object> searchMap = (Map<String, Object>) (paramMap.containsKey("searchMap") ? paramMap.get("searchMap") : null);
 		int pageNum = paramMap.containsKey("pageNum") ? (int)paramMap.get("pageNum") : 0;
 		int countPerPage = paramMap.containsKey("countPerPage") ? (int)paramMap.get("countPerPage") : 0;
 		int startNum = (pageNum-1)*countPerPage;
+		String sortCol = paramMap.containsKey("sortCol") ? (String)paramMap.get("sortCol") : "";
+		String sortVal = paramMap.containsKey("sortVal") ? (String)paramMap.get("sortVal") : "";
 		
 		String sql = "";
 		
@@ -83,7 +89,12 @@ public class ProductListDAOImp implements IfitDAO {
 		}else{
 			sql += "	SELECT PL.admin_seq, A.name AS ADMIN_NAME, PL.p_name, PL.p_price, PL.color_list, PL.detail_info, 	\n";
 			sql += "	PL.p_id,	\n";
-			sql += "	DATE_FORMAT(PL.regdate, '%Y-%m-%d') AS REGDATE		\n";
+			sql += "	CASE		\n";
+			sql += "	WHEN DATE_FORMAT(PL.regdate,'%p') = 'AM' THEN 		\n";
+			sql += "	DATE_FORMAT(PL.regdate, '%Y.%m.%d 오전 %h:%i:%s')		\n";
+			sql += "	ELSE		\n";
+			sql += "	DATE_FORMAT(PL.regdate, '%Y.%m.%d 오후 %h:%i:%s')		\n";
+			sql += "	END AS REGDATE, PL.regdate AS orig_regdate		\n";
 		}
         sql += " FROM "+ table_name + " PL JOIN ADMIN A ON PL.admin_seq = A.seq WHERE :one = :one \n";
         if(whereMap!=null && !whereMap.isEmpty()){
@@ -92,8 +103,16 @@ public class ProductListDAOImp implements IfitDAO {
             	sql += " and " + key + " = :"+key+"		\n";
             }
         }
+        if(searchMap!=null && !searchMap.isEmpty()){
+            for( String key : searchMap.keySet() ){
+            	sqlMap.put(key, "%" + searchMap.get(key) + "%");
+            	sql += " and LOWER( "+key+" ) like LOWER( :"+key+" )";
+            }
+        }
         
-        sql += " ORDER BY PL.p_id DESC		\n";
+        if(!sortCol.equals("")){
+        	sql += " ORDER BY " + sortCol + " " + sortVal + "		\n";
+        }
         
         if(isCount || pageNum==0){
 		}else{
@@ -145,35 +164,41 @@ public class ProductListDAOImp implements IfitDAO {
 			return 0;
 		}
 	}
-//	
-//	//	Edit
-	public int edit(Object dto) {
-//		String sql = "";
-//		sql += "	UPDATE " + table_name + " SET	\n";
-//		sql += "	admin_seq = :admin_seq, name = :name, price = :price, color = :color, detailExplain = :detailExplain	\n";
-//		sql += "	where seq = :seq	\n";
-//		
-//		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-//		paramSource.addValue("admin_seq", dto.getAdmin_seq(), Types.NUMERIC);
-//		paramSource.addValue("name", dto.getName(), Types.VARCHAR);
-//		paramSource.addValue("price", dto.getPrice(), Types.NUMERIC);
-//		paramSource.addValue("color", dto.getColor(), Types.VARCHAR);
-//		paramSource.addValue("detailExplain", dto.getDetailExplain(), Types.VARCHAR);
-//		paramSource.addValue("seq", dto.getSeq(), Types.NUMERIC);
-//		
-//		if(this.jdbcTemplate.update(sql, paramSource) > 0){
-//			return dto.getSeq();
-//		}else{
+
+	public int update(Object dto) {
+		String sql = "";
+		sql += "	UPDATE " + table_name + " SET	\n";
+		sql += "	admin_seq = :admin_seq, p_name = :p_name, p_price = :p_price, color_list = :color_list, detail_info = :detail_info, category = :category, cat_ref = :cat_ref, p_main_url = :p_main_url, lookup_url = :lookup_url		\n";
+		sql += "	where p_id = :p_id	\n";
+		
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();
+		paramSource.addValue("admin_seq", ((ProductListDTO) dto).getAdmin_seq(), Types.NUMERIC);
+		paramSource.addValue("p_name", ((ProductListDTO) dto).getP_name(), Types.VARCHAR);
+		paramSource.addValue("p_price", ((ProductListDTO) dto).getP_price(), Types.NUMERIC);
+		paramSource.addValue("color_list", ((ProductListDTO) dto).getColor_list(), Types.VARCHAR);
+		paramSource.addValue("detail_info", ((ProductListDTO) dto).getDetail_info(), Types.VARCHAR);
+		paramSource.addValue("category", ((ProductListDTO) dto).getCategory(), Types.NUMERIC);
+		paramSource.addValue("cat_ref", ((ProductListDTO) dto).getCat_ref(), Types.VARCHAR);
+		paramSource.addValue("p_main_url", ((ProductListDTO) dto).getP_main_url(), Types.VARCHAR);
+		paramSource.addValue("lookup_url", ((ProductListDTO) dto).getLookup_url(), Types.VARCHAR);
+		
+		paramSource.addValue("p_id", ((ProductListDTO) dto).getP_id(), Types.NUMERIC);
+		
+		if(this.jdbcTemplate.update(sql, paramSource) > 0){
+			return ((ProductListDTO) dto).getP_id();
+		}else{
 			return 0;
-//		}
+		}
 	}
 	
 	//	DELETE
-	public int delete(int seq) {
+	public int delete(Map<String, Object> paramMap) {
 //		int next_seq = getMaxSeq();
 //		if(next_seq == 0){
 //			next_seq = 1;
 //		}
+		int p_id = paramMap.containsKey("p_id") ? (int)paramMap.get("p_id") : 0;
+		
 		String sql = "";
 		sql += "	DELETE FROM " + table_name + "	\n";
 		sql += "	WHERE p_id = :p_id	\n";
@@ -181,7 +206,7 @@ public class ProductListDAOImp implements IfitDAO {
 //		SqlLobValue lobValue = new SqlLobValue(dto.getBbs_content(), lobHandler);
 
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-		paramSource.addValue("p_id", seq, Types.NUMERIC);
+		paramSource.addValue("p_id", p_id, Types.NUMERIC);
 		int rtnInt = this.jdbcTemplate.update(sql, paramSource);
 		if(rtnInt > 0){
 			return rtnInt;

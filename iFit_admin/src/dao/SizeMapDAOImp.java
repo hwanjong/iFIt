@@ -46,7 +46,7 @@ public class SizeMapDAOImp implements IfitDAO {
 		String sql = "";
 		
 		sqlMap.put("one", 1);
-        sql = "	SELECT *, GROUP_CONCAT( size SEPARATOR ',') as allSize FROM"+ table_name + "WHERE :one = :one	\n";
+        sql = "	SELECT * FROM " + table_name + " WHERE :one = :one	\n";
         if(whereMap!=null && !whereMap.isEmpty()){
             for( String key : whereMap.keySet() ){
             	sqlMap.put(key, whereMap.get(key));
@@ -54,7 +54,7 @@ public class SizeMapDAOImp implements IfitDAO {
             }
         }
         
-        sql += "		GROUP BY p_id		\n";
+        sql += " ORDER BY size_map_seq DESC		\n";
         list  = this.jdbcTemplate.query(sql,sqlMap,new BeanPropertyRowMapper(SizeMapDTO.class));
         this.sizeMapDTO = (list.size() == 1) ? list.get(0) : null;
         
@@ -83,7 +83,7 @@ public class SizeMapDAOImp implements IfitDAO {
 			sql += "	SELECT COUNT(*)	\n";
 		}else{
 			sql += "	SELECT p_id, size_id, 	\n";
-			sql += "	SEQ	\n";
+			sql += "	size_map_seq	\n";
 		}
         sql += " FROM "+ table_name + " T WHERE :one = :one \n";
         if(whereMap!=null && !whereMap.isEmpty()){
@@ -93,12 +93,11 @@ public class SizeMapDAOImp implements IfitDAO {
             }
         }
         
-        if(isCount){
+        if(isCount || pageNum==0){
 		}else{
-			sql += " ORDER BY seq DESC		\n";
+			sql += " ORDER BY size_map_seq DESC		\n";
 			sql += " LIMIT :startNum, :countPerPage	\n";
 		}
-        
         System.out.println("sql:::"+sql);
         
         if(isCount){
@@ -135,8 +134,7 @@ public class SizeMapDAOImp implements IfitDAO {
 		}
 	}
 	
-	//	Edit
-	public int edit(Object dto) {
+	public int update(Object dto) {
 		String sql = "";
 		sql += "	UPDATE " + table_name + " SET	\n";
 		sql += "	p_id = :p_id, size_id = :size_id	\n";
@@ -155,19 +153,21 @@ public class SizeMapDAOImp implements IfitDAO {
 	}
 	
 	//	DELETE
-	public int delete(int seq) {
+	public int delete(Map<String, Object> paramMap) {
 //		int next_seq = getMaxSeq();
 //		if(next_seq == 0){
 //			next_seq = 1;
 //		}
+		int p_id = paramMap.containsKey("p_id") ? (int)paramMap.get("p_id") : 0;
+		
 		String sql = "";
 		sql += "	DELETE FROM " + table_name + "	\n";
-		sql += "	WHERE size_map_seq = :size_map_seq	\n";
+		sql += "	WHERE p_id = :p_id	\n";
 
 //		SqlLobValue lobValue = new SqlLobValue(dto.getBbs_content(), lobHandler);
 
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-		paramSource.addValue("size_map_seq", seq, Types.NUMERIC);
+		paramSource.addValue("p_id", p_id, Types.NUMERIC);
 		int rtnInt = this.jdbcTemplate.update(sql, paramSource);
 		if(rtnInt > 0){
 			return rtnInt;

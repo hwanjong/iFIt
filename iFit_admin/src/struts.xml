@@ -54,5 +54,7 @@
     <include file="struts2/member/member.xml" />
     <include file="struts2/product/product.xml" />
     <include file="struts2/help/help.xml" />
+    <include file="struts2/banner/banner.xml" />
+    <include file="struts2/contentManager/contentManager.xml" />
     
 </struts> 

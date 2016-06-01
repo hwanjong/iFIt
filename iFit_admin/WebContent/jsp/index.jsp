@@ -17,7 +17,7 @@
 		<div class="admin_container">
 			<jsp:include page="/jsp/include/lnb.jsp" flush="false" />
 			<div class="adminContentArea">
-				메인화면 내용없음
+				<img src="/jsp/common/img/sample.png" style="width:100%;" />
 			</div>
 		</div>
 	</body>

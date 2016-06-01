@@ -53,15 +53,14 @@
 								<s:iterator value="dataList" status="stat">
 									<tr>
 										<td class="center"><s:property value="p_id"/></td>
-										<td class="center"><s:property value="p_name"/></td>
+										<td class="center"><p class="viewBtn pointer hoverLine" data-seq="<s:property value="p_id"/>"><s:property value="p_name"/></p></td>
 										<s:if test = "#session.isAdmin">
 											<td class="center"><s:property value="admin_name"/></td>
 										</s:if>
 										<td class="center"><s:property value="regdate"/></td>
 										<td class="center">
-											<i class="viewBtn mr10 fa fa-file-text-o" aria-hidden="true" title="상세보기" data-seq="<s:property value="seq"/>" > </i>
 											<i class="editBtn mr10 fa fa-pencil-square-o" aria-hidden="true" title="편집" data-seq="<s:property value="p_id"/>" > </i>
-											<i class="deleteBtn fa fa-trash-o" aria-hidden="true" title="삭제" data-seq="<s:property value="seq"/>" data-title="<s:property value="p_name"/>"></i>
+											<i class="deleteBtn fa fa-trash-o" aria-hidden="true" title="삭제" data-seq="<s:property value="p_id"/>" data-title="<s:property value="p_name"/>"></i>
 										</td>
 									</tr>
 								</s:iterator>
@@ -77,11 +76,13 @@
 									<option title="입점 업체명을 검색합니다." value="2" <s:if test="searchCol==2">selected</s:if>>입점 업체명</option>
 								</s:if>
 							</select>
-							<input type="text" name ="searchVal" class="ml5 searchInput" value="${searchVal}" /><i class="listSearchBtn ml10 fa fa-search" aria-hidden="true" title="검색" data-layer-id="generalProductView" data-kind="generalProduct" data-seq="<s:property value="seq"/>" > </i>
+							<input type="text" name ="searchVal" class="ml5 searchInput" value="${searchVal}" /><i class="listSearchBtn ml10 fa fa-search" aria-hidden="true" title="검색" > </i>
 						</div>
 					</s:form>
 				</div>
 			</div>
 		</div>
+		
+		<jsp:include page="/jsp/product/pop/generalProductView.jsp" flush="false" />
 	</body>
 </html>

@@ -7,7 +7,12 @@ apache설정 : /etc/apache2/sites-available/000-default.conf
 *테스트 이후 apache는 제거할 예정
 
 mysql설정 : /etc/mysql/my.cnf
-phpmyadmin설정 : 
+php설정 : /etc/php5
+phpmyadmin설정 : /etc/phpmyadmin/
+* 세션시간 변경 
+* 1. phpmyadmin 폴더의 config.inc.php 파일 $cfg['LoginCookieValidity'] = 36000; 추가
+* 2. php.ini 파일 session.gc_maxlifetime = 1400 -> 3600으로 변경
+
 tomcat설정 : /etc/tomcat7/server.xml
 tomcat로그 : /var/lib/tomcat7/logs
 tail -f /var/lib/tomcat7/logs/catalina.out

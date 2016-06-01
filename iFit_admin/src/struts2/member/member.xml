@@ -19,10 +19,9 @@
 			<result name="validation">/jsp/member/shopMemberList.jsp</result>
 		</action>
 		
-		<action name="shopMemberEditAction" class="action.member.ShopMember" method="editAction">
+		<action name="shopMemberUpdateAction" class="action.member.ShopMember" method="updateAction">
 			<result type="redirectAction">
 		  		<param name="actionName">shopMemberList</param>
-		  		<param name="pageNum">${pageNum}</param>
     	  	</result>
 			<result name="validation">/jsp/member/shopMemberList.jsp</result>
 		</action>
@@ -30,8 +29,8 @@
 		<action name="shopMemberDeleteAction" class="action.member.ShopMember" method="deleteAction">
 			<result type="redirectAction">
 		  		<param name="actionName">shopMemberList</param>
-		  		<param name="pageNum">${pageNum}</param>
     	  	</result>
+    	  	<result name="validation">/jsp/member/shopMemberList.jsp</result>
 		</action>
 		
 		<!--예시

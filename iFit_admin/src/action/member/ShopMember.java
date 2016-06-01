@@ -25,6 +25,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import dao.IfitDAO;
 import dto.AdminDTO;
+import dto.FaqDTO;
 import lombok.Data;
 
 @Data
@@ -58,6 +59,16 @@ public class ShopMember extends ActionSupport  {
     private String queryIncode;						//	쿼리스트링(인코딩)
     private String queryDecode;						//	쿼리스트링(디코딩)
     
+    private String name;		//	업체명
+	private String id;			//	업체 아이디
+	private String pw;			//	업체 비밀번호
+	private String tel1;			//	업체 연락처1
+	private String tel2;			//	업체 연락처2
+	private String tel3;			//	업체 연락처3
+	private int seq;				//	선택된 업체 seq
+	
+	private String isUpdateMode = "";			// 편집모드
+    
     private LinkedHashMap searchColKindMap = new LinkedHashMap() {{	// 검색 가능한 종류
     	// db상의 name과 매칭 
     	put(0,"id");		// 기본값
@@ -67,23 +78,16 @@ public class ShopMember extends ActionSupport  {
     
     private LinkedHashMap sortColKindMap = new LinkedHashMap() {{	// 정렬항목 정의
     	// db상의 name과 매칭
-		put(0,"regdate");			// 기본값 정렬
+		put(0,"orig_regdate");		// 기본값 정렬
 		put(1,"id"); 				// 아이디 정렬
 		put(2,"name");	 		// 입점 업체명 정렬
-		put(3,"regdate");	 		// 등록일 정렬
+		put(3,"orig_regdate");	 	// 등록일 정렬
 	}};
-	
-	private String shop_name;		//	업체명
-	private String shop_id;				//	업체 아이디
-	private String shop_pw;			//	업체 비밀번호
-	private String shop_tel1;			//	업체 연락처1
-	private String shop_tel2;			//	업체 연락처2
-	private String shop_tel3;			//	업체 연락처3
-	private int seq;						//	선택된 업체 seq
 	
 	public ShopMember() {
 		ServletContext servletContext = ServletActionContext.getServletContext();
 	    this.wac = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+	    this.adminDTO = new AdminDTO();
 	}
 
 	public void setServletRequest(HttpServletRequest request) { 
@@ -98,9 +102,10 @@ public class ShopMember extends ActionSupport  {
 	//	요소 초기화 및 세팅
 	public void init(){
 		this.shopMemberDAO = (IfitDAO)this.wac.getBean("admin");
-		this.adminDTO = new AdminDTO();
+		
 		this.context = ActionContext.getContext();	//session을 생성하기 위해
 		this.session = this.context.getSession();		// Map 사용시
+		
 		this.rtnString = "";
 	}
 	
@@ -138,14 +143,15 @@ public class ShopMember extends ActionSupport  {
 	public Object getData(Map<String, Object> paramMap){
 		init();
 		String queryMode = paramMap.containsKey("queryMode") ? paramMap.get("queryMode").toString() : "one";
+		this.whereMap.clear();
 		if(queryMode.equals("one")){
 			if(paramMap.containsKey("seq")){
 				this.whereMap.put("isAdmin", false);
 				this.whereMap.put("seq", paramMap.get("seq"));
 				this.paramMap.put("whereMap", this.whereMap);
-			}else if(paramMap.containsKey("shop_id")){
+			}else if(paramMap.containsKey("id")){
 				this.whereMap.put("isAdmin", false);
-				this.whereMap.put("id", StringUtil.isNullOrSpace(paramMap.get("shop_id").toString(),"").trim());
+				this.whereMap.put("id", StringUtil.isNullOrSpace(paramMap.get("id").toString(),"").trim());
 				this.paramMap.put("whereMap", this.whereMap);
 			}
 			return this.shopMemberDAO.getOneRow(this.paramMap);
@@ -164,37 +170,50 @@ public class ShopMember extends ActionSupport  {
 		return null;
 	}
 	
+	public String getEditor() throws Exception{
+		init();
+		
+		if(Boolean.valueOf(this.isUpdateMode).booleanValue()){
+			this.paramMap.put("seq", this.seq);
+			this.adminDTO = (AdminDTO) getData(this.paramMap);
+		}
+		
+		this.queryDecode = StringUtil.hexToString(this.queryIncode);
+		
+		return SUCCESS;
+	}
+	
 	//	입점회원 등록
 	public String writeAction() throws Exception {	
 		init();
 		
 		Gson gson = new Gson();
-		this.shop_id = StringUtil.isNullOrSpace(this.shop_id,"").trim();
-		this.shop_pw = StringUtil.isNullOrSpace(this.shop_pw,"").trim();
-		this.shop_name = StringUtil.isNullOrSpace(this.shop_name,"").trim();
-		this.shop_tel1 = StringUtil.isNullOrSpace(this.shop_tel1,"").trim();
-		this.shop_tel2 = StringUtil.isNullOrSpace(this.shop_tel2,"").trim();
-		this.shop_tel3 = StringUtil.isNullOrSpace(this.shop_tel3,"").trim();
-		paramMap.put("shop_id", this.shop_id);
-		paramMap.put("shop_pw", this.shop_pw);
-		paramMap.put("shop_name", this.shop_name);
-		paramMap.put("shop_tel1", this.shop_tel1);
-		paramMap.put("shop_tel2", this.shop_tel2);
-		paramMap.put("shop_tel3", this.shop_tel3);
+		this.id = StringUtil.isNullOrSpace(this.id,"").trim();
+		this.pw = StringUtil.isNullOrSpace(this.pw,"").trim();
+		this.name = StringUtil.isNullOrSpace(this.name,"").trim();
+		this.tel1 = StringUtil.isNullOrSpace(this.tel1,"").trim();
+		this.tel2 = StringUtil.isNullOrSpace(this.tel2,"").trim();
+		this.tel3 = StringUtil.isNullOrSpace(this.tel3,"").trim();
+		paramMap.put("id", this.id);
+		paramMap.put("pw", this.pw);
+		paramMap.put("name", this.name);
+		paramMap.put("tel1", this.tel1);
+		paramMap.put("tel2", this.tel2);
+		paramMap.put("tel3", this.tel3);
 		
-		this.validateMsgMap = formValidate.shopMemberWriteForm(paramMap);
+		this.validateMsgMap = formValidate.shopMemberEditorForm(paramMap);
 		paramMap.clear();
 		if(!(boolean)validateMsgMap.get("res")){
 			this.rtnString = gson.toJson(validateMsgMap);
 			return "validation";
 		}
 		
-		this.adminDTO.setId(this.shop_id);
-		this.adminDTO.setPw(MySqlFunction.password(AESCrypto.encryptPassword(this.shop_pw)));
-		this.adminDTO.setName(this.shop_name);
-		this.adminDTO.setTel1(this.shop_tel1);
-		this.adminDTO.setTel2(this.shop_tel2);
-		this.adminDTO.setTel3(this.shop_tel3);
+		this.adminDTO.setId(this.id);
+		this.adminDTO.setPw(MySqlFunction.password(AESCrypto.encryptPassword(this.pw)));
+		this.adminDTO.setName(this.name);
+		this.adminDTO.setTel1(this.tel1);
+		this.adminDTO.setTel2(this.tel2);
+		this.adminDTO.setTel3(this.tel3);
 		
 		this.shopMemberDAO.write(this.adminDTO);
 		
@@ -205,33 +224,45 @@ public class ShopMember extends ActionSupport  {
 	}
 	
 	//	입점회원 수정
-	public String editAction() throws Exception {	
+	public String updateAction() throws Exception {	
 		init();
 
 		Gson gson = new Gson();
-		this.shop_name = StringUtil.isNullOrSpace(this.shop_name,"").trim();
-		this.shop_tel1 = StringUtil.isNullOrSpace(this.shop_tel1,"").trim();
-		this.shop_tel2 = StringUtil.isNullOrSpace(this.shop_tel2,"").trim();
-		this.shop_tel3 = StringUtil.isNullOrSpace(this.shop_tel3,"").trim();
-		paramMap.put("shop_name", this.shop_name);
-		paramMap.put("shop_tel1", this.shop_tel1);
-		paramMap.put("shop_tel2", this.shop_tel2);
-		paramMap.put("shop_tel3", this.shop_tel3);
 		
-		this.validateMsgMap = formValidate.shopMemberEditForm(paramMap);
+		this.paramMap.put("seq", this.seq);
+		AdminDTO shopMemberData = (AdminDTO) getData(this.paramMap);
+		this.paramMap.clear();
+		
+		this.id = StringUtil.isNullOrSpace(this.id,"").trim();
+		this.pw = StringUtil.isNullOrSpace(this.pw,"").trim();
+		this.name = StringUtil.isNullOrSpace(this.name,"").trim();
+		this.tel1 = StringUtil.isNullOrSpace(this.tel1,"").trim();
+		this.tel2 = StringUtil.isNullOrSpace(this.tel2,"").trim();
+		this.tel3 = StringUtil.isNullOrSpace(this.tel3,"").trim();
+		paramMap.put("seq", this.seq);
+		paramMap.put("id", this.id);
+		paramMap.put("pw", this.pw);
+		paramMap.put("name", this.name);
+		paramMap.put("tel1", this.tel1);
+		paramMap.put("tel2", this.tel2);
+		paramMap.put("tel3", this.tel3);
+		
+		this.validateMsgMap = formValidate.shopMemberEditorForm(paramMap);
 		paramMap.clear();
 		if(!(boolean)validateMsgMap.get("res")){
 			this.rtnString = gson.toJson(validateMsgMap);
 			return "validation";
 		}
 		
-		this.adminDTO.setName(this.shop_name);
-		this.adminDTO.setTel1(this.shop_tel1);
-		this.adminDTO.setTel2(this.shop_tel2);
-		this.adminDTO.setTel3(this.shop_tel3);
+		this.adminDTO.setId(shopMemberData.getId().equals(this.id) ? "" : this.id);
+		this.adminDTO.setPw(this.pw.equals("") ? "" : MySqlFunction.password(AESCrypto.encryptPassword(this.pw)));
+		this.adminDTO.setName(this.name);
+		this.adminDTO.setTel1(this.tel1);
+		this.adminDTO.setTel2(this.tel2);
+		this.adminDTO.setTel3(this.tel3);
 		this.adminDTO.setSeq(this.seq);
 		
-		this.shopMemberDAO.edit(this.adminDTO);
+		this.shopMemberDAO.update(this.adminDTO);
 		
 		this.session.put("alertMsg", this.alertMessage.getShopEditOK());
 		this.context.setSession(this.session);
@@ -243,7 +274,8 @@ public class ShopMember extends ActionSupport  {
 		init();
 
 		if(this.seq!=0 && this.seq!=1){
-			this.shopMemberDAO.delete(this.seq);
+			this.paramMap.put("seq", this.seq);
+			this.shopMemberDAO.delete(this.paramMap);
 		}
 		this.session.put("alertMsg", this.alertMessage.getDeleteOK());
 		this.context.setSession(this.session);

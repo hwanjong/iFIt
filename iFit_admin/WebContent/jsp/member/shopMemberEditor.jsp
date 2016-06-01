@@ -16,70 +16,70 @@
 		<jsp:include page="/jsp/include/gnb.jsp" flush="false" />
 		<div class="admin_container">
 			<jsp:include page="/jsp/include/lnb.jsp" flush="false" />
+			<s:if test='isUpdateMode.equals("true")'>
+				<s:set name="formNameKor" value='%{"수정"}' />
+				<s:set name="formNameEng" value='%{"shopMemberUpdate"}' />
+			</s:if>
+			<s:else>
+				<s:set name="formNameKor" value='%{"등록"}' />
+				<s:set name="formNameEng" value='%{"shopMemberWrite"}' />
+			</s:else>
 			<div class="adminContentArea">
-				<h2 class="mb20"><span>입점회원 목록</span></h2>
+				<h2 class="mb20"><span>입점회원 ${formNameKor}</span></h2>
 				<div class="contentBody">
-					<s:form id="shopMemberList" name="shopMemberList" cssClass="dib" method="get" namespace="/member" action="shopMemberList" theme="simple">
-						<input type="hidden" id="pageNum" name="pageNum" value="<s:property value="pageNum"/>" />
-						<input type="hidden" id="sortCol" name="sortCol" value="<s:property value='sortCol' />" />	
-						<input type="hidden" id="sortVal" name="sortVal" value="<s:property value='sortVal' />" />	
-						보기 : <s:select id="countPerPage" name="countPerPage" cssClass="" list="Code.countPerPageMap" headerKey="" headerValue="선택" />
-						<input type="button" data-layer-id="shopMemberWrite" class="writeBtn simpleBtn mb10 btn2 clear fr" value="등록" />
-						<table class="table_list tc">
+					<s:form id="shopMember" name="shopMemberEditor" data-mode="EditorForm" data-confirm-msg="입점회원을 ${formNameKor} 하시겠습니까?" cssClass="dib" method="post" namespace="/member" action="%{formNameEng}Action" theme="simple" enctype="multipart/form-data">
+						<input type="hidden" id="seq" name="seq" value="<s:property value='seq' />"  /> 
+						<input type="hidden" id="queryDecode" name="queryDecode" value="<s:property value='queryDecode' />"  disabled />
+						<table class="table_editor tc">
 							<colgroup>
-								<col width="70px"><col width="70px"><col width="70px"><col width="70px"><col width="70px"><col width="70px">
+								<col width="180px"><col width="*">
 							</colgroup>
-							<thead>
-								<tr>
-									<th scope="col">번호</th>
-									<th scope="col"><p class="listSort" data-sort-col="1">아이디<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=1">hide</s:if>" aria-hidden="true"></i></p></th>
-									<th scope="col"><p class="listSort" data-sort-col="2">입점 업체명<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=2">hide</s:if>" aria-hidden="true"></i></p></th>
-									<th scope="col">연락처</th>
-									<th scope="col"><p class="listSort" data-sort-col="3">등록일<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=0&&sortCol!=3">hide</s:if>" aria-hidden="true"></i></p></th>
-									<th scope="col">추가작업</th>
-								</tr>
-							</thead>
 							<tbody>
-								<s:if test = "dataList.size==0">
-									<tr>
-										<td colspan="6" align="center">
-											등록된 회원이 없습니다.
-										</td>
-									</tr>
-								</s:if>
-								<s:iterator value="dataList" status="stat">
-									<tr>
-										<td class="center"><s:property value="seq"/></td>
-										<td class="center"><s:property value="id"/></td>
-										<td class="center"><s:property value="name"/></td>
-										<td class="center"><p class="dib"><s:property value="tel1"/></p>-<p class="dib"><s:property value="tel2"/></p>-<p class="dib"><s:property value="tel3"/></p></td>
-										<td class="center"><s:property value="regdate"/></td>
-										<td class="center">
-											<i class="yet fa fa-key mr10" aria-hidden="true" title="비밀번호 변경"></i>
-											<i class="editBtn mr10 fa fa-pencil-square-o" aria-hidden="true" title="편집" data-layer-id="shopMemberEdit" data-kind="shop" data-seq="<s:property value="seq"/>" > </i>
-											<i class="deleteBtn fa fa-trash-o" aria-hidden="true" title="삭제" data-kind="shopMember" data-seq="<s:property value="seq"/>" data-title="<s:property value="name"/>"></i>
-										</td>
-									</tr>
-								</s:iterator>
+								<s:set name="shopMemberData" value="adminDTO" />
+								<tr>
+									<th scope="col">아이디</th>
+									<td class="tl" tabIndex="1" id="id_check">
+										<input type="text" class="validate" autocomplete="off" id="id" name="id" value="${shopMemberData.id}" />
+										<s:if test='isUpdateMode.equals("true")'>
+											*변경시 주의 요망
+										</s:if>
+									</td>
+								</tr>
+								<tr>
+									<th scope="col">비밀번호</th>
+									<td class="tl" tabIndex="2" id="pw_check">
+										<input type="password" class="validate" autocomplete="off" id="pw" name="pw" value="" />
+										<s:if test='isUpdateMode.equals("true")'>
+											*입력하지 않으면 유지됩니다.
+										</s:if>
+									</td>
+								</tr>
+								<tr>
+									<th scope="col">입점업체명</th>
+									<td class="tl" tabIndex="3" id="name_check"><input type="text" class="validate" autocomplete="off" id="name" name="name" value="${shopMemberData.name}" /></td>
+								</tr>
+								<tr>
+									<th scope="col">연락처</th>
+									<td class="tl" tabIndex="4" id="tel_check">
+										<s:select id="tel1" name="tel1" cssClass="validate" list="Code.telNumberMap" headerKey="" headerValue="선택" value="%{#shopMemberData.tel1}" />-
+										<input type="text" class="validate" autocomplete="off" id="tel2" name="tel2" value="${shopMemberData.tel2}" />-
+										<input type="text" class="validate" autocomplete="off" id="tel3" name="tel3" value="${shopMemberData.tel3}" />
+									</td>
+								</tr>
 							</tbody>
 						</table>
-						<s:if test = "dataList.size!=0">
-							<div class="paging"><s:property value="pagingHTML" escapeHtml="false" /></div>
-						</s:if>
-						<div class="tc">
-							<select name ="searchCol" class="common_select middle">
-								<option title="아이디를 검색합니다." value="1" <s:if test="searchCol==1">selected</s:if>>아이디</option>
-								<option title="입점 업체명을 검색합니다." value="2" <s:if test="searchCol==2">selected</s:if>>입점 업체명</option>
-							</select>
-							<input type="text" name ="searchVal" class="ml5 searchInput" value="${searchVal}" /><i class="listSearchBtn ml10 fa fa-search" aria-hidden="true" title="검색" data-layer-id="generalProductView" data-kind="generalProduct" data-seq="<s:property value="seq"/>" > </i>
+						<div class="mt20 clear">
+							<input type="button" class="listBtn simpleBtn mb10 btn2 dib fl" value="목록으로" />
+							<s:if test='isUpdateMode.equals("true")'>
+								<input type="submit" class="updateActionBtn simpleBtn mb10 btn2 dib fr" value="수정" />
+							</s:if>
+							<s:else>
+								<input type="submit" class="writeActionBtn simpleBtn mb10 btn2 dib fr" value="등록" />
+							</s:else>
 						</div>
 					</s:form>
 				</div>
 			</div>
 		</div>
-		
-		<jsp:include page="/jsp/member/shopMemberWrite.jsp" flush="false" />
-		<jsp:include page="/jsp/member/shopMemberEdit.jsp" flush="false" />
-		
 	</body>
 </html>

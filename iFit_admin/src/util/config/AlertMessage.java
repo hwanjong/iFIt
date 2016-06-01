@@ -10,7 +10,8 @@ public class AlertMessage{
 	}
 	//*******************기본알림*******************/
 	private String InputError = "입력값이 올바르지 않습니다.";				//	입력값오류
-	private String fileUploadError = "파일 첨부가 실패 하였습니다.";	
+	private String fileUploadError = "파일 첨부가 실패 하였습니다.";
+	private String accessError = "잘못된 접근입니다.";
 	private String deleteOK = "삭제 되었습니다.";
 	
 	//*******************로그인관련*******************/
@@ -36,22 +37,40 @@ public class AlertMessage{
 	
 	//*******************FAQ관련*******************/
 	private String FaqWriteOK = "자주하는질문이 등록되었습니다.";
+	private String FaqUpdateOK = "자주하는질문이 수정되었습니다.";
 	private String FaqTitleError = "올바른 제목을 입력해 주세요.";
 	private String FaqContentError = "내용을 입력해 주세요.";
 	
 	//*******************일반상품관련*******************/
 	private String GeneralProductWriteOK = "상품이 등록되었습니다.";
+	private String GeneralProductUpdateOK = "상품이 수정되었습니다.";
 	private String GeneralProductShopError = "올바른 업체를 검색해 주세요.";
 	private String GeneralProductNameError = "올바른 상품명을 입력해 주세요.";
 	private String GeneralProductCategoryError = "올바른 상품분류를 선택해 주세요.";
 	private String GeneralProductPriceError = "올바른 가격을 입력해 주세요.";
 	private String GeneralProductColorError = "올바른 색상을 입력해 주세요.";
-	private String GeneralProductSizeError = "첫번째 사이즈는 반드시 입력해야 합니다.";
+	private String GeneralProductSizeError = "올바른 사이즈를 선택해 주세요.";
 	private String GeneralProductMainImageError = "메인이미지를 등록해 주세요.";
-	private String GeneralProductTopImageError = "상품이미지를 등록해 주세요.";
-	private String GeneralProductDetailImageError = "상세정보이미지를 등록해 주세요.";
+	private String GeneralProductSubImageError = "서브이미지를 등록해 주세요.";
+	private String GeneralProductDetailImageError = "상세이미지를 등록해 주세요.";
 	private String GeneralProductCodiImageError = "코디이미지를 등록해 주세요.";
+	private String GeneralProductTagError = "올바른 태그를 입력해 주세요.";
 	
+	//*******************이벤트 배너 관련*******************/
+	private String EventBannerWriteOK = "배너가 등록되었습니다.";
+	private String EventBannerUpdateOK = "배너가 수정되었습니다.";
+	private String EventBannerTypeError = "올바른 타입을 선택해 주세요.";
+	private String EventBannerImageError = "배너이미지를 등록해 주세요.";
+	
+	//*******************태그 관련*******************/
+	private String AdminTagWriteOK = "태그가 등록되었습니다.";
+	private String AdminTagUpdateOK = "태그가 저장되었습니다.";
+	private String AdminTagTagError = "올바른 태그를 입력해 주세요.";
+	
+	//*******************라벨 관련*******************/
+	private String MainLabelWriteOK = "라벨이 등록되었습니다.";
+	private String MainLabelUpdateOK = "라벨이 저장되었습니다.";
+//	private String MainLabelError = "올바른 태그를 입력해 주세요.";
 	
 	//*******************회원가입관련*******************/
 	private String joinClause1 = "";

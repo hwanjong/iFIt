@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
@@ -144,15 +145,17 @@ public class StringUtil {
 	/**
 	 * TODO 16진수 색상 체크.
 	 * 
-	 * @param filePath : 파일 전체 경로 <br>
-	 * @param fileExtMap : 파일확장자가 명시되어있는 맵
+	 * @param strList : 색상값 <br>
 	 * @return boolean <br>
 	 */
-	public boolean colorHex_validation(String str){
-		String strRegex = "^#?([a-f0-9]{6}|[a-f0-9]{3})$";
-		int falseCnt = 0;
-		falseCnt = str.matches(strRegex) ? falseCnt : falseCnt+1;
-		return falseCnt > 0  ? false : true;
+	public boolean colorHex_validation(List<String> strList){
+		for(String code : strList){
+			String strRegex = "^#?([a-f0-9]{6}|[a-f0-9]{3})$";
+			if(!code.matches(strRegex)){
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	/**
@@ -195,6 +198,45 @@ public class StringUtil {
 			decodedText = new String(rawToByte);
 		}
 		return decodedText;
+	}
+	
+	/**
+	 * TODO int형 문자열 숫자 제외한 모든 문자 제거.
+	 * 
+	 * @param str : 변환할 str <br>
+	 * @return String <br>
+	 */
+	public static String removeStrType(String str) {
+		String strRegex = "[^0-9]";
+		return str.replaceAll(strRegex, "");
+	}
+	
+	/**
+	 * TODO 10진수 정수 체크
+	 * 
+	 * @param str : 체크할 str <br>
+	 * @return boolean <br>
+	 */
+	public static boolean isStringInt(String str) {
+		try{
+			Integer.parseInt(str);
+			return true;
+		}catch(NumberFormatException e) {
+			return false;
+		}
+	}
+	
+	/**
+	 * TODO list -> string으로 변환 (java8에 추가됨 String.join())
+	 * 
+	 * @param list : 변환할 리스트 <br>
+	 * @return String <br>
+	 */
+	public static String arrayToString(List list) {
+		String temp = list.toString();
+		temp = temp.replaceAll("\\s", "");
+		temp = temp.substring(1, temp.length()-1);
+		return temp;
 	}
 	
 //	/**

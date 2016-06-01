@@ -47,7 +47,7 @@ public class SubPhotoDAOImp implements IfitDAO {
 		
 		sqlMap.put("one", 1);
 		
-        sql = "	SELECT * FROM"+ table_name + "WHERE :one = :one 	\n";
+        sql = "	SELECT * FROM, SUBSTRING_INDEX(photo_url, '/', -1) AS photo_url_name "+ table_name + "WHERE :one = :one 	\n";
         if(whereMap!=null && !whereMap.isEmpty()){
             for( String key : whereMap.keySet() ){
             	sqlMap.put(key, whereMap.get(key));
@@ -79,7 +79,7 @@ public class SubPhotoDAOImp implements IfitDAO {
 		if(isCount){
 			sql += "	SELECT COUNT(*)	\n";
 		}else{
-			sql += "	SELECT p_id, photo_url, photo_type, 	\n";
+			sql += "	SELECT p_id, photo_url, photo_type, SUBSTRING_INDEX(photo_url, '/', -1) AS photo_url_name,	\n";
 			sql += "	photo_seq	\n";
 		}
         sql += " FROM "+ table_name + " T WHERE :one = :one \n";
@@ -90,7 +90,7 @@ public class SubPhotoDAOImp implements IfitDAO {
             }
         }
         
-        if(isCount){
+        if(isCount || pageNum==0){
 		}else{
 			sql += " ORDER BY photo_seq DESC		\n";
 			sql += " LIMIT :startNum, :countPerPage	\n";
@@ -133,8 +133,7 @@ public class SubPhotoDAOImp implements IfitDAO {
 		}
 	}
 	
-	//	Edit
-	public int edit(Object dto) {
+	public int update(Object dto) {
 		String sql = "";
 		sql += "	UPDATE " + table_name + " SET	\n";
 		sql += "	p_id = :p_id, photo_url = :photo_url, photo_type = :photo_type	\n";
@@ -154,19 +153,32 @@ public class SubPhotoDAOImp implements IfitDAO {
 	}
 	
 	//	DELETE
-	public int delete(int seq) {
+	public int delete(Map<String, Object> paramMap) {
 //		int next_seq = getMaxSeq();
 //		if(next_seq == 0){
 //			next_seq = 1;
 //		}
-		String sql = "";
-		sql += "	DELETE FROM " + table_name + "	\n";
-		sql += "	WHERE photo_seq = :photo_seq		\n";
-
-//		SqlLobValue lobValue = new SqlLobValue(dto.getBbs_content(), lobHandler);
+		int p_id = paramMap.containsKey("p_id") ? (int)paramMap.get("p_id") : 0;
+		List<String> photo_url = (List<String>) (paramMap.containsKey("photo_url") ? paramMap.get("photo_url") : null);
 
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-		paramSource.addValue("photo_seq", seq, Types.NUMERIC);
+		String sql = "";
+		sql += "	DELETE FROM " + table_name + "	\n";
+		sql += "	WHERE p_id = :p_id	\n";
+
+        if(photo_url!=null){
+        	sql += " and SUBSTRING_INDEX(photo_url,  '/', -1 ) IN(		\n";
+        	for(int i=0; i<photo_url.size(); i++){
+        		sql += i!=0 ? "," : "";
+        		sql += (":photo_url"+i);
+        		paramSource.addValue(("photo_url"+i), photo_url.get(i), Types.VARCHAR);
+    		}
+        	sql += ")	\n";
+        }
+		
+//		SqlLobValue lobValue = new SqlLobValue(dto.getBbs_content(), lobHandler);
+        
+		paramSource.addValue("p_id", p_id, Types.NUMERIC);
 		int rtnInt = this.jdbcTemplate.update(sql, paramSource);
 		if(rtnInt > 0){
 			return rtnInt;

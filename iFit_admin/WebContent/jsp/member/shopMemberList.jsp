@@ -28,7 +28,7 @@
 						<input type="button" class="writeBtn simpleBtn mb10 btn2 clear fr" value="등록" />
 						<table class="table_list tc">
 							<colgroup>
-								<col width="70px"><col width="70px"><col width="70px"><col width="70px"><col width="70px"><col width="70px">
+								<col width="50px"><col width="70px"><col width="70px"><col width="70px"><col width="90px"><col width="70px">
 							</colgroup>
 							<thead>
 								<tr>
@@ -71,14 +71,11 @@
 								<option title="아이디를 검색합니다." value="1" <s:if test="searchCol==1">selected</s:if>>아이디</option>
 								<option title="입점 업체명을 검색합니다." value="2" <s:if test="searchCol==2">selected</s:if>>입점 업체명</option>
 							</select>
-							<input type="text" name ="searchVal" class="ml5 searchInput" value="${searchVal}" /><i class="listSearchBtn ml10 fa fa-search" aria-hidden="true" title="검색" data-layer-id="generalProductView" data-kind="generalProduct" data-seq="<s:property value="seq"/>" > </i>
+							<input type="text" name ="searchVal" class="ml5 searchInput" value="${searchVal}" /><i class="listSearchBtn ml10 fa fa-search" aria-hidden="true" title="검색" > </i>
 						</div>
 					</s:form>
 				</div>
 			</div>
 		</div>
-		
-		<jsp:include page="/jsp/member/shopMemberEdit.jsp" flush="false" />
-		
 	</body>
 </html>
