@@ -21,6 +21,11 @@
 <script src="js/common/backHeader.js"></script>
 <script src="js/deviceRender.js"></script>
 <script src="js/Carousel.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+
+
+
 <script type="text/javascript">
 var selectNum=0;
 //옷장부르는 function
@@ -140,7 +145,9 @@ function codiCall(){
   		
   		<div id="imgListDiv">
 	  		<div id="funImg" style="position: absolute; right: 0px; bottom: 0px;">
-  				<img src="img/closet/qrImg.PNG">
+	  			<a id="kakao-link-btn" href="javascript:;">
+  				<img src="img/closet/kakaolink_btn_small.png">
+  				</a>
   			</div>
   			
   			<img class="selectItem" style="position: absolute; left: 10%; top: 2%;" >
@@ -166,6 +173,12 @@ function codiCall(){
   		</div>
   		<div class="mb10"  style="height: 20px; padding-right:10px; margin: 10px 0px;">
 					<p class="font-medium font-size-18 render dib fr" data-render="font-size" style="font-size: 18px;">￦123,500</p>
+					<div
+					  class="fb-like"
+					  data-share="true"
+					  data-width="450"
+					  data-show-faces="false">
+					</div>
 				</div>
   	</div>
   	
@@ -325,6 +338,45 @@ function codiCall(){
 			</div>
 		</div>
 	</div>
-	
+	<script type='text/javascript'>
+  //<![CDATA[
+    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('ec0df6073da378bc5886481cc0aa3c91');
+    // // 카카오톡 링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createTalkLinkButton({
+      container: '#kakao-link-btn',
+      label: '친구의 코디를 확인하세요.',
+      image: {
+        src: 'http://download.nboard2.naver.net/download/1000001521/2007121300000ACCD124E6CF/na3658/Untitled-2%20copy.jpg',
+        width: '200',
+        height: '300'
+      },
+      webButton: {
+        text: '아이핏-코디',
+        url: 'http://localhost:8080/ifit/codiPage.html' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
+      }
+    });
+  //]]>
+  
+  
+</script>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1861818357378765',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 </body>
 </html>
