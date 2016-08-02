@@ -24,6 +24,27 @@
 <script src="js/common/backHeader.js"></script>
 <script src="js/deviceRender.js"></script>
 </head>
+<script type="text/javascript">
+var test;
+$(document).ready(function() {
+	$.ajax({
+		  url: 'http://localhost:8080/ifit/getProduct',
+		  dataType: "jsonp",
+		  success: function(obj){
+			  alert('success');
+		  },
+		  error: function(jqXHR, textStatus, errorThrown) {
+		        //에러코드
+		        alert("error");
+		        alert(jqXHR);
+		        alert(textStatus);
+		        alert(errorThrown);
+		        test=jqXHR;
+		    }
+		});
+
+});
+</script>
 <body>
 	<div data-role="page" id="moreInfoPage" class="eachPage render" data-render="padding-left,padding-right,padding-top">
 		<div data-role="header" data-position="fixed" data-tap-toggle="false" id="backheader" class="render" data-render="height" data-render-ratio="height">
