@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwan.mapper.ProductMapper">
+<resultMap type="Product" id="productMap">
+	<id column="p_id" property="productId"/>
+	<id column="p_name" property="productName"/>
+	<id column="p_main_url" property="productMainURL"/>
+	<id column="lookup_url" property="lookupURL"/>
+	<id column="p_price" property="productPrice"/>
+	<id column="detail_info" property="detailInfo"/>
+	<id column="category" property="category"/>
+	<id column="like_cnt" property="likeCount"/>
+	<id column="cat_ref" property="catRef"/>
+	<id column="main_type" property="mainType"/>
+	<id column="admin_seq" property="adminSeq"/>
+	<id column="zzim_seq" property="zzimSeq"/>
+	<id column="cart_seq" property="cartSeq"/>
+	<id column="selected_color_id" property="selectedColorId"/>
+	<id column="selected_size_id" property="selectedSizeId"/>
+</resultMap>
+<resultMap type="Color" id="colorMap">
+	<id column="color_id" property="colorId"/>
+	<id column="color_val" property="colorValue"/>
+	<id column="color_name" property="colorName"/>
+</resultMap>
+<resultMap type="Review" id="reviewMap">
+	<id column="reg_date" property="regDate"/>
+	<id column="user_id" property="userId"/>
+</resultMap>
+<resultMap type="MainLabel" id="labelMap">
+	<id column="main_type" property="mainType"/>
+	<id column="label_name" property="labelName"/>
+</resultMap>
+<resultMap type="Banner" id="bannerMap">
+	<id column="banner_type" property="bannerType"/>
+	<id column="banner_url" property="bannerURL"/>
+	<id column="p_id" property="productId"/>
+</resultMap>
+<resultMap type="Banner" id="subPhotoMap">
+	<id column="photo_type" property="bannerType"/>
+	<id column="photo_url" property="bannerURL"/>
+</resultMap>
+<resultMap type="Promotion" id="promotionMap">
+	<id column="pro_seq" property="proSeq"/>
+	<id column="pro_url" property="promotionURL"/>
+	<id column="pro_name" property="promotionName"/>
+</resultMap>
+
+	<select id="getProduct" resultType="Product" resultMap="productMap">
+		select * from product_list where p_id = #{productId}
+	</select>
+	<select id="getSize" resultType="Size">
+		select size_id, size_val from size_list where (size_id) in (select size_id from size_map where p_id = #{productId})
+	</select>
+	<select id="getColorList" resultMap="colorMap">
+		select color_id, color_name, color_val from color_list where (color_id) in (select color_id from color_map where p_id = #{productId})
+	</select>
+	
+	<select id="getMainProduct" resultType="Product" resultMap="productMap">
+		select * from product_list join main_product_list using(p_id)order by product_order
+	</select>
+	
+	<select id="getLebelList" resultType="MainLabel" resultMap="labelMap">
+		select * from main_label_list order by label_order
+	</select>
+	<select id="getBannerList" resultType="Banner" resultMap="bannerMap">
+		select * from event_banner order by banner_seq desc 
+	</select>
+	
+	<select id="getPromotionList" resultType="Promotion" resultMap="promotionMap">
+		select * from promotion_list where pro_use =1
+	</select>
+	
+	<select id = "gerSubPromotion" resultMap="productMap">
+		select p_id,p_name,p_main_url,p_price from promotion_map join product_list using(p_id) where pro_seq =#{proSeq}
+	</select>
+	<select id="getCategoryBestList" resultType="Product" resultMap="productMap">
+		select * from product_list where category = #{category} order by like_cnt desc limit 10
+	</select>
+	
+	<select id="getAdminTagList" resultType="String">
+		select tag from admin_tag
+	</select>
+	<select id="getHotTagList" resultType="String">
+		select search_input from search_log order by count desc limit 7
+	</select>
+	<select id ="getProductByCategory" resultMap="productMap">
+		select * from product_list where category = #{selectedCategory}
+		<choose>
+			<when test="orderOption eq '인기'.toString()">
+				order by like_cnt desc
+			</when>
+			<when test="orderOption eq '낮은가격'.toString()">
+				order by p_price asc
+			</when>
+			<when test="orderOption eq '최신'.toString()">
+				order by regdate desc
+			</when>
+		</choose>
+	</select>
+	<select id="getProductByInputValue" resultMap="productMap" resultType="Product">
+		select distinct p.p_id, p_name,p_main_url,p_price,category,like_cnt,cat_ref from product_list p left outer join tag_list t on p.p_id=t.p_id where p_name like concat('%',#{inputValue},'%') || tag like concat('%',#{inputValue},'%')
+		<if test="selectedCategory !=''">
+			and category = #{selectedCategory}
+		</if>
+		<choose>
+			<when test="orderOption eq '인기'.toString()">
+				order by like_cnt desc
+			</when>
+			<when test="orderOption eq '낮은가격'.toString()">
+				order by p_price asc
+			</when>
+			<when test="orderOption eq '최신'.toString()">
+				order by regdate desc
+			</when>
+		</choose>
+	</select>
+	
+	<insert id="updateAndInsertQuery">
+		insert into search_log(search_input) values(#{inputValue}) on duplicate key update count=count+1
+	</insert>
+	
+	<select id="getSubPhoto" resultMap="subPhotoMap">
+		select * from sub_photo where p_id = #{productId}
+	</select>
+	
+	<select id="getReview" resultMap="reviewMap">
+		select * from review where p_id = #{productId}
+	</select>
+	<insert id="insertPayByOne" parameterType="Order" useGeneratedKeys="true" keyProperty="pay_seq" >
+		insert into pay_list(total_price,delivery_address,user_id,delivery_address_detail,pay_user_name) values(#{price}+'2500',#{deliveryAddress},#{userId},#{deliveryAddressDetail},#{payUserName})
+	</insert>
+	
+	<insert id="insertOrder" parameterType="Order">
+		insert into each_order(pay_seq,p_id,color_id,size_id,amount,price,admin_seq) values(#{pay_seq}, #{productId}, #{color}, #{size}, #{amount},#{price}, #{adminSeq})
+	</insert>
+	<insert id="insertCart" parameterType="Order">
+		insert into cart(p_id,selected_color_id,selected_size_id,amount,user_id) values(#{productId},#{color},#{size},#{amount},#{userId})
+	</insert>
+	<select id="isLikeItem" resultType="String">
+		select zzim_seq from zzim where user_id=#{userId} and p_id = #{productId}
+	</select>
+	<select id="getUserLikeItem" resultMap="productMap">
+		select * from product_list natural join zzim where user_id = #{userId}
+	</select>
+	<select id="getCartItems" resultMap="productMap">
+		select * from cart join product_list using(p_id) where cart.user_id = #{userId}
+	</select>
+	
+	
+</mapper>

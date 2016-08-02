@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwan.mapper.UserMapper">
+<resultMap type="User" id="userMap">
+	<id column="user_id" property="userId"/>
+	<id column="user_pw" property="userPw"/>
+	<id column="rest_key" property="restKey"/>
+</resultMap>
+<resultMap type="Order" id="orderMap">
+	<id column="p_id" property="productId"/>
+	<id column="color_id" property="color"/>
+	<id column="color_val" property="colorName"/>
+	<id column="size_id" property="size"/>
+	<id column="size_val" property="sizeName"/>
+	<id column="delivery_number" property="deliveryNumber"/>
+	<id column="p_price" property="price"/>
+	<id column="p_name" property="productName"/>
+	<id column="p_main_url" property="productURL"/>
+	<id column="order_seq" property="orderSeq"/>
+</resultMap>
+
+<resultMap type="EachQuestion" id="questionMap">
+	<id column="quest_date" property="questDate"/>
+	<id column="reply_date" property="replyDate"/>
+	<id column="quest_seq" property="questSeq"/>
+	<id column="user_id" property="userId"/>
+</resultMap>
+
+<resultMap type="Pay" id="payMap">
+	<id column="delivery_address" property="deliveryAddress"/>
+	<id column="delivery_address_detail" property="deliveryAddressDetail"/>
+	<id column="pay_user_name" property="payUserName"/>
+	<id column="order_date" property="orderDate"/>
+</resultMap>
+
+	<select id="getUserInfoById" resultType="User" resultMap="userMap">
+		select * from user_list where user_id = #{userId} 
+	</select>
+	
+	<select id="getUserInfo" resultType="User" resultMap="userMap">
+		select * from user_list where user_id = #{userId} and user_pw = #{userPw}
+	</select>
+	
+	<insert id="joinUser" parameterType="User">
+		insert into user_list(user_id,user_pw,tel1,tel2,tel3,email,nickname) values(#{userId},#{userPw},#{tel1},#{tel2},#{tel3},#{email},#{nickname})
+	</insert>
+	
+	<select id="getOrderList" resultMap="orderMap" resultType="User">
+		select * from pay_list pay natural join each_order o natural join color_list c natural join size_list s natural join product_list p left join review r on r.order_seq=o.order_seq where o.p_id = p.p_id and o.size_id=s.size_id and o.color_id = c.color_id and pay.user_id = #{userId} order by o.state
+	</select>
+	
+	<insert id="registReview" parameterType="Review">
+		insert into review(p_id,score,comment,user_id,order_seq) values(#{productId},#{score},#{comment},#{userId},#{orderSeq})
+	</insert>
+	<update id="updateOrderState">
+		update each_order set state = '3' where order_seq = #{orderSeq}
+	</update>
+	<select id="isLikeItem" resultType="String">
+		select zzim_seq from zzim where user_id = #{userId} and p_id = #{likeItemNo}
+	</select>
+	<insert id="insertLikeItem">
+		insert into zzim(p_id,user_id) values(#{likeItemNo},#{userId})
+	</insert>
+	<delete id="deleteLikeInfo">
+		delete from zzim where zzim_seq = #{zzimSeq}
+	</delete>
+	
+	<select id="getUserQuestion" resultMap="questionMap">
+		select * from question_person where user_id = #{userId} order by quest_date 
+	</select>
+	<insert id="registQeustion" parameterType="EachQuestion">
+		insert into question_person(user_id,title,content) values(#{userId},#{title},#{content})
+	</insert>
+	<select id="getCartSeq" resultType="String">
+		select cart_seq from cart where user_id = #{userId} and p_id = #{productId}
+	</select>
+	<insert id="insertCartItemFromZzim">
+		insert into cart(p_id,user_id) values(#{productId},#{userId})
+	</insert>
+	<delete id="deleteCart">
+		delete from cart where cart_seq = #{cartSeq} and user_id = #{userId}
+	</delete>
+	<select id="getRecentAddress" resultMap="payMap">
+		select delivery_address,delivery_address_detail, order_date, pay_user_name from pay_list where user_id=#{userId} order by order_date desc limit 5
+	</select>
+	<update id="updateUserInfoAll" parameterType="User">
+		update user_list set user_pw = #{userPw}, tel1=#{tel1}, tel2=#{tel2}, tel3=#{tel3}, email=#{email} where user_id = #{userId}
+	</update>
+	<update id="updateUserInfoNoPw" parameterType="User">
+		update user_list set tel1=#{tel1}, tel2=#{tel2}, tel3=#{tel3}, email=#{email} where user_id = #{userId}
+	</update>
+	<select id="getUserInfoByIdEmail" resultMap="userMap">
+		select * from user_list where user_id=#{userId} and email = #{email}
+	</select>
+	<insert id="insertPay" useGeneratedKeys="true" keyProperty="pay_seq" >
+		insert into pay_list(total_price,delivery_address,delivery_address_detail,user_id,pay_user_name) values(#{totalPrice},#{deliveryAddress},#{deliveryAddressDetail},#{userId},#{payUserName})
+	</insert>
+	<update id="increaseLikeCount">
+		update product_list set like_cnt = like_cnt+1 where p_id = #{likeItemNo}
+	</update>
+	<update id="descreaseLikeCount">
+		update product_list set like_cnt = like_cnt-1 where p_id = #{likeItemNo}
+	</update>
+	<insert id="insertPhoneConfirm">
+		insert into join_auth(phone,code) values(#{phone},#{code})
+	</insert>
+	<select id="checkPhoneConfirm" resultType="String">
+		select seq from join_auth where phone = #{phone} and code = #{code}
+	</select>
+	<delete id="deletePhoneCode">
+		delete from join_auth where seq = #{seq}
+	</delete>
+</mapper>
