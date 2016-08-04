@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ecu-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -84,12 +84,12 @@ function cartClickFunc(modeType){
 		var popUpPrice = onePrice*checkCount;
 		$("#popUpPrice").html(addCurrencyMark(popUpPrice));
 		$("#popUpTotalPrice").html(addCurrencyMark(popUpPrice+2500));
-		$("#pAmnt").val(popUpPrice+2500);
+		//$("#pAmnt").val(popUpPrice+2500);
+		$("#pAmnt").val(10);
 		$("#deliveryPopUp").show();
 	}else{
 		purchaseRequest(checkColor,checkSize,checkCount,'cartRequest');
 	}
-	
 }
 function pgRequest(){
 	payUserName =$("#userName").val();
@@ -102,13 +102,18 @@ function pgRequest(){
 	}
 	$("#pgForm").attr("action",actionUrl);
 	$("#pUname").val(payUserName);
-	$("#pgForm").submit();
-	/*
-	purchaseRequest(checkColor,checkSize,checkCount,'purchaseRequest',payUserName,deliveryAddress,deliveryAddressDetail);
-	if(confirm("주문이 성공적으로 접수되었습니다. 결제 샘플 페이지로 이동하시겠습니까?")==true){
-		location = 'https://drmobile.inicis.com/smart/wcard/gateway.php';
+	var paramObj = {
+			payUserName : payUserName,
+			deliveryAddress : deliveryAddress,
+			deliveryAddressDetail : deliveryAddressDetail,
+			checkColor : checkColor,
+			checkSize : checkSize,
+			checkCount : checkCount,
+			isCart : false
 	}
-	*/
+	var payData = setPayData(paramObj);
+	$("#pNoti").val(payData.replace(/\"/gi, ""));
+	$("#pgForm").submit();
 }
 $(document).ready(function() {
 	
@@ -348,9 +353,10 @@ $(document).ready(function() {
 						<span id="popUpTotalPrice" class="right">￦0</span>
 					</p>
 					<div class="clear line" style="margin-bottom: 5px; border-bottom: 2px solid;" ></div>
-					<form id="pgForm" action="https://mobile.inicis.com/smart/wcard/" method="post" >
-						<input type="hidden" name="P_MID" value="dobeweddin">
+					<form accept-charset="euc-kr" id="pgForm" action="https://mobile.inicis.com/smart/wcard/" method="post" >
+						<input type="hidden" name="P_MID" value="INIpayTest">
 						<input id="pAmnt" type="hidden" name="P_AMT" value="">
+						<input id="pNoti" type="hidden" name="P_NOTI" value="">
 						<input id="pUname" type="hidden" name="P_UNAME" value="noName">
 						<input id="pGoods" type="hidden" name="P_GOODS" value="">
 						<input id="pNextUrl" type="hidden" name="P_NEXT_URL" value="http://<%=request.getServerName().toString()+":"+request.getServerPort() %>/ifit/pageView/requestPayPg.ap">

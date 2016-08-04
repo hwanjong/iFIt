@@ -1,5 +1,7 @@
 package com.hwan.model;
 
+import java.util.List;
+
 public class Pay {
 	String deliveryAddress;
 	String deliveryAddressDetail;
@@ -9,6 +11,10 @@ public class Pay {
 	
 	String userId;
 	String pay_seq;
+	
+	String pgSuccessNumber;
+	
+	List<Order> orderList;
 	
 	public String getDeliveryAddress() {
 		return deliveryAddress;
@@ -52,5 +58,16 @@ public class Pay {
 	public void setPay_seq(String pay_seq) {
 		this.pay_seq = pay_seq;
 	}
-	
+	public String getPgSuccessNumber() {
+		return pgSuccessNumber;
+	}
+	public void setPgSuccessNumber(String pgSuccessNumber) {
+		this.pgSuccessNumber = pgSuccessNumber;
+	}
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
+	}
 }

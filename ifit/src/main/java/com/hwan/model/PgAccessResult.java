@@ -1,5 +1,7 @@
 package com.hwan.model;
 
+import java.io.UnsupportedEncodingException;
+
 public class PgAccessResult {
 	String P_STATUS;
 	String RMEP_RMESG1;
@@ -35,7 +37,12 @@ public class PgAccessResult {
 		return P_NOTI;
 	}
 	public void setP_NOTI(String p_NOTI) {
-		P_NOTI = p_NOTI;
+		try {
+			P_NOTI = new String(p_NOTI.getBytes("iso-8859-1"), "euc-kr");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void getAllInfo(){

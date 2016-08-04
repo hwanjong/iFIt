@@ -196,10 +196,20 @@ function pgRequest(){
 	
 	//pay동작과 순서 잘생각해봐야함.
 	$("#pgForm").attr("action",actionUrl);
-	$("#pAmnt").val(totalPrice);
+	//$("#pAmnt").val(totalPrice);
+	$("#pAmnt").val(10);
 	$("#pGoods").val(payUserName+"님의 결제묶음");
 	
 	$("#pUname").val(payUserName);
+	var paramObj = {
+			payUserName : payUserName,
+			deliveryAddress : deliveryAddress,
+			deliveryAddressDetail : deliveryAddressDetail,
+			cartItemObj : $(".basicItem .itemOn"),
+			isCart : true
+	}
+	var payData = setPayData(paramObj);
+	$("#pNoti").val(payData.replace(/\"/gi, ""));
 	$("#pgForm").submit();
 	/*구매완료시동작
 	$.ajax({

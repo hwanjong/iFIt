@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ecu-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -655,9 +655,10 @@ $(document).ready(function() {
 						<span id="popUpTotalPrice" class="right">￦0</span>
 					</p>
 					<div class="clear line" style="margin-bottom: 5px; border-bottom: 2px solid;" ></div>
-					<form id="pgForm" action="https://mobile.inicis.com/smart/wcard/" method="post" >
-						<input type="hidden" name="P_MID" value="dobeweddin">
+					<form accept-charset="euc-kr" id="pgForm" action="https://mobile.inicis.com/smart/wcard/" method="post" >
+						<input type="hidden" name="P_MID" value="INIpayTest">
 						<input id="pAmnt" type="hidden" name="P_AMT" value="">
+						<input id="pNoti" type="hidden" name="P_NOTI" value="">
 						<input id="pUname" type="hidden" name="P_UNAME" value="noName">
 						<input id="pGoods" type="hidden" name="P_GOODS" value="">
 						<input id="pNextUrl" type="hidden" name="P_NEXT_URL" value="http://<%=request.getServerName().toString()+":"+request.getServerPort() %>/ifit/pageView/requestPayPg.ap">

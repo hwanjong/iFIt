@@ -9,6 +9,7 @@ import com.hwan.model.Banner;
 import com.hwan.model.Color;
 import com.hwan.model.MainLabel;
 import com.hwan.model.Order;
+import com.hwan.model.Pay;
 import com.hwan.model.Product;
 import com.hwan.model.Promotion;
 import com.hwan.model.Review;
@@ -50,5 +51,7 @@ public interface ProductMapper {
 	public void insertCart(Order order);
 	public ArrayList<Product> getCartItems(String userId);
 	public int insertPayByOne(Order order);
+	
+	public void insertPay(Pay pay);
 
 }

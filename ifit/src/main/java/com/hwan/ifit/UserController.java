@@ -178,57 +178,57 @@ public class UserController {
 		return map;
 	}
 
-	@RequestMapping(value="/purchaseRequest",method=RequestMethod.POST)
-	HashMap<String, String> purchaseRequest(@ModelAttribute Order order,
-			@RequestParam("modeType")String modeType, HttpSession session){
-		HashMap<String, String> map = new HashMap<>();
-		//Session 검사
-		User user = (User) session.getAttribute("user");
-		if(user == null){
-			map.put("result", "fail");
-			return map;
-		}
-		order.setUserId(user.getUserId());
-		//Cart와 Order 같이 처리 DTO도 Order로 같이처리했음.
-		if(modeType.equals("cartRequest")){
-			productDao.insertCart(order);
-			map.put("result", "Success_cart");
-		}else{
-			//결제 정보확인한후에 넣어야함.
-			productDao.insertOrder(order,true);
-			map.put("result", "Success_order");
-		}
-		return map;
-	}
-	@RequestMapping(value="/cartPurchaseRequest.ap",method=RequestMethod.POST)
-	HashMap<String, String> cartPurchaseRequest(@ModelAttribute Pay pay, HttpSession session){
-		HashMap<String, String> map = new HashMap<>();
-		//Session 검사
-		User user = (User) session.getAttribute("user");
-		if(user == null){
-			map.put("result", "fail");
-			return map;
-		}
-		pay.setUserId(user.getUserId());
-		String paySeq = userDao.insertPay(pay);
-		map.put("paySeq", paySeq);
-		return map;
-	}
-	@RequestMapping(value="/insertEachOrder.ap",method=RequestMethod.POST)
-	HashMap<String, String> insertEachOrder(@ModelAttribute Order order, HttpSession session){
-		HashMap<String, String> map = new HashMap<>();
-		//Session 검사
-		User user = (User) session.getAttribute("user");
-		if(user == null){
-			map.put("result", "fail");
-			return map;
-		}
-		productDao.insertOrder(order,false);
-		//카트에서 삭제하는 작업도 해야됨.
-		userDao.deleteCart(user.getUserId(),order.getCartSeq());
-		map.put("result", "success");
-		return map;
-	}
+//	@RequestMapping(value="/purchaseRequest",method=RequestMethod.POST)
+//	HashMap<String, String> purchaseRequest(@ModelAttribute Order order,
+//			@RequestParam("modeType")String modeType, HttpSession session){
+//		HashMap<String, String> map = new HashMap<>();
+//		//Session 검사
+//		User user = (User) session.getAttribute("user");
+//		if(user == null){
+//			map.put("result", "fail");
+//			return map;
+//		}
+//		order.setUserId(user.getUserId());
+//		//Cart와 Order 같이 처리 DTO도 Order로 같이처리했음.
+//		if(modeType.equals("cartRequest")){
+//			productDao.insertCart(order);
+//			map.put("result", "Success_cart");
+//		}else{
+//			//결제 정보확인한후에 넣어야함.
+//			productDao.insertOrder(order,true);
+//			map.put("result", "Success_order");
+//		}
+//		return map;
+//	}
+//	@RequestMapping(value="/cartPurchaseRequest.ap",method=RequestMethod.POST)
+//	HashMap<String, String> cartPurchaseRequest(@ModelAttribute Pay pay, HttpSession session){
+//		HashMap<String, String> map = new HashMap<>();
+//		//Session 검사
+//		User user = (User) session.getAttribute("user");
+//		if(user == null){
+//			map.put("result", "fail");
+//			return map;
+//		}
+//		pay.setUserId(user.getUserId());
+//		String paySeq = userDao.insertPay(pay);
+//		map.put("paySeq", paySeq);
+//		return map;
+//	}
+//	@RequestMapping(value="/insertEachOrder.ap",method=RequestMethod.POST)
+//	HashMap<String, String> insertEachOrder(@ModelAttribute Order order, HttpSession session){
+//		HashMap<String, String> map = new HashMap<>();
+//		//Session 검사
+//		User user = (User) session.getAttribute("user");
+//		if(user == null){
+//			map.put("result", "fail");
+//			return map;
+//		}
+//		productDao.insertOrder(order,false);
+//		//카트에서 삭제하는 작업도 해야됨.
+//		userDao.deleteCart(user.getUserId(),order.getCartSeq());
+//		map.put("result", "success");
+//		return map;
+//	}
 
 	@RequestMapping(value="/transferCart.ap",method=RequestMethod.POST)
 	HashMap<String, String> transferCart(@RequestParam("zzimSeq") String zzimSeq,

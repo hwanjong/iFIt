@@ -142,31 +142,35 @@ function selectOption(event){
  * @param checkCount
  * @param modeType :장바구니로 이동과 구매하기를 ModeType으로 구별하여 다른테이블에 Insert함.
  */
-function purchaseRequest(checkColor,checkSize,checkCount,modeType,payUserName,deliveryAddress,deliveryAddressDetail){
-	var pId = $("#productId").val();
-	var adminSeq = $("#adminSeq").val();
-	$.ajax({
-		  url: '/ifit/Users/purchaseRequest',
-		  type:"POST",
-		  dataType: "json",
-		  data: {color:checkColor,size:checkSize,amount:checkCount,productId:pId,adminSeq:adminSeq,modeType:modeType,
-			  payUserName:payUserName,deliveryAddress:deliveryAddress,deliveryAddressDetail:deliveryAddressDetail},
-		  success: function(obj){
-			  if(obj.result=='fail'){
-				  alert("시간초과");
-				  location ='index.html#myPage';
-			  }else if(obj.result=='Success_cart'){
-				  if(confirm("장바구니에 담았습니다. 장바구니 페이지로 이동하시겠습니까?")==true){
-					  location = 'index.html#cartPage';
-				  }
-			  }else if(obj.result=='Success_order'){
-				  if(confirm("주문이 성공적으로 접수되었습니다. 주문조회 페이지로 이동하시겠습니까?")==true){
-					  location = 'orderTracking.html';
-				  }
-			  }
-		  }
-	});
-}
+//function purchaseRequest(checkColor,checkSize,checkCount,modeType,payUserName,deliveryAddress,deliveryAddressDetail){
+//	var pId = $("#productId").val();
+//	var adminSeq = $("#adminSeq").val();
+//	
+//	var data = {color:checkColor,size:checkSize,amount:checkCount,productId:pId,adminSeq:adminSeq,modeType:modeType,
+//		payUserName:payUserName,deliveryAddress:deliveryAddress,deliveryAddressDetail:deliveryAddressDetail};
+//	return JSON.stringify(data);
+//	$.ajax({
+//		  url: '/ifit/Users/purchaseRequest',
+//		  type:"POST",
+//		  dataType: "json",
+//		  data: {color:checkColor,size:checkSize,amount:checkCount,productId:pId,adminSeq:adminSeq,modeType:modeType,
+//			  payUserName:payUserName,deliveryAddress:deliveryAddress,deliveryAddressDetail:deliveryAddressDetail},
+//		  success: function(obj){
+//			  if(obj.result=='fail'){
+//				  alert("시간초과");
+//				  location ='index.html#myPage';
+//			  }else if(obj.result=='Success_cart'){
+//				  if(confirm("장바구니에 담았습니다. 장바구니 페이지로 이동하시겠습니까?")==true){
+//					  location = 'index.html#cartPage';
+//				  }
+//			  }else if(obj.result=='Success_order'){
+//				  if(confirm("주문이 성공적으로 접수되었습니다. 주문조회 페이지로 이동하시겠습니까?")==true){
+//					  location = 'orderTracking.html';
+//				  }
+//			  }
+//		  }
+//	});
+//}
 
 function moreRepleRequestHandler(e){
 	alert("댓글 더보기 요청");

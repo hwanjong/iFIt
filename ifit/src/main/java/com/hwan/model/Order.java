@@ -146,8 +146,6 @@ public class Order {
 		return cartSeq;
 	}
 	public void setCartSeq(String cartSeq) {
-		this.cartSeq = cartSeq;
-	}
-	
+		this.cartSeq = cartSeq;}
 
 }

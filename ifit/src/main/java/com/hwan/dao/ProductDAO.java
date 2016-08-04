@@ -11,6 +11,7 @@ import com.hwan.mapper.ProductMapper;
 import com.hwan.model.Banner;
 import com.hwan.model.MainModel;
 import com.hwan.model.Order;
+import com.hwan.model.Pay;
 import com.hwan.model.Product;
 import com.hwan.model.Promotion;
 import com.hwan.model.SearchModel;
@@ -122,24 +123,38 @@ public class ProductDAO {
 		
 	}
 
+	// 통합함
+	public void insertPayAndOrder(Pay pay) {
+		// TODO Auto-generated method stub
+		ProductMapper mapper = sqlSession.getMapper(ProductMapper.class);
+		String paySeq = null;
+		try {
+			mapper.insertPay(pay);
+			paySeq = pay.getPay_seq();
+			for(Order orderData : pay.getOrderList()){
+				orderData.setPay_seq(paySeq);
+				orderData.setUserId(pay.getUserId());
+				insertOrder(orderData);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 상세페이지에서 낱개 상품을 주문
 	 * @param order
 	 * @param b 
 	 */
-	public void insertOrder(Order order, boolean isOneOrder) {
+	public void insertOrder(Order order) {
 		// TODO Auto-generated method stub
 		try {
 			ProductMapper mapper = sqlSession.getMapper(ProductMapper.class);
 			Product product = mapper.getProduct(order.getProductId());
 			//임시 배송비 고정.(Mybatis 쿼리에서처리)
 			order.setPrice(product.getProductPrice());
-			//원래는 분리해야됨.
-			if(isOneOrder){
-				mapper.insertPayByOne(order);
-			}
 			mapper.insertOrder(order);
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

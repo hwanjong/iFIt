@@ -130,9 +130,11 @@
 		select * from review where p_id = #{productId}
 	</select>
 	<insert id="insertPayByOne" parameterType="Order" useGeneratedKeys="true" keyProperty="pay_seq" >
-		insert into pay_list(total_price,delivery_address,user_id,delivery_address_detail,pay_user_name) values(#{price}+'2500',#{deliveryAddress},#{userId},#{deliveryAddressDetail},#{payUserName})
+		insert into pay_list(pg_success_number,total_price,delivery_address,user_id,delivery_address_detail,pay_user_name) values(#{pgSuccessNumber},#{price}+'2500',#{deliveryAddress},#{userId},#{deliveryAddressDetail},#{payUserName})
 	</insert>
-	
+	<insert id="insertPay" useGeneratedKeys="true" keyProperty="pay_seq" >
+		insert into pay_list(pg_success_number,total_price,delivery_address,delivery_address_detail,user_id,pay_user_name) values(#{pgSuccessNumber},#{totalPrice},#{deliveryAddress},#{deliveryAddressDetail},#{userId},#{payUserName})
+	</insert>
 	<insert id="insertOrder" parameterType="Order">
 		insert into each_order(pay_seq,p_id,color_id,size_id,amount,price,admin_seq) values(#{pay_seq}, #{productId}, #{color}, #{size}, #{amount},#{price}, #{adminSeq})
 	</insert>

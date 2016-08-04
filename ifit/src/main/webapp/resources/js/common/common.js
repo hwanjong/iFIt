@@ -476,3 +476,39 @@ function addCurrencyMark(price){
 function removeCurrencyMark(price){
 	return parseInt(price.replace(/[^0-9]/g,""));
 }
+function setPayData(paramObj){
+	var data = {
+			payUserName : paramObj.payUserName,
+			deliveryAddress : paramObj.deliveryAddress,
+			deliveryAddressDetail : paramObj.deliveryAddressDetail
+	};
+	
+	data.orderList = new Array();
+	
+	if(paramObj.isCart){
+		paramObj.cartItemObj.each(function(idx){
+			var nowAdminSeq = $(this).attr("data-admin-seq");
+			var productId = $(this).attr("data-product_id");
+			var sizeId = $(this).find(".btnOn").attr("data-size_id");
+			var colorId = $(this).find(".colorOn").attr("data-color_id");
+			var amount = $(this).find(".cartAmount").html();
+			var cartSeq = $(this).attr("data-cart_seq");
+			data.orderList[idx] = setOrderData(colorId, sizeId, amount, productId, nowAdminSeq, cartSeq);
+		});
+	}else{
+		data.orderList[0] = setOrderData(paramObj.checkColor, paramObj.checkSize, paramObj.checkCount, $("#productId").val(), $("#adminSeq").val(), 0);
+	}
+	
+	return JSON.stringify(data);
+}
+function setOrderData(checkColor, checkSize, checkCount, pId, adminSeq, cartSeq){
+	var data = {
+			color:checkColor,
+			size:checkSize,
+			amount:checkCount,
+			productId:pId,
+			adminSeq:adminSeq,
+			cartSeq:cartSeq
+	};
+	return data;
+}
